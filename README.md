@@ -8,6 +8,6 @@ Hydrostats provides:
 
 - A library of over 60 error metrics to measure hydrologic skill
 - Treatment of NaN, Inf, negative, and zero values.
-- Sources and use case examples in the documentation.
+- Scholarly journal sources and use case examples in the documentation.
 
 [![Powered by BYU Hydroinformatics](https://img.shields.io/badge/powered%20by-BYU%20HydroInformatics-blue.svg)](http://worldwater.byu.edu/)
