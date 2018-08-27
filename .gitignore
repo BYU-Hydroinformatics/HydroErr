@@ -1,3 +1,5 @@
 venv
 .idea
 HydroErr/tests/htmlcov/*
+docs/_build
+HydroErr.egg-info

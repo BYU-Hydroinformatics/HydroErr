@@ -1,4 +1,3 @@
-# python 3.6
 # -*- coding: utf-8 -*-
 """
 HydroErr contains a library of goodness of fit metrics that measure hydrologic skill.
