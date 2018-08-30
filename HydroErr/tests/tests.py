@@ -624,8 +624,6 @@ class HydroErrTests(unittest.TestCase):
         del self.obs
 
 
-
-
 class HelperFunctionsTests(unittest.TestCase):
 
     def test_treat_values_remove(self):
@@ -655,20 +653,29 @@ class HelperFunctionsTests(unittest.TestCase):
         with warnings.catch_warnings(record=True) as w:
             # Trigger a warning.
             he.treat_values(sim, obs, remove_zero=True, remove_neg=True)
+
             # Verify some things
-            self.assertTrue(len(w) == 4)
-            self.assertTrue(issubclass(w[0].category, UserWarning))
-            self.assertTrue(issubclass(w[1].category, UserWarning))
-            self.assertTrue(issubclass(w[2].category, UserWarning))
-            self.assertTrue(issubclass(w[3].category, UserWarning))
-            self.assertTrue("Row(s) [0 1] contained NaN values and the row(s) have been removed "
-                            "(Rows are zero indexed)." in str(w[0].message))
-            self.assertTrue("Row(s) [2 3] contained Inf or -Inf values and the row(s) have been "
-                            "removed (Rows are zero indexed)." in str(w[1].message))
-            self.assertTrue("Row(s) [4 5] contained zero values and the row(s) have been removed "
-                            "(Rows are zero indexed)." in str(w[2].message))
-            self.assertTrue("Row(s) [6 7] contained negative values and the row(s) have been "
-                            "removed (Rows are zero indexed)." in str(w[3].message))
+            if '2.7' in sys.version:
+                self.assertTrue(len(w) == 1)
+                self.assertTrue(issubclass(w[0].category, UserWarning))
+                self.assertTrue("Row(s) [6 7] contained negative values and the row(s) have been "
+                                "removed (Rows are zero indexed)." in str(w[0].message))
+
+            else:
+                self.assertTrue(len(w) == 4)
+                self.assertTrue(issubclass(w[0].category, UserWarning))
+                self.assertTrue(issubclass(w[1].category, UserWarning))
+                self.assertTrue(issubclass(w[2].category, UserWarning))
+                self.assertTrue(issubclass(w[3].category, UserWarning))
+
+                self.assertTrue("Row(s) [0 1] contained NaN values and the row(s) have been removed "
+                                "(Rows are zero indexed)." in str(w[0].message))
+                self.assertTrue("Row(s) [2 3] contained Inf or -Inf values and the row(s) have been "
+                                "removed (Rows are zero indexed)." in str(w[1].message))
+                self.assertTrue("Row(s) [4 5] contained zero values and the row(s) have been removed "
+                                "(Rows are zero indexed)." in str(w[2].message))
+                self.assertTrue("Row(s) [6 7] contained negative values and the row(s) have been "
+                                "removed (Rows are zero indexed)." in str(w[3].message))
 
     def test_treat_values_replace(self):
         a = np.random.rand(30, 2)

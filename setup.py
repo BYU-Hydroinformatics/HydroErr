@@ -13,7 +13,6 @@ setup(
     url='https://github.com/waderoberts123/HydroErr',
     download_url='https://github.com/waderoberts123/Hydrostats/archive/1.2.tar.gz',
     keywords=['hydrology', 'error', 'metrics', 'comparison', 'statistics', 'forecast', 'observed'],
-    # arbitrary keywords
     classifiers=["License :: OSI Approved :: MIT License",
                  "Programming Language :: Python :: 2.7",
                  "Programming Language :: Python :: 3.5",
