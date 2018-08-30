@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/waderoberts123/HydroErr.svg?branch=master)](https://travis-ci.org/waderoberts123/HydroErr)
+[![codecov](https://codecov.io/gh/waderoberts123/HydroErr/branch/master/graph/badge.svg)](https://codecov.io/gh/waderoberts123/HydroErr)
+
 Goodness of fit metrics for use in comparison studies, specifically for use in the field of hydrology
 
 - **Documentation:** https://waderoberts123.github.io/HydroErr/
