@@ -1,12 +1,12 @@
 # Minimal makefile for Sphinx documentation
-#
 
 # You can set these variables from the command line.
 SPHINXOPTS    =
 SPHINXBUILD   = sphinx-build
 SPHINXPROJ    = HydroErr
 SOURCEDIR     = .
-BUILDDIR      = _build
+BUILDDIR      = ../../HydroErr_docs
+
 
 # Put it first so that "make" without argument is like "make help".
 help:

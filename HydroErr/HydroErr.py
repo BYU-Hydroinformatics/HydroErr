@@ -1575,7 +1575,7 @@ def spearman_r(simulated_array, observed_array, replace_nan=None, replace_inf=No
     float
         The Spearman rank correlation coefficient.
 
-    Parameters
+    Examples
     ----------
 
     >>> import HydroErr as he
