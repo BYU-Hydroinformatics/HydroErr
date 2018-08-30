@@ -8,11 +8,13 @@ python:
   - 3.6
 
 install:
-  - pip install Hydrostats
+  - pip install numpy
+  - pip install numba
+  - pip install scipy
   - pip install codecov
 
 script:
-  - cd hydrostats/tests
+  - cd HydroErr/tests
   - coverage run tests.py
 
 after_success:
