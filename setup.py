@@ -20,7 +20,6 @@ setup(
                  ],
     install_requires=[
         'numpy',
-        'numba',
         'scipy',
     ],
     extras_require={

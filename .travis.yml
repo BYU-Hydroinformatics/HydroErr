@@ -9,7 +9,6 @@ python:
 
 install:
   - pip install numpy
-  - pip install numba
   - pip install scipy
   - pip install codecov
 
