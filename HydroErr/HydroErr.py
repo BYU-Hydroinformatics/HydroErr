@@ -6,7 +6,6 @@ well as remove zero and negative values from the timeseries data.
 """
 from __future__ import division
 import numpy as np
-from numba import njit, prange
 from scipy.stats import gmean, rankdata
 import warnings
 
@@ -2706,6 +2705,28 @@ def mb_r(simulated_array, observed_array, replace_nan=None, replace_inf=None,
     float
         The Mielke-Berry R value.
 
+    Notes
+    -----
+    If a more optimized version is desired, the `numba package <http://numba.pydata.org/doc.html>`_ can be implemented
+    for a much more optimized performance when computing this metric. An example is given below.
+
+    >>> from numba import njit, prange
+
+    >>> @njit(parallel=True, fastmath=True)
+    >>> def mb_par_fastmath(pred, obs):  # uses LLVM compiler
+    >>>     assert pred.size == obs.size
+    >>>     n = pred.size
+    >>>     tot = 0.0
+    >>>     mae = 0.0
+    >>>     for i in range(n):
+    >>>         for j in prange(n):
+    >>>             tot += abs(pred[i] - obs[j])
+    >>>         mae += abs(pred[i] - obs[i])
+    >>>     mae = mae / n
+    >>>     mb = 1 - ((n ** 2) * mae / tot)
+    >>>
+    >>> return mb
+
     Examples
     --------
 
@@ -2737,22 +2758,15 @@ def mb_r(simulated_array, observed_array, replace_nan=None, replace_inf=None,
         remove_zero=remove_zero
     )
 
-    @njit(parallel=True)
-    def numba_loop(simulated_array_numba, observed_array_numba):
-        """Using numba for the double for loop"""
-        assert len(observed_array_numba) == len(simulated_array_numba)
-        size_numba = len(simulated_array_numba)
-        total_numba = 0.
-        for ii in prange(size_numba):
-            observed = observed_array_numba[ii]
-            for jj in prange(size_numba):
-                total_numba += abs(simulated_array_numba[jj] - observed)
-        return total_numba, size_numba
+    # Calculate metric
+    n = simulated_array.size
+    tot = 0.0
+    for i in range(n):
+        tot = tot + np.sum(np.abs(simulated_array - observed_array[i]))
+    mae_val = np.sum(np.abs(simulated_array - observed_array)) / n
+    mb = 1 - ((n ** 2) * mae_val / tot)
 
-    # Using NumPy for the vectorized calculations
-    total, size = numba_loop(simulated_array, observed_array)
-    mae_value = np.mean(np.abs(simulated_array - observed_array))
-    return 1 - (mae_value * size ** 2 / total)
+    return mb
 
 
 def nse(simulated_array, observed_array, replace_nan=None, replace_inf=None,
@@ -2999,7 +3013,7 @@ def nse_rel(simulated_array, observed_array, replace_nan=None, replace_inf=None,
 
 
 def kge_2009(simulated_array, observed_array, s=(1, 1, 1), replace_nan=None,
-             replace_inf=None, remove_neg=False, remove_zero=False):
+             replace_inf=None, remove_neg=False, remove_zero=False, return_all=False):
     """Compute the Kling-Gupta efficiency (2009).
 
     .. image:: /pictures/KGE_2009.png
@@ -3042,10 +3056,13 @@ def kge_2009(simulated_array, observed_array, s=(1, 1, 1), replace_nan=None,
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
 
+    return_all: bool
+        If True, returns all of the components of the KGE metric, which are r, alpha, and beta, respectively.
+
     Returns
     -------
-    float
-        The Kling-Gupta (2009) efficiency value.
+    float (tuple of float)
+        The Kling-Gupta (2009) efficiency value, unless the return_all parameter is True.
 
     Examples
     --------
@@ -3054,9 +3071,12 @@ def kge_2009(simulated_array, observed_array, s=(1, 1, 1), replace_nan=None,
     >>> import numpy as np
 
     >>> sim = np.array([5, 7, 9, 2, 4.5, 6.7])
-    >>> obs = np.array([4.7, 6, 10, 2.5, 4, 7])
+    >>> obs = np.array([4.7, 6, 10, 2.5, 4, 6.8])
     >>> he.kge_2009(sim, obs)
     0.912223072345668
+
+    >>> he.kge_2009(sim, obs, return_all=True)  # Returns (r, alpha, beta, kge)
+    (0.9615951377405804, 0.927910707932087, 1.0058823529411764, 0.9181073779138655)
 
     References
     ----------
@@ -3109,11 +3129,16 @@ def kge_2009(simulated_array, observed_array, s=(1, 1, 1), replace_nan=None,
                 'and the KGE value cannot be computed.')
         kge = np.nan
 
-    return kge
+    assert type(return_all) == bool, "expected <type 'bool'> for parameter return_all, got {}".format(type(return_all))
+
+    if return_all:
+        return pr, alpha, beta, kge
+    else:
+        return kge
 
 
 def kge_2012(simulated_array, observed_array, s=(1, 1, 1), replace_nan=None,
-             replace_inf=None, remove_neg=False, remove_zero=False):
+             replace_inf=None, remove_neg=False, remove_zero=False, return_all=False):
     """
 
     Compute the Kling-Gupta efficiency (2012).
@@ -3157,10 +3182,13 @@ def kge_2012(simulated_array, observed_array, s=(1, 1, 1), replace_nan=None,
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
 
+    return_all: bool
+        If True, returns all of the components of the KGE metric, which are r, gamma, and beta, respectively.
+
     Returns
     -------
-    float
-        The Kling-Gupta (2012) efficiency value.
+    float (tuple of float)
+        The Kling-Gupta (2012) efficiency value, unless the return_all parameter is True.
 
     Examples
     --------
@@ -3169,9 +3197,13 @@ def kge_2012(simulated_array, observed_array, s=(1, 1, 1), replace_nan=None,
     >>> import numpy as np
 
     >>> sim = np.array([5, 7, 9, 2, 4.5, 6.7])
-    >>> obs = np.array([4.7, 6, 10, 2.5, 4, 7])
+    >>> obs = np.array([4.7, 6, 10, 2.5, 4, 6.8])
     >>> he.kge_2012(sim, obs)
     0.9122230723456678
+
+    >>> he.kge_2012(sim, obs, return_all=True)  # Returns (r, alpha, beta, kge)
+    (0.9615951377405804, 0.9224843295231272, 1.0058823529411764, 0.9132923608280753)
+
 
     References
     ----------
@@ -3227,7 +3259,12 @@ def kge_2012(simulated_array, observed_array, s=(1, 1, 1), replace_nan=None,
                 'and the KGE value cannot be computed.')
         kge = np.nan
 
-    return kge
+    assert type(return_all) == bool, "expected <type 'bool'> for parameter return_all, got {}".format(type(return_all))
+
+    if return_all:
+        return pr, gam, beta, kge
+    else:
+        return kge
 
 
 def lm_index(simulated_array, observed_array, obs_bar_p=None, replace_nan=None,
@@ -6256,4 +6293,6 @@ def treat_values(simulated_array, observed_array, replace_nan=None, replace_inf=
 
 
 if __name__ == "__main__":
-    pass
+    sim = np.array([5, 7, 9, 2, 4.5, 6.7])
+    obs = np.array([4.7, 6, 10, 2.5, 4, 7])
+    print(kge_2012(sim, obs, return_all=True))
