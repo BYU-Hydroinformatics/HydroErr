@@ -2713,21 +2713,19 @@ def mb_r(simulated_array, observed_array, replace_nan=None, replace_inf=None,
     >>> from numba import njit, prange
 
     >>> @njit(parallel=True, fastmath=True)
-    >>> def mb_par_fastmath(pred, obs):  # uses compiler - same as above
-    >>>     assert pred.shape[0] == obs.shape[0]
-    >>>     c = np.column_stack((pred, obs))
-    >>>     n = pred.shape[0]
+    >>> def mb_par_fastmath(pred, obs):  # uses LLVM compiler
+    >>>     assert pred.size == obs.size
+    >>>     n = pred.size
     >>>     tot = 0.0
     >>>     mae = 0.0
-    >>>     for i in prange(n):
+    >>>     for i in range(n):
     >>>         for j in prange(n):
-    >>>            tot += abs(c[i, 0] - c[j, 1])
-    >>>         mae += np.abs(c[i, 0] - c[i, 1])
+    >>>             tot += abs(pred[i] - obs[j])
+    >>>         mae += abs(pred[i] - obs[i])
     >>>     mae = mae / n
     >>>     mb = 1 - ((n ** 2) * mae / tot)
     >>>
-    >>>     return mb
-
+    >>> return mb
 
     Examples
     --------
@@ -2760,11 +2758,12 @@ def mb_r(simulated_array, observed_array, replace_nan=None, replace_inf=None,
         remove_zero=remove_zero
     )
 
+    # Calculate metric
     n = simulated_array.size
     tot = 0.0
     for i in range(n):
-        tot = tot + sum(abs(simulated_array - observed_array[i]))
-    mae_val = sum(np.abs(simulated_array - observed_array)) / n
+        tot = tot + np.sum(np.abs(simulated_array - observed_array[i]))
+    mae_val = np.sum(np.abs(simulated_array - observed_array)) / n
     mb = 1 - ((n ** 2) * mae_val / tot)
 
     return mb
