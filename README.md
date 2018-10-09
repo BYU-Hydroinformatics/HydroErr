@@ -7,7 +7,7 @@ Goodness of fit metrics for use in comparison studies, specifically for use in t
 - **Source:** https://github.com/waderoberts123/HydroErr
 - **Bug reports:** https://github.com/waderoberts123/HydroErr/issues
 
-Hydrostats provides:
+HydroErr provides:
 
 - A library of over 60 error metrics to measure hydrologic skill
 - Treatment of NaN, Inf, negative, and zero values.
