@@ -3110,12 +3110,18 @@ def kge_2009(simulated_array, observed_array, s=(1, 1, 1), replace_nan=None,
     pr = top_pr / (bot1_pr * bot2_pr)
 
     # Ratio between mean of simulated and observed data
-    beta = sim_mean / obs_mean
+    if obs_mean != 0:
+        beta = sim_mean / obs_mean
+    else:
+        beta = np.nan
 
     # Relative variability between simulated and observed values
-    alpha = sim_sigma / obs_sigma
+    if obs_sigma != 0:
+        alpha = sim_sigma / obs_sigma
+    else:
+        alpha = np.nan
 
-    if obs_mean != 0 and obs_sigma != 0:
+    if not np.isnan(beta) and not np.isnan(alpha):
         kge = 1 - np.sqrt(
             (s[0] * (pr - 1)) ** 2 + (s[1] * (alpha - 1)) ** 2 + (s[2] * (beta - 1)) ** 2)
     else:
@@ -3245,7 +3251,7 @@ def kge_2012(simulated_array, observed_array, s=(1, 1, 1), replace_nan=None,
     # Variability Ratio, or the ratio of simulated CV to observed CV
     gam = sim_cv / obs_cv
 
-    if obs_mean != 0 and obs_sigma != 0:
+    if obs_mean != 0 and obs_sigma != 0 and sim_mean != 0:
         kge = 1 - np.sqrt(
             (s[0] * (pr - 1)) ** 2 + (s[1] * (gam - 1)) ** 2 + (s[2] * (beta - 1)) ** 2)
     else:
@@ -3256,6 +3262,10 @@ def kge_2012(simulated_array, observed_array, s=(1, 1, 1), replace_nan=None,
         if obs_sigma == 0:
             warnings.warn(
                 'Warning: The observed data standard deviation is 0. Therefore, Gamma is infinite '
+                'and the KGE value cannot be computed.')
+        if sim_mean == 0:
+            warnings.warn(
+                'Warning: The simulated data mean is 0. Therefore, Gamma is infinite '
                 'and the KGE value cannot be computed.')
         kge = np.nan
 
@@ -6292,7 +6302,4 @@ def treat_values(simulated_array, observed_array, replace_nan=None, replace_inf=
 
 
 if __name__ == "__main__":
-    sim_bad_data = np.array([6, np.nan, 100, np.inf, 200, -np.inf, 300, 0, 400, -0.1, 5, 7, 9, 2, 4.5, 6.7])
-    obs_bad_data = np.array([np.nan, 100, np.inf, 200, -np.inf, 300, 0, 400, -0.1, 500, 4.7, 6, 10, 2.5, 4, 6.8])
-
-    print(me(sim_bad_data, obs_bad_data, remove_neg=True, remove_zero=True))
+    pass
