@@ -275,6 +275,15 @@ class HydroErrTests(unittest.TestCase):
         test_value_bad_data = he.dr(self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True)
         self.assertTrue(np.isclose(expected_value, test_value_bad_data))
 
+        # Test for the case when a > b in the function
+        simulated_array = np.array([6.46798627, 7.29596011, 8.84220973, 4.29514505, 0.28713612,
+                                    6.72170644, 0.73659359, 0.88821022, 8.54288031, 8.46199717])
+        observed_array = np.array([6.61975021, 0.66489119, 5.54279687, 8.66670447, 5.79587539,
+                                   5.52870883, 7.83817005, 9.03424271, 5.87438289, 0.40828201])
+        expected_value = -0.13041791707510286
+
+        self.assertTrue(np.isclose(he.dr(simulated_array, observed_array), expected_value))
+
     def test_watt_m(self):
         expected_value = 0.832713182570339
         test_value = he.watt_m(self.sim, self.obs)
@@ -328,6 +337,29 @@ class HydroErrTests(unittest.TestCase):
         test_value_bad_data = he.kge_2009(self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True)
         self.assertTrue(np.isclose(expected_value, test_value_bad_data))
 
+        # Testing warnings in the function
+        sim = np.array([1, 2, 3, 4, 5])
+        obs = np.array([-1, 1, 0, -2, 2])  # Making the mean 0
+
+        with warnings.catch_warnings(record=True) as w:
+            # Trigger warning
+            test_val_mean_0 = he.kge_2009(sim, obs)
+            self.assertTrue(len(w) == 1)
+            self.assertTrue('Warning: The observed data mean is 0. Therefore, Beta is infinite and the KGE '
+                            'value cannot be computed.' in str(w[0].message))
+            self.assertTrue(np.isnan(test_val_mean_0))
+
+        sim = np.array([1, 2, 3, 4, 5])
+        obs = np.array([1, 1, 1, 1, 1])  # Making the standard deviation 0
+
+        with warnings.catch_warnings(record=True) as w:
+            # Trigger warning
+            test_val_std_0 = he.kge_2009(sim, obs)
+            self.assertTrue(len(w) == 2)  # There is also a warning for divide by zero
+            self.assertTrue('Warning: The observed data standard deviation is 0. Therefore, Alpha is infinite '
+                            'and the KGE value cannot be computed.' in str(w[1].message))
+            self.assertTrue(np.isnan(test_val_std_0))
+
     def test_kge_2012(self):
         expected_value = 0.9132923608280753
         expected_tuple = (0.9615951377405804, 0.9224843295231272, 1.0058823529411764, 0.9132923608280753)
@@ -340,6 +372,30 @@ class HydroErrTests(unittest.TestCase):
 
         test_value_bad_data = he.kge_2012(self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True)
         self.assertTrue(np.isclose(expected_value, test_value_bad_data))
+
+        # Testing warnings in the function
+        sim = np.array([1, 2, 3, 4, 5])
+        obs = np.array([-1, 1, 0, -2, 2])  # Making the mean 0
+
+        with warnings.catch_warnings(record=True) as w:
+            # Trigger warning
+            test_val_mean_0 = he.kge_2012(sim, obs)
+            self.assertTrue(len(w) == 3)
+            self.assertTrue('Warning: The observed data mean is 0. Therefore, Beta is infinite and the KGE '
+                            'value cannot be computed.' in str(w[2].message))
+            self.assertTrue(np.isnan(test_val_mean_0))
+
+        sim = np.array([1, 2, 3, 4, 5])
+        obs = np.array([1, 1, 1, 1, 1])  # Making the standard deviation 0
+
+        # TODO: Fix these tests
+        with warnings.catch_warnings(record=True) as w:
+            # Trigger warning
+            test_val_std_0 = he.kge_2012(sim, obs)
+            self.assertTrue(len(w) == 2)  # There is also a warning for divide by zero
+            self.assertTrue('Warning: The observed data standard deviation is 0. Therefore, Alpha is infinite '
+                            'and the KGE value cannot be computed.' in str(w[1].message))
+            self.assertTrue(np.isnan(test_val_std_0))
 
     def test_lm_index(self):
         expected_value = 0.706896551724138
@@ -707,6 +763,15 @@ class HelperFunctionsTests(unittest.TestCase):
             self.assertIsNone(np.testing.assert_equal(obs_treated, obs_new),
                               "Treat values function did not work properly when replacing values from "
                               "the observed data.")
+
+    def test_treat_values_unequal_length(self):
+        sim = np.array([1, 2, 3, 4])
+        obs = np.array([1, 2, 3])
+
+        with self.assertRaises(Exception) as context:
+            he.treat_values(sim, obs)
+
+        self.assertTrue("The two ndarrays are not the same size." in context.exception)
 
 
 if __name__ == "__main__":
