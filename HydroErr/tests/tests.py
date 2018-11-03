@@ -388,14 +388,24 @@ class HydroErrTests(unittest.TestCase):
         sim = np.array([1, 2, 3, 4, 5])
         obs = np.array([1, 1, 1, 1, 1])  # Making the standard deviation 0
 
-        # TODO: Fix these tests
         with warnings.catch_warnings(record=True) as w:
             # Trigger warning
             test_val_std_0 = he.kge_2012(sim, obs)
-            self.assertTrue(len(w) == 2)  # There is also a warning for divide by zero
-            self.assertTrue('Warning: The observed data standard deviation is 0. Therefore, Alpha is infinite '
-                            'and the KGE value cannot be computed.' in str(w[1].message))
+            self.assertTrue(len(w) == 3)  # There is also a warning for divide by zero
+            self.assertTrue('Warning: The observed data standard deviation is 0. Therefore, Gamma is infinite '
+                            'and the KGE value cannot be computed.' in str(w[2].message))
             self.assertTrue(np.isnan(test_val_std_0))
+
+        sim = np.array([-1, 1, 0, -2, 2])  # Making the mean 0
+        obs = np.array([1, 2, 3, 4, 5])
+
+        with warnings.catch_warnings(record=True) as w:
+            # Trigger warning
+            test_val_mean_0_sim = he.kge_2012(sim, obs)
+            self.assertTrue(len(w) == 2)  # There is also a warning for divide by zero
+            self.assertTrue('Warning: The simulated data mean is 0. Therefore, Gamma is infinite '
+                            'and the KGE value cannot be computed.' in str(w[1].message))
+            self.assertTrue(np.isnan(test_val_mean_0_sim))
 
     def test_lm_index(self):
         expected_value = 0.706896551724138
@@ -405,6 +415,11 @@ class HydroErrTests(unittest.TestCase):
         test_value_bad_data = he.lm_index(self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True)
         self.assertTrue(np.isclose(expected_value, test_value_bad_data))
 
+        # Testing with obs_bar_p argument
+        expected_value_obs_bar_p_param = 0.706896551724138
+        test_val_obs_bar_p_param = he.lm_index(self.sim, self.obs, obs_bar_p=5)
+        self.assertTrue(np.isclose(expected_value_obs_bar_p_param, test_val_obs_bar_p_param))
+
     def test_d1_p(self):
         expected_value = 0.8508771929824561
         test_value = he.d1_p(self.sim, self.obs)
@@ -412,6 +427,11 @@ class HydroErrTests(unittest.TestCase):
 
         test_value_bad_data = he.d1_p(self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True)
         self.assertTrue(np.isclose(expected_value, test_value_bad_data))
+
+        # Testing with obs_bar_p argument
+        expected_value_obs_bar_p_param = 0.8508771929824561
+        test_val_obs_bar_p_param = he.d1_p(self.sim, self.obs, obs_bar_p=5)
+        self.assertTrue(np.isclose(expected_value_obs_bar_p_param, test_val_obs_bar_p_param))
 
     def test_ve(self):
         expected_value = 0.9

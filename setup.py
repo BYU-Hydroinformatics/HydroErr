@@ -8,7 +8,7 @@ with open('README.md') as f:
 setup(
     name='HydroErr',
     packages=['HydroErr'],
-    version='1.21',
+    version='1.22',
     description='Goodness of fit metrics for use in comparison studies, specifically for use in the field '
                 'of hydrology',
     long_description=long_description,
@@ -16,7 +16,7 @@ setup(
     author='Wade Roberts',
     author_email='waderoberts123@gmail.com',
     url='https://github.com/waderoberts123/HydroErr',
-    download_url='https://github.com/waderoberts123/Hydrostats/archive/1.21.tar.gz',
+    download_url='https://github.com/waderoberts123/Hydrostats/archive/1.22.tar.gz',
     keywords=['hydrology', 'error', 'metrics', 'comparison', 'statistics', 'forecast', 'observed'],
     classifiers=["Programming Language :: Python :: 2.7",
                  "Programming Language :: Python :: 3.5",
