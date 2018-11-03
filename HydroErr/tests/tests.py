@@ -275,6 +275,15 @@ class HydroErrTests(unittest.TestCase):
         test_value_bad_data = he.dr(self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True)
         self.assertTrue(np.isclose(expected_value, test_value_bad_data))
 
+        # Test for the case when a > b in the function
+        simulated_array = np.array([6.46798627, 7.29596011, 8.84220973, 4.29514505, 0.28713612,
+                                    6.72170644, 0.73659359, 0.88821022, 8.54288031, 8.46199717])
+        observed_array = np.array([6.61975021, 0.66489119, 5.54279687, 8.66670447, 5.79587539,
+                                   5.52870883, 7.83817005, 9.03424271, 5.87438289, 0.40828201])
+        expected_value = -0.13041791707510286
+
+        self.assertTrue(np.isclose(he.dr(simulated_array, observed_array), expected_value))
+
     def test_watt_m(self):
         expected_value = 0.832713182570339
         test_value = he.watt_m(self.sim, self.obs)
@@ -328,6 +337,29 @@ class HydroErrTests(unittest.TestCase):
         test_value_bad_data = he.kge_2009(self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True)
         self.assertTrue(np.isclose(expected_value, test_value_bad_data))
 
+        # Testing warnings in the function
+        sim = np.array([1, 2, 3, 4, 5])
+        obs = np.array([-1, 1, 0, -2, 2])  # Making the mean 0
+
+        with warnings.catch_warnings(record=True) as w:
+            # Trigger warning
+            test_val_mean_0 = he.kge_2009(sim, obs)
+            self.assertTrue(len(w) == 1)
+            self.assertTrue('Warning: The observed data mean is 0. Therefore, Beta is infinite and the KGE '
+                            'value cannot be computed.' in str(w[0].message))
+            self.assertTrue(np.isnan(test_val_mean_0))
+
+        sim = np.array([1, 2, 3, 4, 5])
+        obs = np.array([1, 1, 1, 1, 1])  # Making the standard deviation 0
+
+        with warnings.catch_warnings(record=True) as w:
+            # Trigger warning
+            test_val_std_0 = he.kge_2009(sim, obs)
+            self.assertTrue(len(w) == 2)  # There is also a warning for divide by zero
+            self.assertTrue('Warning: The observed data standard deviation is 0. Therefore, Alpha is infinite '
+                            'and the KGE value cannot be computed.' in str(w[1].message))
+            self.assertTrue(np.isnan(test_val_std_0))
+
     def test_kge_2012(self):
         expected_value = 0.9132923608280753
         expected_tuple = (0.9615951377405804, 0.9224843295231272, 1.0058823529411764, 0.9132923608280753)
@@ -341,6 +373,40 @@ class HydroErrTests(unittest.TestCase):
         test_value_bad_data = he.kge_2012(self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True)
         self.assertTrue(np.isclose(expected_value, test_value_bad_data))
 
+        # Testing warnings in the function
+        sim = np.array([1, 2, 3, 4, 5])
+        obs = np.array([-1, 1, 0, -2, 2])  # Making the mean 0
+
+        with warnings.catch_warnings(record=True) as w:
+            # Trigger warning
+            test_val_mean_0 = he.kge_2012(sim, obs)
+            self.assertTrue(len(w) == 3)
+            self.assertTrue('Warning: The observed data mean is 0. Therefore, Beta is infinite and the KGE '
+                            'value cannot be computed.' in str(w[2].message))
+            self.assertTrue(np.isnan(test_val_mean_0))
+
+        sim = np.array([1, 2, 3, 4, 5])
+        obs = np.array([1, 1, 1, 1, 1])  # Making the standard deviation 0
+
+        with warnings.catch_warnings(record=True) as w:
+            # Trigger warning
+            test_val_std_0 = he.kge_2012(sim, obs)
+            self.assertTrue(len(w) == 3)  # There is also a warning for divide by zero
+            self.assertTrue('Warning: The observed data standard deviation is 0. Therefore, Gamma is infinite '
+                            'and the KGE value cannot be computed.' in str(w[2].message))
+            self.assertTrue(np.isnan(test_val_std_0))
+
+        sim = np.array([-1, 1, 0, -2, 2])  # Making the mean 0
+        obs = np.array([1, 2, 3, 4, 5])
+
+        with warnings.catch_warnings(record=True) as w:
+            # Trigger warning
+            test_val_mean_0_sim = he.kge_2012(sim, obs)
+            self.assertTrue(len(w) == 2)  # There is also a warning for divide by zero
+            self.assertTrue('Warning: The simulated data mean is 0. Therefore, Gamma is infinite '
+                            'and the KGE value cannot be computed.' in str(w[1].message))
+            self.assertTrue(np.isnan(test_val_mean_0_sim))
+
     def test_lm_index(self):
         expected_value = 0.706896551724138
         test_value = he.lm_index(self.sim, self.obs)
@@ -349,6 +415,11 @@ class HydroErrTests(unittest.TestCase):
         test_value_bad_data = he.lm_index(self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True)
         self.assertTrue(np.isclose(expected_value, test_value_bad_data))
 
+        # Testing with obs_bar_p argument
+        expected_value_obs_bar_p_param = 0.706896551724138
+        test_val_obs_bar_p_param = he.lm_index(self.sim, self.obs, obs_bar_p=5)
+        self.assertTrue(np.isclose(expected_value_obs_bar_p_param, test_val_obs_bar_p_param))
+
     def test_d1_p(self):
         expected_value = 0.8508771929824561
         test_value = he.d1_p(self.sim, self.obs)
@@ -356,6 +427,11 @@ class HydroErrTests(unittest.TestCase):
 
         test_value_bad_data = he.d1_p(self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True)
         self.assertTrue(np.isclose(expected_value, test_value_bad_data))
+
+        # Testing with obs_bar_p argument
+        expected_value_obs_bar_p_param = 0.8508771929824561
+        test_val_obs_bar_p_param = he.d1_p(self.sim, self.obs, obs_bar_p=5)
+        self.assertTrue(np.isclose(expected_value_obs_bar_p_param, test_val_obs_bar_p_param))
 
     def test_ve(self):
         expected_value = 0.9
@@ -637,7 +713,8 @@ class HydroErrTests(unittest.TestCase):
 class HelperFunctionsTests(unittest.TestCase):
 
     def test_treat_values_remove(self):
-        a = np.random.rand(30, 2)
+        a = np.random.random_integers(low=100, size=(30, 2))
+        a = a.astype(np.float16)
         a[0, 0] = np.nan
         a[1, 1] = np.nan
         a[2, 0] = np.inf
@@ -650,9 +727,27 @@ class HelperFunctionsTests(unittest.TestCase):
         sim = a[:, 0]
         obs = a[:, 1]
 
-        sim_treated, obs_treated = he.treat_values(sim, obs, remove_zero=True, remove_neg=True)
-
         # Tests
+        with warnings.catch_warnings(record=True) as w:
+            # Trigger a warning.
+            sim_treated, obs_treated = he.treat_values(sim, obs, remove_zero=True, remove_neg=True)
+
+        # Verify some things
+        self.assertTrue(len(w) == 4)
+        self.assertTrue(issubclass(w[0].category, UserWarning))
+        self.assertTrue(issubclass(w[1].category, UserWarning))
+        self.assertTrue(issubclass(w[2].category, UserWarning))
+        self.assertTrue(issubclass(w[3].category, UserWarning))
+
+        self.assertTrue("Row(s) [0 1] contained NaN values and the row(s) have been removed "
+                        "(Rows are zero indexed)." in str(w[0].message))
+        self.assertTrue("Row(s) [2 3] contained Inf or -Inf values and the row(s) have been "
+                        "removed (Rows are zero indexed)." in str(w[1].message))
+        self.assertTrue("Row(s) [4 5] contained zero values and the row(s) have been removed "
+                        "(Rows are zero indexed)." in str(w[2].message))
+        self.assertTrue("Row(s) [6 7] contained negative values and the row(s) have been "
+                        "removed (Rows are zero indexed)." in str(w[3].message))
+
         self.assertIsNone(np.testing.assert_equal(sim_treated, a[8:, 0]),
                           "Treat values function did not work properly when removing values from "
                           "the simulated data.")
@@ -660,73 +755,43 @@ class HelperFunctionsTests(unittest.TestCase):
                           "Treat values function did not work properly when removing values from "
                           "the observed data.")
 
-        with warnings.catch_warnings(record=True) as w:
-            # Trigger a warning.
-            he.treat_values(sim, obs, remove_zero=True, remove_neg=True)
-
-            # Verify some things
-            if '2.7' in sys.version:
-                self.assertTrue(len(w) == 1)
-                self.assertTrue(issubclass(w[0].category, UserWarning))
-                self.assertTrue("Row(s) [6 7] contained negative values and the row(s) have been "
-                                "removed (Rows are zero indexed)." in str(w[0].message))
-
-            else:
-                self.assertTrue(len(w) == 4)
-                self.assertTrue(issubclass(w[0].category, UserWarning))
-                self.assertTrue(issubclass(w[1].category, UserWarning))
-                self.assertTrue(issubclass(w[2].category, UserWarning))
-                self.assertTrue(issubclass(w[3].category, UserWarning))
-
-                self.assertTrue("Row(s) [0 1] contained NaN values and the row(s) have been removed "
-                                "(Rows are zero indexed)." in str(w[0].message))
-                self.assertTrue("Row(s) [2 3] contained Inf or -Inf values and the row(s) have been "
-                                "removed (Rows are zero indexed)." in str(w[1].message))
-                self.assertTrue("Row(s) [4 5] contained zero values and the row(s) have been removed "
-                                "(Rows are zero indexed)." in str(w[2].message))
-                self.assertTrue("Row(s) [6 7] contained negative values and the row(s) have been "
-                                "removed (Rows are zero indexed)." in str(w[3].message))
-
     def test_treat_values_replace(self):
-        a = np.random.rand(30, 2)
-        a[0, 0] = np.nan
-        a[1, 1] = np.nan
-        a[2, 0] = np.inf
-        a[3, 1] = np.inf
+        sim = np.array([np.nan, np.inf, 9, 2, 4.5, 6.7])
+        obs = np.array([4.7, 6, np.nan, np.inf, 4, 7])
 
-        sim = a[:, 0]
-        obs = a[:, 1]
-
-        sim_treated, obs_treated = he.treat_values(sim, obs, replace_nan=32, replace_inf=1000)
-
-        sim_new = np.copy(sim)
-        obs_new = np.copy(obs)
-
-        sim_new[0] = 32
-        sim_new[2] = 1000
-        obs_new[1] = 32
-        obs_new[3] = 1000
-
-        self.assertIsNone(np.testing.assert_equal(sim_treated, sim_new),
-                          "Treat values function did not work properly when replacing values from "
-                          "the simulated data.")
-        self.assertIsNone(np.testing.assert_equal(obs_treated, obs_new),
-                          "Treat values function did not work properly when replacing values from "
-                          "the observed data.")
+        sim_new = np.array([32.0, 1000.0, 9, 2, 4.5, 6.7])
+        obs_new = np.array([4.7, 6, 32.0, 1000.0, 4., 7.])
 
         with warnings.catch_warnings(record=True) as w:
             # Trigger a warning.
-            he.treat_values(sim, obs, replace_nan=32, replace_inf=1000)
+            sim_treated, obs_treated = he.treat_values(sim, obs, replace_nan=32, replace_inf=1000)
             # Verify some things
             self.assertTrue(len(w) == 2)
             self.assertTrue(issubclass(w[0].category, UserWarning))
             self.assertTrue(issubclass(w[1].category, UserWarning))
             self.assertTrue("Elements(s) [0] contained NaN values in the simulated array and "
-                            "elements(s) [1] contained NaN values in the observed array and have "
+                            "elements(s) [2] contained NaN values in the observed array and have "
                             "been replaced (Elements are zero indexed)." in str(w[0].message))
-            self.assertTrue("Elements(s) [2] contained NaN values in the simulated array and "
-                            "elements(s) [3] contained NaN values in the observed array and have "
+            self.assertTrue("Elements(s) [1] contained Inf values in the simulated array and "
+                            "elements(s) [3] contained Inf values in the observed array and have "
                             "been replaced (Elements are zero indexed)." in str(w[1].message))
+
+            # Check if arrays match
+            self.assertIsNone(np.testing.assert_equal(sim_treated, sim_new),
+                              "Treat values function did not work properly when replacing values from "
+                              "the simulated data.")
+            self.assertIsNone(np.testing.assert_equal(obs_treated, obs_new),
+                              "Treat values function did not work properly when replacing values from "
+                              "the observed data.")
+
+    def test_treat_values_unequal_length(self):
+        sim = np.array([1, 2, 3, 4])
+        obs = np.array([1, 2, 3])
+
+        with self.assertRaises(Exception) as context:
+            he.treat_values(sim, obs)
+
+        self.assertTrue("The two ndarrays are not the same size." in context.exception)
 
 
 if __name__ == "__main__":

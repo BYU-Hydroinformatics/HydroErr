@@ -3110,12 +3110,18 @@ def kge_2009(simulated_array, observed_array, s=(1, 1, 1), replace_nan=None,
     pr = top_pr / (bot1_pr * bot2_pr)
 
     # Ratio between mean of simulated and observed data
-    beta = sim_mean / obs_mean
+    if obs_mean != 0:
+        beta = sim_mean / obs_mean
+    else:
+        beta = np.nan
 
     # Relative variability between simulated and observed values
-    alpha = sim_sigma / obs_sigma
+    if obs_sigma != 0:
+        alpha = sim_sigma / obs_sigma
+    else:
+        alpha = np.nan
 
-    if obs_mean != 0 and obs_sigma != 0:
+    if not np.isnan(beta) and not np.isnan(alpha):
         kge = 1 - np.sqrt(
             (s[0] * (pr - 1)) ** 2 + (s[1] * (alpha - 1)) ** 2 + (s[2] * (beta - 1)) ** 2)
     else:
@@ -3245,7 +3251,7 @@ def kge_2012(simulated_array, observed_array, s=(1, 1, 1), replace_nan=None,
     # Variability Ratio, or the ratio of simulated CV to observed CV
     gam = sim_cv / obs_cv
 
-    if obs_mean != 0 and obs_sigma != 0:
+    if obs_mean != 0 and obs_sigma != 0 and sim_mean != 0:
         kge = 1 - np.sqrt(
             (s[0] * (pr - 1)) ** 2 + (s[1] * (gam - 1)) ** 2 + (s[2] * (beta - 1)) ** 2)
     else:
@@ -3256,6 +3262,10 @@ def kge_2012(simulated_array, observed_array, s=(1, 1, 1), replace_nan=None,
         if obs_sigma == 0:
             warnings.warn(
                 'Warning: The observed data standard deviation is 0. Therefore, Gamma is infinite '
+                'and the KGE value cannot be computed.')
+        if sim_mean == 0:
+            warnings.warn(
+                'Warning: The simulated data mean is 0. Therefore, Gamma is infinite '
                 'and the KGE value cannot be computed.')
         kge = np.nan
 
@@ -6234,8 +6244,8 @@ def treat_values(simulated_array, observed_array, replace_nan=None, replace_inf=
             sim_copy[sim_inf] = replace_inf
             obs_copy[obs_inf] = replace_inf
 
-            warnings.warn("Elements(s) {} contained NaN values in the simulated array and "
-                          "elements(s) {} contained NaN values in the observed array and have been "
+            warnings.warn("Elements(s) {} contained Inf values in the simulated array and "
+                          "elements(s) {} contained Inf values in the observed array and have been "
                           "replaced (Elements are zero indexed).".format(np.where(sim_inf)[0],
                                                                          np.where(obs_inf)[0]),
                           UserWarning)
@@ -6268,23 +6278,22 @@ def treat_values(simulated_array, observed_array, replace_nan=None, replace_inf=
 
     # Treat negative data in observed_array and simulated_array, rows in simulated_array or
     # observed_array that contain negative values
-    warnings.filterwarnings("ignore")  # Ignore runtime warnings from comparing
+
+    # Ignore runtime warnings from comparing
     if remove_neg:
-        if (obs_copy < 0).any() or (sim_copy < 0).any():
-            neg_indices_fcst = ~(sim_copy < 0)
-            neg_indices_obs = ~(obs_copy < 0)
+        with np.errstate(invalid='ignore'):
+            obs_copy_bool = obs_copy < 0
+            sim_copy_bool = sim_copy < 0
+
+        if obs_copy_bool.any() or sim_copy_bool.any():
+            neg_indices_fcst = ~sim_copy_bool
+            neg_indices_obs = ~obs_copy_bool
             all_neg_indices = np.logical_and(neg_indices_fcst, neg_indices_obs)
             all_treatment_array = np.logical_and(all_treatment_array, all_neg_indices)
-
-            warnings.filterwarnings("always")
 
             warnings.warn("Row(s) {} contained negative values and the row(s) have been "
                           "removed (Rows are zero indexed).".format(np.where(~all_neg_indices)[0]),
                           UserWarning)
-        else:
-            warnings.filterwarnings("always")
-    else:
-        warnings.filterwarnings("always")
 
     obs_copy = obs_copy[all_treatment_array]
     sim_copy = sim_copy[all_treatment_array]
@@ -6293,6 +6302,4 @@ def treat_values(simulated_array, observed_array, replace_nan=None, replace_inf=
 
 
 if __name__ == "__main__":
-    sim = np.array([5, 7, 9, 2, 4.5, 6.7])
-    obs = np.array([4.7, 6, 10, 2.5, 4, 7])
-    print(kge_2012(sim, obs, return_all=True))
+    pass
