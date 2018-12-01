@@ -1,11 +1,11 @@
-[![Build Status](https://travis-ci.org/waderoberts123/HydroErr.svg?branch=master)](https://travis-ci.org/waderoberts123/HydroErr)
-[![codecov](https://codecov.io/gh/waderoberts123/HydroErr/branch/master/graph/badge.svg)](https://codecov.io/gh/waderoberts123/HydroErr)
+[![Build Status](https://travis-ci.org/BYU-Hydroinformatics/HydroErr.svg?branch=master)](https://travis-ci.org/BYU-Hydroinformatics/HydroErr)
+[![codecov](https://codecov.io/gh/BYU-Hydroinformatics/HydroErr/branch/master/graph/badge.svg)](https://codecov.io/gh/BYU-Hydroinformatics/HydroErr)
 
 Goodness of fit metrics for use in comparison studies, specifically for use in the field of hydrology
 
-- **Documentation:** https://waderoberts123.github.io/HydroErr/
-- **Source:** https://github.com/waderoberts123/HydroErr
-- **Bug reports:** https://github.com/waderoberts123/HydroErr/issues
+- **Documentation:** https://BYU-Hydroinformatics.github.io/HydroErr/
+- **Source:** https://github.com/BYU-Hydroinformatics/HydroErr
+- **Bug reports:** https://github.com/BYU-Hydroinformatics/HydroErr/issues
 
 HydroErr provides:
 
