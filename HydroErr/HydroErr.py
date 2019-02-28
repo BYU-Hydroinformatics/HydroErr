@@ -2010,7 +2010,7 @@ def smape1(simulated_array, observed_array, replace_nan=None, replace_inf=None,
 
     .. image:: /pictures/SMAPE1.png
 
-    **Range:** 0 ≤ SMAPE1 < 200%, does not indicate bias, smaller is better, symmetrical.
+    **Range:** 0 ≤ SMAPE1 < 100%, smaller is better, symmetrical.
 
     **Notes:** This metric is an adjusted version of the MAPE.
 
@@ -3018,7 +3018,7 @@ def kge_2009(simulated_array, observed_array, s=(1, 1, 1), replace_nan=None,
 
     .. image:: /pictures/KGE_2009.png
 
-    **Range:** -inf < KGE (2009) < 1, does not indicate bias, larger is better.
+    **Range:** -inf < KGE (2009) < 1, larger is better.
 
     **Notes:** Gupta et al. (2009) created this metric to demonstrate the relative importance of
     the three components of the NSE, which are correlation, bias and variability. This was done
