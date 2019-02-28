@@ -8,8 +8,8 @@ Welcome to HydroErr's documentation!
    :maxdepth: 1
    :caption: Contents:
 
+   installation
    list_of_metrics
-
 
 Indices and tables
 ==================
