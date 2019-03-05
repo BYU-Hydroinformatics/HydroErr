@@ -2010,7 +2010,7 @@ def smape1(simulated_array, observed_array, replace_nan=None, replace_inf=None,
 
     .. image:: /pictures/SMAPE1.png
 
-    **Range:** 0 ≤ SMAPE1 < 200%, does not indicate bias, smaller is better, symmetrical.
+    **Range:** 0 ≤ SMAPE1 < 100%, smaller is better, symmetrical.
 
     **Notes:** This metric is an adjusted version of the MAPE.
 
