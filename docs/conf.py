@@ -22,13 +22,13 @@ sys.path.insert(0, os.path.abspath('.'))
 # -- Project information -----------------------------------------------------
 
 project = 'HydroErr'
-copyright = '2018, Wade Roberts, Gustavious Williams'
+copyright = '2019, Wade Roberts, Gustavious Williams'
 author = 'Wade Roberts, Gustavious Williams'
 
 # The short X.Y version
-version = ''
+version = '1.22'
 # The full version, including alpha/beta/rc tags
-release = '1.22'
+release = ''
 
 
 # -- General configuration ---------------------------------------------------
