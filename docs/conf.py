@@ -26,7 +26,7 @@ copyright = '2019, Wade Roberts, Gustavious Williams'
 author = 'Wade Roberts, Gustavious Williams'
 
 # The short X.Y version
-version = '1.22'
+version = '1.23'
 # The full version, including alpha/beta/rc tags
 release = ''
 

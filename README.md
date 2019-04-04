@@ -3,7 +3,7 @@
 
 Goodness of fit metrics for use in comparison studies, specifically for use in the field of hydrology
 
-- **Documentation:** https://BYU-Hydroinformatics.github.io/HydroErr/
+- **Documentation:** https://hydroerr.readthedocs.io/en/stable/
 - **Source:** https://github.com/BYU-Hydroinformatics/HydroErr
 - **Bug reports:** https://github.com/BYU-Hydroinformatics/HydroErr/issues
 

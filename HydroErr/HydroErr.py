@@ -109,7 +109,7 @@ def mae(simulated_array, observed_array, replace_nan=None, replace_inf=None,
 
     .. image:: /pictures/MAE.png
 
-    **Range:** 0 ≤ MAE < inf, data units, smaller is better, does not indicate bias.
+    **Range:** 0 ≤ MAE < inf, data units, smaller is better.
 
     **Notes:** The ME measures the absolute difference between the simulated data and the observed
     data. For the mean abolute error, a smaller number indicates a better fit to the original data.
@@ -189,7 +189,7 @@ def mse(simulated_array, observed_array, replace_nan=None, replace_inf=None,
 
     .. image:: /pictures/MSE.png
 
-    **Range:** 0 ≤ MSE < inf, data units squared, smaller is better, does not indicate bias.
+    **Range:** 0 ≤ MSE < inf, data units squared, smaller is better.
 
     **Notes:** Random errors do not cancel, highlights larger errors, also referred to as a
     squared L2-norm.
@@ -264,9 +264,9 @@ def mle(simulated_array, observed_array, replace_nan=None, replace_inf=None,
 
     .. image:: /pictures/MLE.png
 
-    **Range:** -inf < MLE < inf, data units, closer to zero is better, indicates bias.
+    **Range:** -inf < MLE < inf, data units, closer to zero is better.
 
-    **Notes** Same as ME only use log ratios as the error term. Limits the impact of outliers, more
+    **Notes** Same as the mean erro (ME) only use log ratios as the error term. Limits the impact of outliers, more
     evenly weights high and low data values.
 
     Parameters
@@ -344,7 +344,7 @@ def male(simulated_array, observed_array, replace_nan=None, replace_inf=None,
 
     .. image:: /pictures/MALE.png
 
-    **Range:** 0 ≤ MALE < inf, data units squared, smaller is better, does not indicate bias.
+    **Range:** 0 ≤ MALE < inf, data units squared, smaller is better.
 
     **Notes** Same as MAE only use log ratios as the error term. Limits the impact of outliers,
     more evenly weights high and low flows.
@@ -424,7 +424,7 @@ def msle(simulated_array, observed_array, replace_nan=None, replace_inf=None,
 
     .. image:: /pictures/MSLE.png
 
-    **Range:** 0 ≤ MSLE < inf, data units squared, smaller is better, does not indicate bias.
+    **Range:** 0 ≤ MSLE < inf, data units squared, smaller is better.
 
     **Notes** Same as the mean squared error (MSE) only use log ratios as the error term. Limits
     the impact of outliers, more evenly weights high and low values.
@@ -580,9 +580,8 @@ def mdae(simulated_array, observed_array, replace_nan=None, replace_inf=None,
 
     **Range** 0 ≤ MdAE < inf, closer to zero is better.
 
-    **Notes** This metric does not indicates bias. Random errors (noise) do not cancel.
-    It is similar to the mean absolute error (MAE), only it takes the median rather than
-    the mean. Median measures reduces the impact of outliers.
+    **Notes** Random errors (noise) do not cancel. It is the same as the mean absolute error (MAE), only it takes the
+    median rather than the mean. Median measures reduces the impact of outliers.
 
     Parameters
     ----------
@@ -655,9 +654,8 @@ def mdse(simulated_array, observed_array, replace_nan=None, replace_inf=None,
 
     **Range** 0 ≤ MdSE < inf, closer to zero is better.
 
-    **Notes** This metric does not indicates bias. Random errors (noise) do not cancel.
-    It is similar to the mean squared error (MSE), only it takes the median rather than
-    the mean. Median measures reduces the impact of outliers.
+    **Notes** Random errors (noise) do not cancel. It is the same as the mean squared error (MSE), only it takes the
+    median rather than the mean. Median measures reduces the impact of outliers.
 
     Parameters
     ----------
@@ -729,7 +727,7 @@ def ed(simulated_array, observed_array, replace_nan=None, replace_inf=None,
     .. image:: /pictures/ED.png
 
     **Range** 0 ≤ ED < inf, smaller is better.
-    **Notes** This metric does not indicate bias. It is also sometimes referred to as the L2-norm.
+    **Notes** Also sometimes referred to as the L2-norm.
 
     Parameters
     ----------
@@ -806,8 +804,7 @@ def ned(simulated_array, observed_array, replace_nan=None, replace_inf=None,
 
     **Range** 0 ≤ NED < inf, smaller is better.
 
-    **Notes** This metric does not indicate bias. It is also sometimes referred to as the squared
-    L2-norm.
+    **Notes** Also sometimes referred to as the squared L2-norm.
 
     Parameters
     ----------
@@ -966,7 +963,7 @@ def rmsle(simulated_array, observed_array, replace_nan=None, replace_inf=None,
 
     **Range:** 0 ≤ RMSLE < inf. Smaller is better, and it does not indicate bias.
 
-    **Notes:** Random errors do not cancel while using this metric. This metric also limits the
+    **Notes:** Random errors do not cancel while using this metric. This metric limits the
     impact of outliers by more evenly weighting high and low values. To calculate the log values,
     each value in the observed and simulated array is increased by one unit in order to avoid
     run-time errors and nan values (function np.log1p).
