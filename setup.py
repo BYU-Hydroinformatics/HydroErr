@@ -15,7 +15,7 @@ setup(
     long_description_content_type='text/markdown',
     author='Wade Roberts',
     author_email='waderoberts123@gmail.com',
-    url='https://github.com/waderoberts123/HydroErr',
+    url='https://github.com/BYU-Hydroinformatics/HydroErr',
     keywords=['hydrology', 'error', 'metrics', 'comparison', 'statistics', 'forecast', 'observed'],
     classifiers=["Programming Language :: Python :: 2.7",
                  "Programming Language :: Python :: 3.5",
