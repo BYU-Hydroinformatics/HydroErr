@@ -10,6 +10,7 @@ Welcome to HydroErr's documentation!
 
    installation
    list_of_metrics
+   contribute
 
 Indices and tables
 ==================
