@@ -3,6 +3,17 @@
 HydroErr contains a library of goodness of fit metrics that measure hydrologic skill.
 Each metric is contained in function, and every function has the parameters to treat missing values as
 well as remove zero and negative values from the timeseries data.
+
+Each function contains two properties, name and abbr. These can be used in the Hydrostats package when creating tables
+and adding metrics to the plots. Link to the hydrostats package: https://github.com/BYU-Hydroinformatics/Hydrostats.
+An example of this functionality is shown below.
+
+>>> import HydroErr as he
+>>>
+>>> he.acc.name
+'Anomaly Correlation Coefficient'
+>>> he.acc.abbr
+'ACC'
 """
 from __future__ import division
 import numpy as np
@@ -6188,6 +6199,12 @@ function_list = [
     h6_mahe, h6_rmshe, h7_mhe, h7_mahe, h7_rmshe, h8_mhe, h8_mahe, h8_rmshe, h10_mhe, h10_mahe,
     h10_rmshe, g_mean_diff, mean_var,
 ]
+
+
+# Assign some properties to each function for ease of use for users
+for i in range(len(function_list)):
+    function_list[i].name = metric_names[i]
+    function_list[i].abbr = metric_abbr[i]
 
 
 def treat_values(simulated_array, observed_array, replace_nan=None, replace_inf=None,

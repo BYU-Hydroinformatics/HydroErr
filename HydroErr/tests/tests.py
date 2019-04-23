@@ -791,7 +791,7 @@ class HelperFunctionsTests(unittest.TestCase):
         with self.assertRaises(Exception) as context:
             he.treat_values(sim, obs)
 
-        self.assertTrue("The two ndarrays are not the same size." in context.exception)
+        self.assertTrue("The two ndarrays are not the same size." in context.exception.args[0])
 
 
 if __name__ == "__main__":
