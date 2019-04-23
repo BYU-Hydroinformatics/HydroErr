@@ -11,6 +11,7 @@ Welcome to HydroErr's documentation!
    installation
    list_of_metrics
    contribute
+   change_log
 
 Indices and tables
 ==================

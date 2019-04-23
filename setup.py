@@ -8,7 +8,7 @@ with open('README.md') as f:
 setup(
     name='HydroErr',
     packages=['HydroErr'],
-    version='1.23',
+    version='1.24',
     description='Goodness of fit metrics for use in comparison studies, specifically for use in the field '
                 'of hydrology',
     long_description=long_description,
