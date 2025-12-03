@@ -3,3 +3,4 @@ venv
 HydroErr/tests/htmlcov/*
 docs/_build
 HydroErr.egg-info
+tests/.coverage
