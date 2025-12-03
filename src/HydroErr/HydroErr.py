@@ -1,21 +1,20 @@
-# -*- coding: utf-8 -*-
-"""
-HydroErr contains a library of goodness of fit metrics that measure hydrologic skill.
-Each metric is contained in function, and every function has the parameters to treat missing values as
-well as remove zero and negative values from the timeseries data.
+"""A library of goodness of fit metrics that measure hydrologic skill.
 
-Each function contains two properties, name and abbr. These can be used in the Hydrostats package when creating tables
-and adding metrics to the plots. Link to the hydrostats package: https://github.com/BYU-Hydroinformatics/Hydrostats.
+Each metric is contained in a function, and every function has the parameters to treat missing
+values as well as remove zero and negative values from the timeseries data.
+
+Each function contains two properties, name and abbr. These can be used in the Hydrostats package
+when creating tables and adding metrics to the plots. Link to the hydrostats package:
+https://github.com/BYU-Hydroinformatics/Hydrostats.
+
 An example of this functionality is shown below.
 
 >>> import HydroErr as he
->>>
 >>> he.acc.name
 'Anomaly Correlation Coefficient'
 >>> he.acc.abbr
 'ACC'
 """
-from __future__ import division
 import numpy as np
 from scipy.stats import gmean, rankdata
 import warnings
@@ -333,7 +332,7 @@ def mle(simulated_array, observed_array, replace_nan=None, replace_inf=None,
     """
 
     # Checking and cleaning the data
-    
+
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
@@ -413,7 +412,7 @@ def male(simulated_array, observed_array, replace_nan=None, replace_inf=None,
     """
 
     # Checking and cleaning the data
-    
+
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
@@ -493,7 +492,7 @@ def msle(simulated_array, observed_array, replace_nan=None, replace_inf=None,
 
     """
     # Checking and cleaning the data
-    
+
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
@@ -569,7 +568,7 @@ def mde(simulated_array, observed_array, replace_nan=None, replace_inf=None,
     """
 
     # Checking and cleaning the data
-    
+
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
@@ -643,7 +642,7 @@ def mdae(simulated_array, observed_array, replace_nan=None, replace_inf=None,
     """
 
     # Checking and cleaning the data
-    
+
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
@@ -717,7 +716,7 @@ def mdse(simulated_array, observed_array, replace_nan=None, replace_inf=None,
     """
 
     # Checking and cleaning the data
-    
+
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
@@ -792,7 +791,7 @@ def ed(simulated_array, observed_array, replace_nan=None, replace_inf=None,
     """
 
     # Checking and cleaning the data
-    
+
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
@@ -868,7 +867,7 @@ def ned(simulated_array, observed_array, replace_nan=None, replace_inf=None,
     """
 
     # Checking and cleaning the data
-    
+
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
@@ -951,7 +950,7 @@ def rmse(simulated_array, observed_array, replace_nan=None, replace_inf=None,
     """
 
     # Checking and cleaning the data
-    
+
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
@@ -1033,7 +1032,7 @@ def rmsle(simulated_array, observed_array, replace_nan=None, replace_inf=None,
       root mean square error (RMSE) in assessing average model performance.
       Climate Research 30(1) 79-82.
     """
-    
+
     simulated_array, observed_array = treat_values(simulated_array, observed_array,
                                                    replace_nan=replace_nan,
                                                    replace_inf=replace_inf, remove_neg=remove_neg,
@@ -1105,7 +1104,7 @@ def nrmse_range(simulated_array, observed_array, replace_nan=None, replace_inf=N
     """
 
     # Checking and cleaning the data
-    
+
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
@@ -1185,7 +1184,7 @@ def nrmse_mean(simulated_array, observed_array, replace_nan=None, replace_inf=No
     """
 
     # Checking and cleaning the data
-    
+
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
@@ -1265,7 +1264,7 @@ def nrmse_iqr(simulated_array, observed_array, replace_nan=None, replace_inf=Non
     """
 
     # Checking and cleaning the data
-    
+
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
@@ -1347,7 +1346,7 @@ def irmse(simulated_array, observed_array, replace_nan=None, replace_inf=None,
     """
 
     # Checking and cleaning the data
-    
+
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
@@ -1514,7 +1513,7 @@ def pearson_r(simulated_array, observed_array, replace_nan=None, replace_inf=Non
 
     """
     # Checking and cleaning the data
-    
+
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
@@ -3225,7 +3224,7 @@ def kge_2012(simulated_array, observed_array, s=(1, 1, 1), replace_nan=None,
       an ensemble of climate change scenarios. Journal of Hydrology, 424, 264-277.
 
     """
-    
+
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
@@ -6129,7 +6128,7 @@ def mean_var(simulated_array, observed_array, replace_nan=None, replace_inf=None
     ----------
 
     """
-    
+
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
