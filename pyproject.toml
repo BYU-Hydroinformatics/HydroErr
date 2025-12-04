@@ -35,6 +35,7 @@ dev = [
     "matplotlib>=3.10.7",
     "pytest>=9.0.1",
     "pytest-check>=2.6.2",
+    "ruff>=0.14.8",
 ]
 
 [project.urls]
