@@ -16,4 +16,6 @@ An example of this functionality is shown below.
 'ACC'
 """
 
+__version__ = "2.0.0"
+
 from .HydroErr import *
