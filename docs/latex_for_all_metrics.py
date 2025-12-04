@@ -128,7 +128,7 @@ for metric in latex_symbols:
     fig = plt.figure(figsize=(0.01, 0.01))
     fig.text(0, 0, latex_symbols[metric], fontsize=12)
     fig.savefig(
-        "pictures/{}.png".format(metric),
+        f"pictures/{metric}.png",
         dpi=250,
         transparent=True,
         format="png",

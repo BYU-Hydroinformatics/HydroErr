@@ -3440,7 +3440,7 @@ def kge_2009(
         kge = np.nan
 
     assert type(return_all) == bool, (
-        "expected <type 'bool'> for parameter return_all, got {}".format(type(return_all))
+        f"expected <type 'bool'> for parameter return_all, got {type(return_all)}"
     )
 
     if return_all:
@@ -3588,7 +3588,7 @@ def kge_2012(
         kge = np.nan
 
     assert type(return_all) == bool, (
-        "expected <type 'bool'> for parameter return_all, got {}".format(type(return_all))
+        f"expected <type 'bool'> for parameter return_all, got {type(return_all)}"
     )
 
     if return_all:
@@ -6955,11 +6955,9 @@ def treat_values(
             obs_copy[obs_nan] = replace_nan
 
             warnings.warn(
-                "Elements(s) {} contained NaN values in the simulated array and "
-                "elements(s) {} contained NaN values in the observed array and have been "
-                "replaced (Elements are zero indexed).".format(
-                    np.where(sim_nan)[0], np.where(obs_nan)[0]
-                ),
+                f"Elements(s) {np.where(sim_nan)[0]} contained NaN values in the simulated array and "
+                f"elements(s) {np.where(obs_nan)[0]} contained NaN values in the observed array and have been "
+                "replaced (Elements are zero indexed).",
                 UserWarning,
             )
         else:
@@ -6970,8 +6968,8 @@ def treat_values(
             all_treatment_array = np.logical_and(all_treatment_array, all_nan_indices)
 
             warnings.warn(
-                "Row(s) {} contained NaN values and the row(s) have been "
-                "removed (Rows are zero indexed).".format(np.where(~all_nan_indices)[0]),
+                f"Row(s) {np.where(~all_nan_indices)[0]} contained NaN values and the row(s) have been "
+                "removed (Rows are zero indexed).",
                 UserWarning,
             )
 
@@ -6985,11 +6983,9 @@ def treat_values(
             obs_copy[obs_inf] = replace_inf
 
             warnings.warn(
-                "Elements(s) {} contained Inf values in the simulated array and "
-                "elements(s) {} contained Inf values in the observed array and have been "
-                "replaced (Elements are zero indexed).".format(
-                    np.where(sim_inf)[0], np.where(obs_inf)[0]
-                ),
+                f"Elements(s) {np.where(sim_inf)[0]} contained Inf values in the simulated array and "
+                f"elements(s) {np.where(obs_inf)[0]} contained Inf values in the observed array and have been "
+                "replaced (Elements are zero indexed).",
                 UserWarning,
             )
         else:
@@ -6999,8 +6995,8 @@ def treat_values(
             all_treatment_array = np.logical_and(all_treatment_array, all_inf_indices)
 
             warnings.warn(
-                "Row(s) {} contained Inf or -Inf values and the row(s) have been removed (Rows "
-                "are zero indexed).".format(np.where(~all_inf_indices)[0]),
+                f"Row(s) {np.where(~all_inf_indices)[0]} contained Inf or -Inf values and the row(s) have been removed (Rows "
+                "are zero indexed).",
                 UserWarning,
             )
 
@@ -7014,8 +7010,8 @@ def treat_values(
             all_treatment_array = np.logical_and(all_treatment_array, all_zero_indices)
 
             warnings.warn(
-                "Row(s) {} contained zero values and the row(s) have been removed (Rows are "
-                "zero indexed).".format(np.where(~all_zero_indices)[0]),
+                f"Row(s) {np.where(~all_zero_indices)[0]} contained zero values and the row(s) have been removed (Rows are "
+                "zero indexed).",
                 UserWarning,
             )
 
@@ -7035,8 +7031,8 @@ def treat_values(
             all_treatment_array = np.logical_and(all_treatment_array, all_neg_indices)
 
             warnings.warn(
-                "Row(s) {} contained negative values and the row(s) have been "
-                "removed (Rows are zero indexed).".format(np.where(~all_neg_indices)[0]),
+                f"Row(s) {np.where(~all_neg_indices)[0]} contained negative values and the row(s) have been "
+                "removed (Rows are zero indexed).",
                 UserWarning,
             )
 
