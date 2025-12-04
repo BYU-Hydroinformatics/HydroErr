@@ -35,6 +35,9 @@ dev = [
     "pytest>=9.0.1",
     "pytest-check>=2.6.2",
 ]
+docs = [
+    "matplotlib>=3.10.7",
+]
 
 [project.urls]
 repository = "https://github.com/BYU-Hydroinformatics/HydroErr"
