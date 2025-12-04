@@ -31,4 +31,4 @@ jobs:
 
       - name: Run tests
         run: |
-          uv run pytest -q
+          uv run --python ${{ matrix.python-version }} pytest -q
