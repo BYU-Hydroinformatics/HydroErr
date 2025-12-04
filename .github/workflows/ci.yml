@@ -3,6 +3,34 @@ name: CI
 on: [pull_request]
 
 jobs:
+  lint_format:
+    name: Lint and Format
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.14
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.14
+
+      - name: Set up uv
+        uses: astral-sh/setup-uv@v7
+
+      - name: Install dev dependencies
+        run: |
+          uv --version
+          uv sync --no-managed-python --only-dev
+
+      - name: Lint
+        run: |
+          uv run --no-managed-python ruff check
+
+      - name: Format
+        run: |
+          uv run --no-managed-python ruff format --check
+
   tests:
     name: Tests (${{ matrix.os }} | Python ${{ matrix.python-version }})
     runs-on: ${{ matrix.os }}
