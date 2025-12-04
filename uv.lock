@@ -261,11 +261,9 @@ dependencies = [
 
 [package.dev-dependencies]
 dev = [
+    { name = "matplotlib" },
     { name = "pytest" },
     { name = "pytest-check" },
-]
-docs = [
-    { name = "matplotlib" },
 ]
 
 [package.metadata]
@@ -276,10 +274,10 @@ requires-dist = [
 
 [package.metadata.requires-dev]
 dev = [
+    { name = "matplotlib", specifier = ">=3.10.7" },
     { name = "pytest", specifier = ">=9.0.1" },
     { name = "pytest-check", specifier = ">=2.6.2" },
 ]
-docs = [{ name = "matplotlib", specifier = ">=3.10.7" }]
 
 [[package]]
 name = "iniconfig"

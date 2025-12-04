@@ -7081,7 +7081,3 @@ def treat_values(
     sim_copy = sim_copy[all_treatment_array]
 
     return sim_copy, obs_copy
-
-
-if __name__ == "__main__":
-    pass
