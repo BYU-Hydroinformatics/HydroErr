@@ -9,15 +9,38 @@ import HydroErr.HydroErr as he
 class TestHydroErr:
     sim = np.array([5, 7, 9, 2, 4.5, 6.7])
     obs = np.array([4.7, 6, 10, 2.5, 4, 6.8])
-    sim_bad_data = np.array([6, np.nan, 100, np.inf, 200, -np.inf, 300, 0, 400, -0.1, 5, 7, 9, 2, 4.5, 6.7])
-    obs_bad_data = np.array([np.nan, 100, np.inf, 200, -np.inf, 300, 0, 400, -0.1, 500, 4.7, 6, 10, 2.5, 4, 6.8])
+    sim_bad_data = np.array(
+        [6, np.nan, 100, np.inf, 200, -np.inf, 300, 0, 400, -0.1, 5, 7, 9, 2, 4.5, 6.7]
+    )
+    obs_bad_data = np.array(
+        [
+            np.nan,
+            100,
+            np.inf,
+            200,
+            -np.inf,
+            300,
+            0,
+            400,
+            -0.1,
+            500,
+            4.7,
+            6,
+            10,
+            2.5,
+            4,
+            6.8,
+        ]
+    )
 
     def test_me(self):
         expected_value = 0.03333333333333336
         test_value = he.me(self.sim, self.obs)
         check.is_true(np.isclose(expected_value, test_value))
 
-        test_value_bad_data = he.me(self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True)
+        test_value_bad_data = he.me(
+            self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True
+        )
         check.is_true(np.isclose(expected_value, test_value_bad_data))
 
     def test_mae(self):
@@ -25,7 +48,9 @@ class TestHydroErr:
         test_value = he.mae(self.sim, self.obs)
         check.is_true(np.isclose(expected_value, test_value))
 
-        test_value_bad_data = he.mae(self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True)
+        test_value_bad_data = he.mae(
+            self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True
+        )
         check.is_true(np.isclose(expected_value, test_value_bad_data))
 
     def test_mse(self):
@@ -33,7 +58,9 @@ class TestHydroErr:
         test_value = he.mse(self.sim, self.obs)
         check.is_true(np.isclose(expected_value, test_value))
 
-        test_value_bad_data = he.mse(self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True)
+        test_value_bad_data = he.mse(
+            self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True
+        )
         check.is_true(np.isclose(expected_value, test_value_bad_data))
 
     def test_mle(self):
@@ -41,7 +68,9 @@ class TestHydroErr:
         test_value = he.mle(self.sim, self.obs)
         check.is_true(np.isclose(expected_value, test_value))
 
-        test_value_bad_data = he.mle(self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True)
+        test_value_bad_data = he.mle(
+            self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True
+        )
         check.is_true(np.isclose(expected_value, test_value_bad_data))
 
     def test_male(self):
@@ -49,7 +78,9 @@ class TestHydroErr:
         test_value = he.male(self.sim, self.obs)
         check.is_true(np.isclose(expected_value, test_value))
 
-        test_value_bad_data = he.male(self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True)
+        test_value_bad_data = he.male(
+            self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True
+        )
         check.is_true(np.isclose(expected_value, test_value_bad_data))
 
     def test_msle(self):
@@ -57,7 +88,9 @@ class TestHydroErr:
         test_value = he.msle(self.sim, self.obs)
         check.is_true(np.isclose(expected_value, test_value))
 
-        test_value_bad_data = he.msle(self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True)
+        test_value_bad_data = he.msle(
+            self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True
+        )
         check.is_true(np.isclose(expected_value, test_value_bad_data))
 
     def test_mde(self):
@@ -65,7 +98,9 @@ class TestHydroErr:
         test_value = he.mde(self.sim, self.obs)
         check.is_true(np.isclose(expected_value, test_value))
 
-        test_value_bad_data = he.mde(self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True)
+        test_value_bad_data = he.mde(
+            self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True
+        )
         check.is_true(np.isclose(expected_value, test_value_bad_data))
 
     def test_mdae(self):
@@ -73,7 +108,9 @@ class TestHydroErr:
         test_value = he.mdae(self.sim, self.obs)
         check.is_true(np.isclose(expected_value, test_value))
 
-        test_value_bad_data = he.mdae(self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True)
+        test_value_bad_data = he.mdae(
+            self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True
+        )
         check.is_true(np.isclose(expected_value, test_value_bad_data))
 
     def test_mdse(self):
@@ -81,7 +118,9 @@ class TestHydroErr:
         test_value = he.mdse(self.sim, self.obs)
         check.is_true(np.isclose(expected_value, test_value))
 
-        test_value_bad_data = he.mdse(self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True)
+        test_value_bad_data = he.mdse(
+            self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True
+        )
         check.is_true(np.isclose(expected_value, test_value_bad_data))
 
     def test_ed(self):
@@ -89,7 +128,9 @@ class TestHydroErr:
         test_value = he.ed(self.sim, self.obs)
         check.is_true(np.isclose(expected_value, test_value))
 
-        test_value_bad_data = he.ed(self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True)
+        test_value_bad_data = he.ed(
+            self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True
+        )
         check.is_true(np.isclose(expected_value, test_value_bad_data))
 
     def test_ned(self):
@@ -97,7 +138,9 @@ class TestHydroErr:
         test_value = he.ned(self.sim, self.obs)
         check.is_true(np.isclose(expected_value, test_value))
 
-        test_value_bad_data = he.ned(self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True)
+        test_value_bad_data = he.ned(
+            self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True
+        )
         check.is_true(np.isclose(expected_value, test_value_bad_data))
 
     def test_rmse(self):
@@ -105,7 +148,9 @@ class TestHydroErr:
         test_value = he.rmse(self.sim, self.obs)
         check.is_true(np.isclose(expected_value, test_value))
 
-        test_value_bad_data = he.rmse(self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True)
+        test_value_bad_data = he.rmse(
+            self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True
+        )
         check.is_true(np.isclose(expected_value, test_value_bad_data))
 
     def test_rmsle(self):
@@ -113,7 +158,9 @@ class TestHydroErr:
         test_value = he.rmsle(self.sim, self.obs)
         check.is_true(np.isclose(expected_value, test_value))
 
-        test_value_bad_data = he.rmsle(self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True)
+        test_value_bad_data = he.rmsle(
+            self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True
+        )
         check.is_true(np.isclose(expected_value, test_value_bad_data))
 
     def test_nrmse_range(self):
@@ -121,7 +168,9 @@ class TestHydroErr:
         test_value = he.nrmse_range(self.sim, self.obs)
         check.is_true(np.isclose(expected_value, test_value))
 
-        test_value_bad_data = he.nrmse_range(self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True)
+        test_value_bad_data = he.nrmse_range(
+            self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True
+        )
         check.is_true(np.isclose(expected_value, test_value_bad_data))
 
     def test_nrmse_mean(self):
@@ -129,7 +178,9 @@ class TestHydroErr:
         test_value = he.nrmse_mean(self.sim, self.obs)
         check.is_true(np.isclose(expected_value, test_value))
 
-        test_value_bad_data = he.nrmse_mean(self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True)
+        test_value_bad_data = he.nrmse_mean(
+            self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True
+        )
         check.is_true(np.isclose(expected_value, test_value_bad_data))
 
     def test_nrmse_iqr(self):
@@ -137,7 +188,9 @@ class TestHydroErr:
         test_value = he.nrmse_iqr(self.sim, self.obs)
         check.is_true(np.isclose(expected_value, test_value))
 
-        test_value_bad_data = he.nrmse_iqr(self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True)
+        test_value_bad_data = he.nrmse_iqr(
+            self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True
+        )
         check.is_true(np.isclose(expected_value, test_value_bad_data))
 
     def test_irmse(self):
@@ -145,7 +198,9 @@ class TestHydroErr:
         test_value = he.irmse(self.sim, self.obs)
         check.is_true(np.isclose(expected_value, test_value))
 
-        test_value_bad_data = he.irmse(self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True)
+        test_value_bad_data = he.irmse(
+            self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True
+        )
         check.is_true(np.isclose(expected_value, test_value_bad_data))
 
     def test_mase(self):
@@ -153,7 +208,9 @@ class TestHydroErr:
         test_value = he.mase(self.sim, self.obs)
         check.is_true(np.isclose(expected_value, test_value))
 
-        test_value_bad_data = he.mase(self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True)
+        test_value_bad_data = he.mase(
+            self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True
+        )
         check.is_true(np.isclose(expected_value, test_value_bad_data))
 
     def test_r_squared(self):
@@ -161,7 +218,9 @@ class TestHydroErr:
         test_value = he.r_squared(self.sim, self.obs)
         check.is_true(np.isclose(expected_value, test_value))
 
-        test_value_bad_data = he.r_squared(self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True)
+        test_value_bad_data = he.r_squared(
+            self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True
+        )
         check.is_true(np.isclose(expected_value, test_value_bad_data))
 
     def test_pearson_r(self):
@@ -169,7 +228,9 @@ class TestHydroErr:
         test_value = he.pearson_r(self.sim, self.obs)
         check.is_true(np.isclose(expected_value, test_value))
 
-        test_value_bad_data = he.pearson_r(self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True)
+        test_value_bad_data = he.pearson_r(
+            self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True
+        )
         check.is_true(np.isclose(expected_value, test_value_bad_data))
 
     def test_spearman_r(self):
@@ -177,7 +238,9 @@ class TestHydroErr:
         test_value = he.spearman_r(self.sim, self.obs)
         check.is_true(np.isclose(expected_value, test_value))
 
-        test_value_bad_data = he.spearman_r(self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True)
+        test_value_bad_data = he.spearman_r(
+            self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True
+        )
         check.is_true(np.isclose(expected_value, test_value_bad_data))
 
     def test_acc(self):
@@ -185,7 +248,9 @@ class TestHydroErr:
         test_value = he.acc(self.sim, self.obs)
         check.is_true(np.isclose(expected_value, test_value))
 
-        test_value_bad_data = he.acc(self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True)
+        test_value_bad_data = he.acc(
+            self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True
+        )
         check.is_true(np.isclose(expected_value, test_value_bad_data))
 
     def test_mape(self):
@@ -193,7 +258,9 @@ class TestHydroErr:
         test_value = he.mape(self.sim, self.obs)
         check.is_true(np.isclose(expected_value, test_value))
 
-        test_value_bad_data = he.mape(self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True)
+        test_value_bad_data = he.mape(
+            self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True
+        )
         check.is_true(np.isclose(expected_value, test_value_bad_data))
 
     def test_mapd(self):
@@ -201,7 +268,9 @@ class TestHydroErr:
         test_value = he.mapd(self.sim, self.obs)
         check.is_true(np.isclose(expected_value, test_value))
 
-        test_value_bad_data = he.mapd(self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True)
+        test_value_bad_data = he.mapd(
+            self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True
+        )
         check.is_true(np.isclose(expected_value, test_value_bad_data))
 
     def test_maape(self):
@@ -209,7 +278,9 @@ class TestHydroErr:
         test_value = he.maape(self.sim, self.obs)
         check.is_true(np.isclose(expected_value, test_value))
 
-        test_value_bad_data = he.maape(self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True)
+        test_value_bad_data = he.maape(
+            self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True
+        )
         check.is_true(np.isclose(expected_value, test_value_bad_data))
 
     def test_smape1(self):
@@ -217,7 +288,9 @@ class TestHydroErr:
         test_value = he.smape1(self.sim, self.obs)
         check.is_true(np.isclose(expected_value, test_value))
 
-        test_value_bad_data = he.smape1(self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True)
+        test_value_bad_data = he.smape1(
+            self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True
+        )
         check.is_true(np.isclose(expected_value, test_value_bad_data))
 
     def test_smape2(self):
@@ -225,7 +298,9 @@ class TestHydroErr:
         test_value = he.smape2(self.sim, self.obs)
         check.is_true(np.isclose(expected_value, test_value))
 
-        test_value_bad_data = he.smape2(self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True)
+        test_value_bad_data = he.smape2(
+            self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True
+        )
         check.is_true(np.isclose(expected_value, test_value_bad_data))
 
     def test_d(self):
@@ -233,7 +308,9 @@ class TestHydroErr:
         test_value = he.d(self.sim, self.obs)
         check.is_true(np.isclose(expected_value, test_value))
 
-        test_value_bad_data = he.d(self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True)
+        test_value_bad_data = he.d(
+            self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True
+        )
         check.is_true(np.isclose(expected_value, test_value_bad_data))
 
     def test_d1(self):
@@ -241,7 +318,9 @@ class TestHydroErr:
         test_value = he.d1(self.sim, self.obs)
         check.is_true(np.isclose(expected_value, test_value))
 
-        test_value_bad_data = he.d1(self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True)
+        test_value_bad_data = he.d1(
+            self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True
+        )
         check.is_true(np.isclose(expected_value, test_value_bad_data))
 
     def test_dmod(self):
@@ -249,7 +328,9 @@ class TestHydroErr:
         test_value = he.dmod(self.sim, self.obs)
         check.is_true(np.isclose(expected_value, test_value))
 
-        test_value_bad_data = he.dmod(self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True)
+        test_value_bad_data = he.dmod(
+            self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True
+        )
         check.is_true(np.isclose(expected_value, test_value_bad_data))
 
     def test_drel(self):
@@ -257,7 +338,9 @@ class TestHydroErr:
         test_value = he.drel(self.sim, self.obs)
         check.is_true(np.isclose(expected_value, test_value))
 
-        test_value_bad_data = he.drel(self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True)
+        test_value_bad_data = he.drel(
+            self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True
+        )
         check.is_true(np.isclose(expected_value, test_value_bad_data))
 
     def test_dr(self):
@@ -265,24 +348,54 @@ class TestHydroErr:
         test_value = he.dr(self.sim, self.obs)
         check.is_true(np.isclose(expected_value, test_value))
 
-        test_value_bad_data = he.dr(self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True)
+        test_value_bad_data = he.dr(
+            self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True
+        )
         check.is_true(np.isclose(expected_value, test_value_bad_data))
 
         # Test for the case when a > b in the function
-        simulated_array = np.array([6.46798627, 7.29596011, 8.84220973, 4.29514505, 0.28713612,
-                                    6.72170644, 0.73659359, 0.88821022, 8.54288031, 8.46199717])
-        observed_array = np.array([6.61975021, 0.66489119, 5.54279687, 8.66670447, 5.79587539,
-                                   5.52870883, 7.83817005, 9.03424271, 5.87438289, 0.40828201])
+        simulated_array = np.array(
+            [
+                6.46798627,
+                7.29596011,
+                8.84220973,
+                4.29514505,
+                0.28713612,
+                6.72170644,
+                0.73659359,
+                0.88821022,
+                8.54288031,
+                8.46199717,
+            ]
+        )
+        observed_array = np.array(
+            [
+                6.61975021,
+                0.66489119,
+                5.54279687,
+                8.66670447,
+                5.79587539,
+                5.52870883,
+                7.83817005,
+                9.03424271,
+                5.87438289,
+                0.40828201,
+            ]
+        )
         expected_value = -0.13041791707510286
 
-        check.is_true(np.isclose(he.dr(simulated_array, observed_array), expected_value))
+        check.is_true(
+            np.isclose(he.dr(simulated_array, observed_array), expected_value)
+        )
 
     def test_watt_m(self):
         expected_value = 0.832713182570339
         test_value = he.watt_m(self.sim, self.obs)
         check.is_true(np.isclose(expected_value, test_value))
 
-        test_value_bad_data = he.watt_m(self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True)
+        test_value_bad_data = he.watt_m(
+            self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True
+        )
         check.is_true(np.isclose(expected_value, test_value_bad_data))
 
     def test_mb_r(self):
@@ -290,7 +403,9 @@ class TestHydroErr:
         test_value = he.mb_r(self.sim, self.obs)
         check.is_true(np.isclose(expected_value, test_value))
 
-        test_value_bad_data = he.mb_r(self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True)
+        test_value_bad_data = he.mb_r(
+            self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True
+        )
         check.is_true(np.isclose(expected_value, test_value_bad_data))
 
     def test_nse(self):
@@ -298,7 +413,9 @@ class TestHydroErr:
         test_value = he.nse(self.sim, self.obs)
         check.is_true(np.isclose(expected_value, test_value))
 
-        test_value_bad_data = he.nse(self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True)
+        test_value_bad_data = he.nse(
+            self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True
+        )
         check.is_true(np.isclose(expected_value, test_value_bad_data))
 
     def test_nse_mod(self):
@@ -306,7 +423,9 @@ class TestHydroErr:
         test_value = he.nse_mod(self.sim, self.obs)
         check.is_true(np.isclose(expected_value, test_value))
 
-        test_value_bad_data = he.nse_mod(self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True)
+        test_value_bad_data = he.nse_mod(
+            self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True
+        )
         check.is_true(np.isclose(expected_value, test_value_bad_data))
 
     def test_nse_rel(self):
@@ -314,20 +433,31 @@ class TestHydroErr:
         test_value = he.nse_rel(self.sim, self.obs)
         check.is_true(np.isclose(expected_value, test_value))
 
-        test_value_bad_data = he.nse_rel(self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True)
+        test_value_bad_data = he.nse_rel(
+            self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True
+        )
         check.is_true(np.isclose(expected_value, test_value_bad_data))
 
     def test_kge_2009(self):
         expected_value = 0.9181073779138655
-        expected_tuple = (0.9615951377405804, 0.927910707932087, 1.0058823529411764, 0.9181073779138655)
+        expected_tuple = (
+            0.9615951377405804,
+            0.927910707932087,
+            1.0058823529411764,
+            0.9181073779138655,
+        )
 
         test_value = he.kge_2009(self.sim, self.obs)
         test_tuple = he.kge_2009(self.sim, self.obs, return_all=True)
 
         check.is_true(np.isclose(expected_value, test_value))
-        check.is_true(np.all(np.isclose(np.array(expected_tuple), np.array(test_tuple))))
+        check.is_true(
+            np.all(np.isclose(np.array(expected_tuple), np.array(test_tuple)))
+        )
 
-        test_value_bad_data = he.kge_2009(self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True)
+        test_value_bad_data = he.kge_2009(
+            self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True
+        )
         check.is_true(np.isclose(expected_value, test_value_bad_data))
 
         # Testing warnings in the function
@@ -338,8 +468,10 @@ class TestHydroErr:
             # Trigger warning
             test_val_mean_0 = he.kge_2009(sim, obs)
             check.is_true(len(w) == 1)
-            check.is_true('Warning: The observed data mean is 0. Therefore, Beta is infinite and the KGE '
-                            'value cannot be computed.' in str(w[0].message))
+            check.is_true(
+                "Warning: The observed data mean is 0. Therefore, Beta is infinite and the KGE "
+                "value cannot be computed." in str(w[0].message)
+            )
             check.is_true(np.isnan(test_val_mean_0))
 
         sim = np.array([1, 2, 3, 4, 5])
@@ -349,21 +481,32 @@ class TestHydroErr:
             # Trigger warning
             test_val_std_0 = he.kge_2009(sim, obs)
             check.is_true(len(w) == 2)  # There is also a warning for divide by zero
-            check.is_true('Warning: The observed data standard deviation is 0. Therefore, Alpha is infinite '
-                            'and the KGE value cannot be computed.' in str(w[1].message))
+            check.is_true(
+                "Warning: The observed data standard deviation is 0. Therefore, Alpha is infinite "
+                "and the KGE value cannot be computed." in str(w[1].message)
+            )
             check.is_true(np.isnan(test_val_std_0))
 
     def test_kge_2012(self):
         expected_value = 0.9132923608280753
-        expected_tuple = (0.9615951377405804, 0.9224843295231272, 1.0058823529411764, 0.9132923608280753)
+        expected_tuple = (
+            0.9615951377405804,
+            0.9224843295231272,
+            1.0058823529411764,
+            0.9132923608280753,
+        )
 
         test_value = he.kge_2012(self.sim, self.obs)
         test_tuple = he.kge_2012(self.sim, self.obs, return_all=True)
 
         check.is_true(np.isclose(expected_value, test_value))
-        check.is_true(np.all(np.isclose(np.array(expected_tuple), np.array(test_tuple))))
+        check.is_true(
+            np.all(np.isclose(np.array(expected_tuple), np.array(test_tuple)))
+        )
 
-        test_value_bad_data = he.kge_2012(self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True)
+        test_value_bad_data = he.kge_2012(
+            self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True
+        )
         check.is_true(np.isclose(expected_value, test_value_bad_data))
 
         # Testing warnings in the function
@@ -374,8 +517,10 @@ class TestHydroErr:
             # Trigger warning
             test_val_mean_0 = he.kge_2012(sim, obs)
             check.is_true(len(w) == 3)
-            check.is_true('Warning: The observed data mean is 0. Therefore, Beta is infinite and the KGE '
-                            'value cannot be computed.' in str(w[2].message))
+            check.is_true(
+                "Warning: The observed data mean is 0. Therefore, Beta is infinite and the KGE "
+                "value cannot be computed." in str(w[2].message)
+            )
             check.is_true(np.isnan(test_val_mean_0))
 
         sim = np.array([1, 2, 3, 4, 5])
@@ -385,8 +530,10 @@ class TestHydroErr:
             # Trigger warning
             test_val_std_0 = he.kge_2012(sim, obs)
             check.is_true(len(w) == 3)  # There is also a warning for divide by zero
-            check.is_true('Warning: The observed data standard deviation is 0. Therefore, Gamma is infinite '
-                            'and the KGE value cannot be computed.' in str(w[2].message))
+            check.is_true(
+                "Warning: The observed data standard deviation is 0. Therefore, Gamma is infinite "
+                "and the KGE value cannot be computed." in str(w[2].message)
+            )
             check.is_true(np.isnan(test_val_std_0))
 
         sim = np.array([-1, 1, 0, -2, 2])  # Making the mean 0
@@ -396,8 +543,10 @@ class TestHydroErr:
             # Trigger warning
             test_val_mean_0_sim = he.kge_2012(sim, obs)
             check.is_true(len(w) == 2)  # There is also a warning for divide by zero
-            check.is_true('Warning: The simulated data mean is 0. Therefore, Gamma is infinite '
-                            'and the KGE value cannot be computed.' in str(w[1].message))
+            check.is_true(
+                "Warning: The simulated data mean is 0. Therefore, Gamma is infinite "
+                "and the KGE value cannot be computed." in str(w[1].message)
+            )
             check.is_true(np.isnan(test_val_mean_0_sim))
 
     def test_lm_index(self):
@@ -405,33 +554,43 @@ class TestHydroErr:
         test_value = he.lm_index(self.sim, self.obs)
         check.is_true(np.isclose(expected_value, test_value))
 
-        test_value_bad_data = he.lm_index(self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True)
+        test_value_bad_data = he.lm_index(
+            self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True
+        )
         check.is_true(np.isclose(expected_value, test_value_bad_data))
 
         # Testing with obs_bar_p argument
         expected_value_obs_bar_p_param = 0.706896551724138
         test_val_obs_bar_p_param = he.lm_index(self.sim, self.obs, obs_bar_p=5)
-        check.is_true(np.isclose(expected_value_obs_bar_p_param, test_val_obs_bar_p_param))
+        check.is_true(
+            np.isclose(expected_value_obs_bar_p_param, test_val_obs_bar_p_param)
+        )
 
     def test_d1_p(self):
         expected_value = 0.8508771929824561
         test_value = he.d1_p(self.sim, self.obs)
         check.is_true(np.isclose(expected_value, test_value))
 
-        test_value_bad_data = he.d1_p(self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True)
+        test_value_bad_data = he.d1_p(
+            self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True
+        )
         check.is_true(np.isclose(expected_value, test_value_bad_data))
 
         # Testing with obs_bar_p argument
         expected_value_obs_bar_p_param = 0.8508771929824561
         test_val_obs_bar_p_param = he.d1_p(self.sim, self.obs, obs_bar_p=5)
-        check.is_true(np.isclose(expected_value_obs_bar_p_param, test_val_obs_bar_p_param))
+        check.is_true(
+            np.isclose(expected_value_obs_bar_p_param, test_val_obs_bar_p_param)
+        )
 
     def test_ve(self):
         expected_value = 0.9
         test_value = he.ve(self.sim, self.obs)
         check.is_true(np.isclose(expected_value, test_value))
 
-        test_value_bad_data = he.ve(self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True)
+        test_value_bad_data = he.ve(
+            self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True
+        )
         check.is_true(np.isclose(expected_value, test_value_bad_data))
 
     def test_sa(self):
@@ -439,7 +598,9 @@ class TestHydroErr:
         test_value = he.sa(self.sim, self.obs)
         check.is_true(np.isclose(expected_value, test_value))
 
-        test_value_bad_data = he.sa(self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True)
+        test_value_bad_data = he.sa(
+            self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True
+        )
         check.is_true(np.isclose(expected_value, test_value_bad_data))
 
     def test_sc(self):
@@ -447,7 +608,9 @@ class TestHydroErr:
         test_value = he.sc(self.sim, self.obs)
         check.is_true(np.isclose(expected_value, test_value))
 
-        test_value_bad_data = he.sc(self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True)
+        test_value_bad_data = he.sc(
+            self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True
+        )
         check.is_true(np.isclose(expected_value, test_value_bad_data))
 
     def test_sid(self):
@@ -455,7 +618,9 @@ class TestHydroErr:
         test_value = he.sid(self.sim, self.obs)
         check.is_true(np.isclose(expected_value, test_value))
 
-        test_value_bad_data = he.sid(self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True)
+        test_value_bad_data = he.sid(
+            self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True
+        )
         check.is_true(np.isclose(expected_value, test_value_bad_data))
 
     def test_sga(self):
@@ -463,7 +628,9 @@ class TestHydroErr:
         test_value = he.sga(self.sim, self.obs)
         check.is_true(np.isclose(expected_value, test_value))
 
-        test_value_bad_data = he.sga(self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True)
+        test_value_bad_data = he.sga(
+            self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True
+        )
         check.is_true(np.isclose(expected_value, test_value_bad_data))
 
     def test_h1_mhe(self):
@@ -471,7 +638,9 @@ class TestHydroErr:
         test_value = he.h1_mhe(self.sim, self.obs)
         check.is_true(np.isclose(expected_value, test_value))
 
-        test_value_bad_data = he.h1_mhe(self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True)
+        test_value_bad_data = he.h1_mhe(
+            self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True
+        )
         check.is_true(np.isclose(expected_value, test_value_bad_data))
 
     def test_h1_mahe(self):
@@ -479,7 +648,9 @@ class TestHydroErr:
         test_value = he.h1_mahe(self.sim, self.obs)
         check.is_true(np.isclose(expected_value, test_value))
 
-        test_value_bad_data = he.h1_mahe(self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True)
+        test_value_bad_data = he.h1_mahe(
+            self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True
+        )
         check.is_true(np.isclose(expected_value, test_value_bad_data))
 
     def test_h1_rmshe(self):
@@ -487,7 +658,9 @@ class TestHydroErr:
         test_value = he.h1_rmshe(self.sim, self.obs)
         check.is_true(np.isclose(expected_value, test_value))
 
-        test_value_bad_data = he.h1_rmshe(self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True)
+        test_value_bad_data = he.h1_rmshe(
+            self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True
+        )
         check.is_true(np.isclose(expected_value, test_value_bad_data))
 
     def test_h2_mhe(self):
@@ -495,7 +668,9 @@ class TestHydroErr:
         test_value = he.h2_mhe(self.sim, self.obs)
         check.is_true(np.isclose(expected_value, test_value))
 
-        test_value_bad_data = he.h2_mhe(self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True)
+        test_value_bad_data = he.h2_mhe(
+            self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True
+        )
         check.is_true(np.isclose(expected_value, test_value_bad_data))
 
     def test_h2_mahe(self):
@@ -503,7 +678,9 @@ class TestHydroErr:
         test_value = he.h2_mahe(self.sim, self.obs)
         check.is_true(np.isclose(expected_value, test_value))
 
-        test_value_bad_data = he.h2_mahe(self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True)
+        test_value_bad_data = he.h2_mahe(
+            self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True
+        )
         check.is_true(np.isclose(expected_value, test_value_bad_data))
 
     def test_h2_rmshe(self):
@@ -511,7 +688,9 @@ class TestHydroErr:
         test_value = he.h2_rmshe(self.sim, self.obs)
         check.is_true(np.isclose(expected_value, test_value))
 
-        test_value_bad_data = he.h2_rmshe(self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True)
+        test_value_bad_data = he.h2_rmshe(
+            self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True
+        )
         check.is_true(np.isclose(expected_value, test_value_bad_data))
 
     def test_h3_mhe(self):
@@ -519,7 +698,9 @@ class TestHydroErr:
         test_value = he.h3_mhe(self.sim, self.obs)
         check.is_true(np.isclose(expected_value, test_value))
 
-        test_value_bad_data = he.h3_mhe(self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True)
+        test_value_bad_data = he.h3_mhe(
+            self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True
+        )
         check.is_true(np.isclose(expected_value, test_value_bad_data))
 
     def test_h3_mahe(self):
@@ -527,7 +708,9 @@ class TestHydroErr:
         test_value = he.h3_mahe(self.sim, self.obs)
         check.is_true(np.isclose(expected_value, test_value))
 
-        test_value_bad_data = he.h3_mahe(self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True)
+        test_value_bad_data = he.h3_mahe(
+            self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True
+        )
         check.is_true(np.isclose(expected_value, test_value_bad_data))
 
     def test_h3_rmshe(self):
@@ -535,7 +718,9 @@ class TestHydroErr:
         test_value = he.h3_rmshe(self.sim, self.obs)
         check.is_true(np.isclose(expected_value, test_value))
 
-        test_value_bad_data = he.h3_rmshe(self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True)
+        test_value_bad_data = he.h3_rmshe(
+            self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True
+        )
         check.is_true(np.isclose(expected_value, test_value_bad_data))
 
     def test_h4_mhe(self):
@@ -543,7 +728,9 @@ class TestHydroErr:
         test_value = he.h4_mhe(self.sim, self.obs)
         check.is_true(np.isclose(expected_value, test_value))
 
-        test_value_bad_data = he.h4_mhe(self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True)
+        test_value_bad_data = he.h4_mhe(
+            self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True
+        )
         check.is_true(np.isclose(expected_value, test_value_bad_data))
 
     def test_h4_mahe(self):
@@ -551,7 +738,9 @@ class TestHydroErr:
         test_value = he.h4_mahe(self.sim, self.obs)
         check.is_true(np.isclose(expected_value, test_value))
 
-        test_value_bad_data = he.h4_mahe(self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True)
+        test_value_bad_data = he.h4_mahe(
+            self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True
+        )
         check.is_true(np.isclose(expected_value, test_value_bad_data))
 
     def test_h4_rmshe(self):
@@ -559,7 +748,9 @@ class TestHydroErr:
         test_value = he.h4_rmshe(self.sim, self.obs)
         check.is_true(np.isclose(expected_value, test_value))
 
-        test_value_bad_data = he.h4_rmshe(self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True)
+        test_value_bad_data = he.h4_rmshe(
+            self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True
+        )
         check.is_true(np.isclose(expected_value, test_value_bad_data))
 
     def test_h5_mhe(self):
@@ -567,7 +758,9 @@ class TestHydroErr:
         test_value = he.h5_mhe(self.sim, self.obs)
         check.is_true(np.isclose(expected_value, test_value))
 
-        test_value_bad_data = he.h5_mhe(self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True)
+        test_value_bad_data = he.h5_mhe(
+            self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True
+        )
         check.is_true(np.isclose(expected_value, test_value_bad_data))
 
     def test_h5_mahe(self):
@@ -575,7 +768,9 @@ class TestHydroErr:
         test_value = he.h5_mahe(self.sim, self.obs)
         check.is_true(np.isclose(expected_value, test_value))
 
-        test_value_bad_data = he.h5_mahe(self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True)
+        test_value_bad_data = he.h5_mahe(
+            self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True
+        )
         check.is_true(np.isclose(expected_value, test_value_bad_data))
 
     def test_h5_rmshe(self):
@@ -583,7 +778,9 @@ class TestHydroErr:
         test_value = he.h5_rmshe(self.sim, self.obs)
         check.is_true(np.isclose(expected_value, test_value))
 
-        test_value_bad_data = he.h5_rmshe(self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True)
+        test_value_bad_data = he.h5_rmshe(
+            self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True
+        )
         check.is_true(np.isclose(expected_value, test_value_bad_data))
 
     def test_h6_mhe(self):
@@ -591,7 +788,9 @@ class TestHydroErr:
         test_value = he.h6_mhe(self.sim, self.obs)
         check.is_true(np.isclose(expected_value, test_value))
 
-        test_value_bad_data = he.h6_mhe(self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True)
+        test_value_bad_data = he.h6_mhe(
+            self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True
+        )
         check.is_true(np.isclose(expected_value, test_value_bad_data))
 
     def test_h6_mahe(self):
@@ -599,7 +798,9 @@ class TestHydroErr:
         test_value = he.h6_mahe(self.sim, self.obs)
         check.is_true(np.isclose(expected_value, test_value))
 
-        test_value_bad_data = he.h6_mahe(self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True)
+        test_value_bad_data = he.h6_mahe(
+            self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True
+        )
         check.is_true(np.isclose(expected_value, test_value_bad_data))
 
     def test_h6_rmshe(self):
@@ -607,7 +808,9 @@ class TestHydroErr:
         test_value = he.h6_rmshe(self.sim, self.obs)
         check.is_true(np.isclose(expected_value, test_value))
 
-        test_value_bad_data = he.h6_rmshe(self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True)
+        test_value_bad_data = he.h6_rmshe(
+            self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True
+        )
         check.is_true(np.isclose(expected_value, test_value_bad_data))
 
     def test_h7_mhe(self):
@@ -615,7 +818,9 @@ class TestHydroErr:
         test_value = he.h7_mhe(self.sim, self.obs)
         check.is_true(np.isclose(expected_value, test_value))
 
-        test_value_bad_data = he.h7_mhe(self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True)
+        test_value_bad_data = he.h7_mhe(
+            self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True
+        )
         check.is_true(np.isclose(expected_value, test_value_bad_data))
 
     def test_h7_mahe(self):
@@ -623,7 +828,9 @@ class TestHydroErr:
         test_value = he.h7_mahe(self.sim, self.obs)
         check.is_true(np.isclose(expected_value, test_value))
 
-        test_value_bad_data = he.h7_mahe(self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True)
+        test_value_bad_data = he.h7_mahe(
+            self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True
+        )
         check.is_true(np.isclose(expected_value, test_value_bad_data))
 
     def test_h7_rmshe(self):
@@ -631,7 +838,9 @@ class TestHydroErr:
         test_value = he.h7_rmshe(self.sim, self.obs)
         check.is_true(np.isclose(expected_value, test_value))
 
-        test_value_bad_data = he.h7_rmshe(self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True)
+        test_value_bad_data = he.h7_rmshe(
+            self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True
+        )
         check.is_true(np.isclose(expected_value, test_value_bad_data))
 
     def test_h8_mhe(self):
@@ -639,7 +848,9 @@ class TestHydroErr:
         test_value = he.h8_mhe(self.sim, self.obs)
         check.is_true(np.isclose(expected_value, test_value))
 
-        test_value_bad_data = he.h8_mhe(self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True)
+        test_value_bad_data = he.h8_mhe(
+            self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True
+        )
         check.is_true(np.isclose(expected_value, test_value_bad_data))
 
     def test_h8_mahe(self):
@@ -647,7 +858,9 @@ class TestHydroErr:
         test_value = he.h8_mahe(self.sim, self.obs)
         check.is_true(np.isclose(expected_value, test_value))
 
-        test_value_bad_data = he.h8_mahe(self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True)
+        test_value_bad_data = he.h8_mahe(
+            self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True
+        )
         check.is_true(np.isclose(expected_value, test_value_bad_data))
 
     def test_h8_rmshe(self):
@@ -655,7 +868,9 @@ class TestHydroErr:
         test_value = he.h8_rmshe(self.sim, self.obs)
         check.is_true(np.isclose(expected_value, test_value))
 
-        test_value_bad_data = he.h8_rmshe(self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True)
+        test_value_bad_data = he.h8_rmshe(
+            self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True
+        )
         check.is_true(np.isclose(expected_value, test_value_bad_data))
 
     def test_h10_mhe(self):
@@ -663,7 +878,9 @@ class TestHydroErr:
         test_value = he.h10_mhe(self.sim, self.obs)
         check.is_true(np.isclose(expected_value, test_value))
 
-        test_value_bad_data = he.h10_mhe(self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True)
+        test_value_bad_data = he.h10_mhe(
+            self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True
+        )
         check.is_true(np.isclose(expected_value, test_value_bad_data))
 
     def test_h10_mahe(self):
@@ -671,7 +888,9 @@ class TestHydroErr:
         test_value = he.h10_mahe(self.sim, self.obs)
         check.is_true(np.isclose(expected_value, test_value))
 
-        test_value_bad_data = he.h10_mahe(self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True)
+        test_value_bad_data = he.h10_mahe(
+            self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True
+        )
         check.is_true(np.isclose(expected_value, test_value_bad_data))
 
     def test_h10_rmshe(self):
@@ -679,7 +898,9 @@ class TestHydroErr:
         test_value = he.h10_rmshe(self.sim, self.obs)
         check.is_true(np.isclose(expected_value, test_value))
 
-        test_value_bad_data = he.h10_rmshe(self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True)
+        test_value_bad_data = he.h10_rmshe(
+            self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True
+        )
         check.is_true(np.isclose(expected_value, test_value_bad_data))
 
     def test_g_mean_diff(self):
@@ -687,7 +908,9 @@ class TestHydroErr:
         test_value = he.g_mean_diff(self.sim, self.obs)
         check.is_true(np.isclose(expected_value, test_value))
 
-        test_value_bad_data = he.g_mean_diff(self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True)
+        test_value_bad_data = he.g_mean_diff(
+            self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True
+        )
         check.is_true(np.isclose(expected_value, test_value_bad_data))
 
     def test_mean_var(self):
@@ -695,7 +918,9 @@ class TestHydroErr:
         test_value = he.mean_var(self.sim, self.obs)
         check.is_true(np.isclose(expected_value, test_value))
 
-        test_value_bad_data = he.mean_var(self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True)
+        test_value_bad_data = he.mean_var(
+            self.sim_bad_data, self.obs_bad_data, remove_neg=True, remove_zero=True
+        )
         check.is_true(np.isclose(expected_value, test_value_bad_data))
 
     def tearDown(self):
