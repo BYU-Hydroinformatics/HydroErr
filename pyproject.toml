@@ -30,6 +30,11 @@ dependencies = [
     "scipy~=1.0",
 ]
 
+[dependency-groups]
+dev = [
+    "pytest>=9.0.1",
+]
+
 [project.urls]
 repository = "https://github.com/BYU-Hydroinformatics/HydroErr"
 
