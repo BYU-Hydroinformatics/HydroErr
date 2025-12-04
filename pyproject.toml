@@ -47,3 +47,23 @@ build-backend = "uv_build"
 
 [tool.uv.build-backend]
 module-name = "HydroErr"
+
+[tool.ruff]
+line-length = 100
+target-version = "py310" # Set this to the lowest supported version
+
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = [
+    "COM812",
+    "D211",
+    "D213",
+    "N813",
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = [
+    "D",
+    "INP",
+    "PLR2004",
+]

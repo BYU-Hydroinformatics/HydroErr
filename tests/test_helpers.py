@@ -8,8 +8,9 @@ import HydroErr.HydroErr as he
 
 
 class TestHelperFunctions:
-    def test_treat_values_remove(self):
-        a = np.random.random_integers(low=100, size=(30, 2))
+    def test_treat_values_remove(self) -> None:
+        rng = np.random.default_rng()
+        a = rng.integers(low=1, high=101, size=(30, 2))
         a = a.astype(np.float16)
         a[0, 0] = np.nan
         a[1, 1] = np.nan
@@ -26,9 +27,7 @@ class TestHelperFunctions:
         # Tests
         with warnings.catch_warnings(record=True) as w:
             # Trigger a warning.
-            sim_treated, obs_treated = he.treat_values(
-                sim, obs, remove_zero=True, remove_neg=True
-            )
+            sim_treated, obs_treated = he.treat_values(sim, obs, remove_zero=True, remove_neg=True)
 
         # Verify some things
         check.is_true(len(w) == 4)
@@ -65,7 +64,7 @@ class TestHelperFunctions:
             "the observed data.",
         )
 
-    def test_treat_values_replace(self):
+    def test_treat_values_replace(self) -> None:
         sim = np.array([np.nan, np.inf, 9, 2, 4.5, 6.7])
         obs = np.array([4.7, 6, np.nan, np.inf, 4, 7])
 
@@ -74,9 +73,7 @@ class TestHelperFunctions:
 
         with warnings.catch_warnings(record=True) as w:
             # Trigger a warning.
-            sim_treated, obs_treated = he.treat_values(
-                sim, obs, replace_nan=32, replace_inf=1000
-            )
+            sim_treated, obs_treated = he.treat_values(sim, obs, replace_nan=32, replace_inf=1000)
             # Verify some things
             check.is_true(len(w) == 2)
             check.is_true(issubclass(w[0].category, UserWarning))
@@ -104,13 +101,10 @@ class TestHelperFunctions:
                 "the observed data.",
             )
 
-    def test_treat_values_unequal_length(self):
+    def test_treat_values_unequal_length(self) -> None:
         sim = np.array([1, 2, 3, 4])
         obs = np.array([1, 2, 3])
 
-        with pytest.raises(Exception) as context:
+        with pytest.raises(Exception, match=r"^The two ndarrays are not the same size."):
             he.treat_values(sim, obs)
-
-        check.is_true(
-            "The two ndarrays are not the same size." in context.value.args[0]
-        )
+            # If it matches the regex, it passes

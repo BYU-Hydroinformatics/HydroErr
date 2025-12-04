@@ -1175,9 +1175,7 @@ def rmsle(
         remove_neg=remove_neg,
         remove_zero=remove_zero,
     )
-    return np.sqrt(
-        np.mean(np.power(np.log1p(simulated_array) - np.log1p(observed_array), 2))
-    )
+    return np.sqrt(np.mean(np.power(np.log1p(simulated_array) - np.log1p(observed_array), 2)))
 
 
 def nrmse_range(
@@ -1799,8 +1797,7 @@ def spearman_r(
 
     top = np.mean((rank_obs - mean_rank_obs) * (rank_sim - mean_rank_sim))
     bot = np.sqrt(
-        np.mean((rank_obs - mean_rank_obs) ** 2)
-        * np.mean((rank_sim - mean_rank_sim) ** 2)
+        np.mean((rank_obs - mean_rank_obs) ** 2) * np.mean((rank_sim - mean_rank_sim) ** 2)
     )
 
     return top / bot
@@ -1976,11 +1973,7 @@ def acc(
 
     a = simulated_array - np.mean(simulated_array)
     b = observed_array - np.mean(observed_array)
-    c = (
-        np.std(observed_array, ddof=1)
-        * np.std(simulated_array, ddof=1)
-        * simulated_array.size
-    )
+    c = np.std(observed_array, ddof=1) * np.std(simulated_array, ddof=1) * simulated_array.size
     return np.dot(a, b / c)
 
 
@@ -3308,9 +3301,7 @@ def nse_rel(
     )
 
     a = (np.abs((simulated_array - observed_array) / observed_array)) ** 2
-    b = (
-        np.abs((observed_array - np.mean(observed_array)) / np.mean(observed_array))
-    ) ** 2
+    b = (np.abs((observed_array - np.mean(observed_array)) / np.mean(observed_array))) ** 2
     return 1 - (np.sum(a) / np.sum(b))
 
 
@@ -3433,9 +3424,7 @@ def kge_2009(
 
     if not np.isnan(beta) and not np.isnan(alpha):
         kge = 1 - np.sqrt(
-            (s[0] * (pr - 1)) ** 2
-            + (s[1] * (alpha - 1)) ** 2
-            + (s[2] * (beta - 1)) ** 2
+            (s[0] * (pr - 1)) ** 2 + (s[1] * (alpha - 1)) ** 2 + (s[2] * (beta - 1)) ** 2
         )
     else:
         if obs_mean == 0:
@@ -3451,9 +3440,7 @@ def kge_2009(
         kge = np.nan
 
     assert type(return_all) == bool, (
-        "expected <type 'bool'> for parameter return_all, got {}".format(
-            type(return_all)
-        )
+        "expected <type 'bool'> for parameter return_all, got {}".format(type(return_all))
     )
 
     if return_all:
@@ -3601,9 +3588,7 @@ def kge_2012(
         kge = np.nan
 
     assert type(return_all) == bool, (
-        "expected <type 'bool'> for parameter return_all, got {}".format(
-            type(return_all)
-        )
+        "expected <type 'bool'> for parameter return_all, got {}".format(type(return_all))
     )
 
     if return_all:
@@ -5312,9 +5297,7 @@ def h5_mhe(
     )
 
     top = simulated_array - observed_array
-    bot = np.reciprocal(
-        0.5 * (np.reciprocal(observed_array) + np.reciprocal(simulated_array))
-    )
+    bot = np.reciprocal(0.5 * (np.reciprocal(observed_array) + np.reciprocal(simulated_array)))
     h = top / bot
     return np.mean(h)
 
@@ -5400,9 +5383,7 @@ def h5_mahe(
     )
 
     top = simulated_array - observed_array
-    bot = np.reciprocal(
-        0.5 * (np.reciprocal(observed_array) + np.reciprocal(simulated_array))
-    )
+    bot = np.reciprocal(0.5 * (np.reciprocal(observed_array) + np.reciprocal(simulated_array)))
     h = top / bot
     return np.mean(np.abs(h))
 
@@ -5488,9 +5469,7 @@ def h5_rmshe(
     )
 
     top = simulated_array - observed_array
-    bot = np.reciprocal(
-        0.5 * (np.reciprocal(observed_array) + np.reciprocal(simulated_array))
-    )
+    bot = np.reciprocal(0.5 * (np.reciprocal(observed_array) + np.reciprocal(simulated_array)))
     h = top / bot
     return np.sqrt(np.mean(h**2))
 
@@ -5843,9 +5822,7 @@ def h7_mhe(
         remove_zero=remove_zero,
     )
 
-    h = (simulated_array / observed_array - 1) / np.min(
-        simulated_array / observed_array
-    )
+    h = (simulated_array / observed_array - 1) / np.min(simulated_array / observed_array)
     return np.mean(h)
 
 
@@ -5929,9 +5906,7 @@ def h7_mahe(
         remove_zero=remove_zero,
     )
 
-    h = (simulated_array / observed_array - 1) / np.min(
-        simulated_array / observed_array
-    )
+    h = (simulated_array / observed_array - 1) / np.min(simulated_array / observed_array)
     return np.mean(np.abs(h))
 
 
@@ -6015,9 +5990,7 @@ def h7_rmshe(
         remove_zero=remove_zero,
     )
 
-    h = (simulated_array / observed_array - 1) / np.min(
-        simulated_array / observed_array
-    )
+    h = (simulated_array / observed_array - 1) / np.min(simulated_array / observed_array)
     return np.sqrt(np.mean(h**2))
 
 
@@ -6099,9 +6072,7 @@ def h8_mhe(
         remove_zero=remove_zero,
     )
 
-    h = (simulated_array / observed_array - 1) / np.max(
-        simulated_array / observed_array
-    )
+    h = (simulated_array / observed_array - 1) / np.max(simulated_array / observed_array)
     return np.mean(h)
 
 
@@ -6185,9 +6156,7 @@ def h8_mahe(
         remove_zero=remove_zero,
     )
 
-    h = (simulated_array / observed_array - 1) / np.max(
-        simulated_array / observed_array
-    )
+    h = (simulated_array / observed_array - 1) / np.max(simulated_array / observed_array)
     return np.mean(np.abs(h))
 
 
@@ -6271,9 +6240,7 @@ def h8_rmshe(
         remove_zero=remove_zero,
     )
 
-    h = (simulated_array / observed_array - 1) / np.max(
-        simulated_array / observed_array
-    )
+    h = (simulated_array / observed_array - 1) / np.max(simulated_array / observed_array)
     return np.sqrt(np.mean(h**2))
 
 
@@ -7004,9 +6971,7 @@ def treat_values(
 
             warnings.warn(
                 "Row(s) {} contained NaN values and the row(s) have been "
-                "removed (Rows are zero indexed).".format(
-                    np.where(~all_nan_indices)[0]
-                ),
+                "removed (Rows are zero indexed).".format(np.where(~all_nan_indices)[0]),
                 UserWarning,
             )
 
@@ -7071,9 +7036,7 @@ def treat_values(
 
             warnings.warn(
                 "Row(s) {} contained negative values and the row(s) have been "
-                "removed (Rows are zero indexed).".format(
-                    np.where(~all_neg_indices)[0]
-                ),
+                "removed (Rows are zero indexed).".format(np.where(~all_neg_indices)[0]),
                 UserWarning,
             )
 
