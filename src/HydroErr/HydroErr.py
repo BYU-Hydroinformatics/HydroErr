@@ -1,4 +1,4 @@
-"""HydroErr metrics and helpers"""
+"""HydroErr metrics and helpers."""
 
 import numpy as np
 from scipy.stats import gmean, rankdata
@@ -892,8 +892,7 @@ def ned(
     remove_neg=False,
     remove_zero=False,
 ):
-    """Compute the normalized Euclidian distance between the simulated and observed data in vector
-    space.
+    """Compute the normalized Euclidian distance between the simulated and observed data in vector space.
 
     .. image:: /pictures/NED.png
 
@@ -950,7 +949,7 @@ def ned(
       uncertainty in estimation of hydrologic metrics for ecohydrological studies. River Research
       and Applications, 26(2), 137-156.
 
-    """
+    """  # noqa: E501
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
@@ -1787,9 +1786,6 @@ def r_squared(
     >>> he.r_squared(sim, obs)
     0.9236735425294681
 
-    References
-    ----------
-
     """
     simulated_array, observed_array = treat_values(
         simulated_array,
@@ -1954,9 +1950,6 @@ def mape(
     >>> he.mape(sim, obs)
     11.639226612630866
 
-    References
-    ----------
-
     """
     simulated_array, observed_array = treat_values(
         simulated_array,
@@ -2031,9 +2024,6 @@ def mapd(
     >>> obs = np.array([4.7, 6, 10, 2.5, 4, 7])
     >>> he.mapd(sim, obs)
     0.10526315789473682
-
-    References
-    ----------
 
     """
     simulated_array, observed_array = treat_values(
@@ -6286,9 +6276,6 @@ def g_mean_diff(
     >>> he.g_mean_diff(sim, obs)
     0.988855412098022
 
-    References
-    ----------
-
     """
     simulated_array, observed_array = treat_values(
         simulated_array,
@@ -6362,9 +6349,6 @@ def mean_var(
     >>> obs = np.array([4.7, 6, 10, 2.5, 4, 7])
     >>> np.round(he.mean_var(sim, obs), 6)
     0.010641
-
-    References
-    ----------
 
     """
     simulated_array, observed_array = treat_values(
@@ -6633,7 +6617,7 @@ def treat_values(
     remove_neg=False,
     remove_zero=False,
 ):
-    """Removes the nan, negative, and inf values in two numpy arrays"""
+    """Remove the nan, negative, and inf values in two numpy arrays."""
     sim_copy = np.copy(simulated_array)
     obs_copy = np.copy(observed_array)
 

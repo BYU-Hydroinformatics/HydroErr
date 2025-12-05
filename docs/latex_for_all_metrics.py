@@ -1,3 +1,4 @@
+"""Script to generate latex images for all metrics."""
 import matplotlib.pyplot as plt
 
 latex_symbols = {
