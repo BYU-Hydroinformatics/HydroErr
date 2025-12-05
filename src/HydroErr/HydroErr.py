@@ -6622,8 +6622,10 @@ def treat_values(
     obs_copy = np.copy(observed_array)
 
     # Checking to see if the vectors are the same length
-    assert sim_copy.ndim == 1, "The simulated array is not one dimensional."
-    assert obs_copy.ndim == 1, "The observed array is not one dimensional."
+    if not sim_copy.ndim == 1:
+        raise ValueError("The simulated array is not one dimensional.")
+    if not obs_copy.ndim == 1:
+        raise ValueError("The observed array is not one dimensional.")
 
     if sim_copy.size != obs_copy.size:
         raise ValueError("The two ndarrays are not the same size.")
