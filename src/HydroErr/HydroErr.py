@@ -3413,16 +3413,10 @@ def kge_2009(
     pr = top_pr / (bot1_pr * bot2_pr)
 
     # Ratio between mean of simulated and observed data
-    if obs_mean != 0:
-        beta = sim_mean / obs_mean
-    else:
-        beta = np.nan
+    beta = sim_mean / obs_mean if obs_mean != 0 else np.nan
 
     # Relative variability between simulated and observed values
-    if obs_sigma != 0:
-        alpha = sim_sigma / obs_sigma
-    else:
-        alpha = np.nan
+    alpha = sim_sigma / obs_sigma if obs_sigma != 0 else np.nan
 
     if not np.isnan(beta) and not np.isnan(alpha):
         kge = 1 - np.sqrt(
@@ -7003,18 +6997,17 @@ def treat_values(
 
     # Treat zero data in observed_array and simulated_array, rows in simulated_array or
     # observed_array that contain zero values
-    if remove_zero:
-        if (obs_copy == 0).any() or (sim_copy == 0).any():
-            zero_indices_fcst = ~(sim_copy == 0)
-            zero_indices_obs = ~(obs_copy == 0)
-            all_zero_indices = np.logical_and(zero_indices_fcst, zero_indices_obs)
-            all_treatment_array = np.logical_and(all_treatment_array, all_zero_indices)
+    if remove_zero and ((obs_copy == 0).any() or (sim_copy == 0).any()):
+        zero_indices_fcst = ~(sim_copy == 0)
+        zero_indices_obs = ~(obs_copy == 0)
+        all_zero_indices = np.logical_and(zero_indices_fcst, zero_indices_obs)
+        all_treatment_array = np.logical_and(all_treatment_array, all_zero_indices)
 
-            warnings.warn(
-                f"Row(s) {np.where(~all_zero_indices)[0]} contained zero values and the row(s)"
-                " have been removed (Rows are zero indexed).",
-                UserWarning,
-            )
+        warnings.warn(
+            f"Row(s) {np.where(~all_zero_indices)[0]} contained zero values and the row(s)"
+            " have been removed (Rows are zero indexed).",
+            UserWarning,
+        )
 
     # Treat negative data in observed_array and simulated_array, rows in simulated_array or
     # observed_array that contain negative values
