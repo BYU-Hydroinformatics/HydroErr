@@ -2907,9 +2907,7 @@ def mb_r(
     for i in range(n):
         tot = tot + np.sum(np.abs(simulated_array - observed_array[i]))
     mae_val = np.sum(np.abs(simulated_array - observed_array)) / n
-    mb = 1 - ((n**2) * mae_val / tot)
-
-    return mb
+    return 1 - ((n**2) * mae_val / tot)
 
 
 def nse(
@@ -3282,12 +3280,14 @@ def kge_2009(
         if obs_mean == 0:
             warnings.warn(
                 "Warning: The observed data mean is 0. Therefore, Beta is infinite and the KGE "
-                "value cannot be computed."
+                "value cannot be computed.",
+                stacklevel=2,
             )
         if obs_sigma == 0:
             warnings.warn(
                 "Warning: The observed data standard deviation is 0. Therefore, Alpha is infinite "
-                "and the KGE value cannot be computed."
+                "and the KGE value cannot be computed.",
+                stacklevel=2,
             )
         kge = np.nan
 
@@ -3420,17 +3420,20 @@ def kge_2012(
         if obs_mean == 0:
             warnings.warn(
                 "Warning: The observed data mean is 0. Therefore, Beta is infinite and the KGE "
-                "value cannot be computed."
+                "value cannot be computed.",
+                stacklevel=2,
             )
         if obs_sigma == 0:
             warnings.warn(
                 "Warning: The observed data standard deviation is 0. Therefore, Gamma is infinite "
-                "and the KGE value cannot be computed."
+                "and the KGE value cannot be computed.",
+                stacklevel=2,
             )
         if sim_mean == 0:
             warnings.warn(
                 "Warning: The simulated data mean is 0. Therefore, Gamma is infinite "
-                "and the KGE value cannot be computed."
+                "and the KGE value cannot be computed.",
+                stacklevel=2,
             )
         kge = np.nan
 
@@ -6647,6 +6650,7 @@ def treat_values(
                 f" and elements(s) {np.where(obs_nan)[0]} contained NaN values in the observed"
                 " array and have been replaced (Elements are zero indexed).",
                 UserWarning,
+                stacklevel=2,
             )
         else:
             # Getting the indices of the nan values, combining them, and informing user.
@@ -6659,6 +6663,7 @@ def treat_values(
                 f"Row(s) {np.where(~all_nan_indices)[0]} contained NaN values and the row(s) have"
                 f" been removed (Rows are zero indexed).",
                 UserWarning,
+                stacklevel=2,
             )
 
     if np.any(np.isinf(obs_copy)) or np.any(np.isinf(sim_copy)):
@@ -6675,6 +6680,7 @@ def treat_values(
                 f" and elements(s) {np.where(obs_inf)[0]} contained Inf values in the observed"
                 " array and have been replaced (Elements are zero indexed).",
                 UserWarning,
+                stacklevel=2,
             )
         else:
             inf_indices_fcst = ~(np.isinf(sim_copy))
@@ -6686,6 +6692,7 @@ def treat_values(
                 f"Row(s) {np.where(~all_inf_indices)[0]} contained Inf or -Inf values and"
                 "the row(s) have been removed (Rows are zero indexed).",
                 UserWarning,
+                stacklevel=2,
             )
 
     # Treat zero data in observed_array and simulated_array, rows in simulated_array or
@@ -6700,6 +6707,7 @@ def treat_values(
             f"Row(s) {np.where(~all_zero_indices)[0]} contained zero values and the row(s)"
             " have been removed (Rows are zero indexed).",
             UserWarning,
+            stacklevel=2,
         )
 
     # Treat negative data in observed_array and simulated_array, rows in simulated_array or
@@ -6721,6 +6729,7 @@ def treat_values(
                 f"Row(s) {np.where(~all_neg_indices)[0]} contained negative values and the row(s)"
                 f" have been removed (Rows are zero indexed).",
                 UserWarning,
+                stacklevel=2,
             )
 
     obs_copy = obs_copy[all_treatment_array]

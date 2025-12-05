@@ -106,13 +106,15 @@ latex_symbols = {
     "SID": r"$\Biggl\langle \left( \frac{O_i}{\overline{O}} - \frac{S_i}{\overline{S}} \right), "
     r"\left( log \left( \frac{O_i}{\overline{O}} \right) - log \left( \frac{S_i}"
     r"{\overline{S}} \right) \right)  \Biggr\rangle$",
-    "SGA": r"SG$_o = (O_2-O_1, O_3-O_2,...,O_n-O_{n-1})$"
-     "\n"
-     r"SG$_s = (S_2-S_1, S_3-S_2,...,S_n-S_{n-1})$"
-     "\n"
-     r"SGA $= SA(SG_o, SG_s)$"
-     "\n"
-     r"Note: SA=Spectral \enspace Angle \enspace Metric",
+    "SGA": (
+        r"SG$_o = (O_2-O_1, O_3-O_2,...,O_n-O_{n-1})$"
+        "\n"
+        r"SG$_s = (S_2-S_1, S_3-S_2,...,S_n-S_{n-1})$"
+        "\n"
+        r"SGA $= SA(SG_o, SG_s)$"
+        "\n"
+        r"Note: SA=Spectral \enspace Angle \enspace Metric"
+    ),
     "MHE": r"Mean H Error $=\frac {1}{n}\sum_{i=1}^{n} H$",
     "AHE": r"Absolute H Error $=\frac {1}{n}\sum_{i=1}^{n} |H|$",
     "RMSHE": r"Root Mean Squared H Error $= \sqrt{\frac {1}{n}\sum_{i=1}^{n} H^2}$",
@@ -128,10 +130,10 @@ latex_symbols = {
     "H8": r"$H_8 = \frac {S_i - O_i}{max(O_i,S_i)}$",
     "H10": r"$H_{10} = \ln{ \frac {S_i}{O_i}}$",
     "GMD": r"GM$ = e^{(S' - O')}$"
-     "\n"
-     r"$S' = \left( \prod^n_{i=1} \ln{(S_i)} \right)^{\frac{1}{n}}$"
-     "\n"
-     r"$O' = \left( \prod^n_{i=1} \ln{(O_i)} \right)^{\frac{1}{n}}$",
+    "\n"
+    r"$S' = \left( \prod^n_{i=1} \ln{(S_i)} \right)^{\frac{1}{n}}$"
+    "\n"
+    r"$O' = \left( \prod^n_{i=1} \ln{(O_i)} \right)^{\frac{1}{n}}$",
     "MV": r"MV $=$ var$\left(\ln(O_1), \ln(O_2),..., \ln(O_n)\right) -$ var$\left(\ln(S_1),"
     r"\ln(S_2),..., \ln(S_n)\right)$",
 }
