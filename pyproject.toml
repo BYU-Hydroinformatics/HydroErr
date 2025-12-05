@@ -60,7 +60,13 @@ ignore = [
     "D203",
     "D211",
     "D213",
+    "EM101",
+    "EM102",
+    "FBT001",
+    "FBT002",
     "N813",
+    "PLR0913",
+    "TRY003",
 ]
 
 [tool.ruff.lint.per-file-ignores]
@@ -68,6 +74,11 @@ ignore = [
     "D",
     "INP",
     "PLR2004",
+]
+"docs/*" = [
+    "A001",
+    "ERA001",
+    "INP001",
 ]
 
 [tool.ruff.format]

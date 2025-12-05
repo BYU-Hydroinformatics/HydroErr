@@ -1,8 +1,13 @@
 """HydroErr metrics and helpers."""
 
-import numpy as np
-from scipy.stats import gmean, rankdata
 import warnings
+
+import numpy as np
+from numpy.typing import NDArray
+from scipy.stats import gmean, rankdata
+
+# Typing aliases
+FloatArray = NDArray[np.floating]
 
 __all__ = [
     "acc",
@@ -14,9 +19,6 @@ __all__ = [
     "drel",
     "ed",
     "g_mean_diff",
-    "h10_mahe",
-    "h10_mhe",
-    "h10_rmshe",
     "h1_mahe",
     "h1_mhe",
     "h1_rmshe",
@@ -41,6 +43,9 @@ __all__ = [
     "h8_mahe",
     "h8_mhe",
     "h8_rmshe",
+    "h10_mahe",
+    "h10_mhe",
+    "h10_rmshe",
     "irmse",
     "kge_2009",
     "kge_2012",
@@ -89,13 +94,13 @@ __all__ = [
 
 
 def me(
-    simulated_array,
-    observed_array,
-    replace_nan=None,
-    replace_inf=None,
-    remove_neg=False,
-    remove_zero=False,
-):
+    simulated_array: FloatArray,
+    observed_array: FloatArray,
+    replace_nan: float | None = None,
+    replace_inf: float | None = None,
+    remove_neg: bool = False,
+    remove_zero: bool = False,
+) -> float:
     """Compute the mean error of the simulated and observed data.
 
     .. image:: /pictures/ME.png
@@ -110,28 +115,28 @@ def me(
 
     Parameters
     ----------
-    simulated_array: one dimensional ndarray
+    simulated_array:
         An array of simulated data from the time series.
 
-    observed_array: one dimensional ndarray
+    observed_array:
         An array of observed data from the time series.
 
-    replace_nan: float, optional
+    replace_nan:
         If given, indicates which value to replace NaN values with in the two arrays. If None, when
         a NaN value is found at the i-th position in the observed OR simulated array, the i-th value
         of the observed and simulated array are removed before the computation.
 
-    replace_inf: float, optional
+    replace_inf:
         If given, indicates which value to replace Inf values with in the two arrays. If None, when
         an inf value is found at the i-th position in the observed OR simulated array, the i-th
         value of the observed and simulated array are removed before the computation.
 
-    remove_neg: boolean, optional
+    remove_neg:
         If True, when a negative value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
 
-    remove_zero: boolean, optional
+    remove_zero:
         If true, when a zero value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
@@ -176,13 +181,13 @@ def me(
 
 
 def mae(
-    simulated_array,
-    observed_array,
-    replace_nan=None,
-    replace_inf=None,
-    remove_neg=False,
-    remove_zero=False,
-):
+    simulated_array: FloatArray,
+    observed_array: FloatArray,
+    replace_nan: float | None = None,
+    replace_inf: float | None = None,
+    remove_neg: bool = False,
+    remove_zero: bool = False,
+) -> float:
     """Compute the mean absolute error of the simulated and observed data.
 
     .. image:: /pictures/MAE.png
@@ -195,28 +200,28 @@ def mae(
 
     Parameters
     ----------
-    simulated_array: one dimensional ndarray
+    simulated_array:
         An array of simulated data from the time series.
 
-    observed_array: one dimensional ndarray
+    observed_array:
         An array of observed data from the time series.
 
-    replace_nan: float, optional
+    replace_nan:
         If given, indicates which value to replace NaN values with in the two arrays. If None, when
         a NaN value is found at the i-th position in the observed OR simulated array, the i-th value
         of the observed and simulated array are removed before the computation.
 
-    replace_inf: float, optional
+    replace_inf:
         If given, indicates which value to replace Inf values with in the two arrays. If None, when
         an inf value is found at the i-th position in the observed OR simulated array, the i-th
         value of the observed and simulated array are removed before the computation.
 
-    remove_neg: boolean, optional
+    remove_neg:
         If True, when a negative value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
 
-    remove_zero: boolean, optional
+    remove_zero:
         If true, when a zero value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
@@ -230,10 +235,10 @@ def mae(
     ----------
     - Willmott, Cort J., and Kenji Matsuura. “Advantages of the Mean Absolute Error (MAE) over the
       Root Mean Square Error (RMSE) in Assessing Average Model Performance.” Climate Research 30,
-      no. 1 (2005): 79–82.
+      no. 1 (2005): 79-82.
     - Willmott, Cort J., and Kenji Matsuura. “On the Use of Dimensioned Measures of Error to
       Evaluate the Performance of Spatial Interpolators.” International Journal of Geographical
-      Information Science 20, no. 1 (2006): 89–102.
+      Information Science 20, no. 1 (2006): 89-102.
 
     Examples
     --------
@@ -259,13 +264,13 @@ def mae(
 
 
 def mse(
-    simulated_array,
-    observed_array,
-    replace_nan=None,
-    replace_inf=None,
-    remove_neg=False,
-    remove_zero=False,
-):
+    simulated_array: FloatArray,
+    observed_array: FloatArray,
+    replace_nan: float | None = None,
+    replace_inf: float | None = None,
+    remove_neg: bool = False,
+    remove_zero: bool = False,
+) -> float:
     """Compute the mean squared error of the simulated and observed data.
 
     .. image:: /pictures/MSE.png
@@ -277,28 +282,28 @@ def mse(
 
     Parameters
     ----------
-    simulated_array: one dimensional ndarray
+    simulated_array:
         An array of simulated data from the time series.
 
-    observed_array: one dimensional ndarray
+    observed_array:
         An array of observed data from the time series.
 
-    replace_nan: float, optional
+    replace_nan:
         If given, indicates which value to replace NaN values with in the two arrays. If None, when
         a NaN value is found at the i-th position in the observed OR simulated array, the i-th value
         of the observed and simulated array are removed before the computation.
 
-    replace_inf: float, optional
+    replace_inf:
         If given, indicates which value to replace Inf values with in the two arrays. If None, when
         an inf value is found at the i-th position in the observed OR simulated array, the i-th
         value of the observed and simulated array are removed before the computation.
 
-    remove_neg: boolean, optional
+    remove_neg:
         If True, when a negative value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
 
-    remove_zero: boolean, optional
+    remove_zero:
         If true, when a zero value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
@@ -321,7 +326,7 @@ def mse(
     References
     ----------
     - Wang, Zhou, and Alan C. Bovik. “Mean Squared Error: Love It or Leave It? A New Look at Signal
-      Fidelity Measures.” IEEE Signal Processing Magazine 26, no. 1 (2009): 98–117.
+      Fidelity Measures.” IEEE Signal Processing Magazine 26, no. 1 (2009): 98-117.
 
     """
     simulated_array, observed_array = treat_values(
@@ -337,13 +342,13 @@ def mse(
 
 
 def mle(
-    simulated_array,
-    observed_array,
-    replace_nan=None,
-    replace_inf=None,
-    remove_neg=False,
-    remove_zero=False,
-):
+    simulated_array: FloatArray,
+    observed_array: FloatArray,
+    replace_nan: float | None = None,
+    replace_inf: float | None = None,
+    remove_neg: bool = False,
+    remove_zero: bool = False,
+) -> float:
     """Compute the mean log error of the simulated and observed data.
 
     .. image:: /pictures/MLE.png
@@ -355,28 +360,28 @@ def mle(
 
     Parameters
     ----------
-    simulated_array: one dimensional ndarray
+    simulated_array:
         An array of simulated data from the time series.
 
-    observed_array: one dimensional ndarray
+    observed_array:
         An array of observed data from the time series.
 
-    replace_nan: float, optional
+    replace_nan:
         If given, indicates which value to replace NaN values with in the two arrays. If None, when
         a NaN value is found at the i-th position in the observed OR simulated array, the i-th value
         of the observed and simulated array are removed before the computation.
 
-    replace_inf: float, optional
+    replace_inf:
         If given, indicates which value to replace Inf values with in the two arrays. If None, when
         an inf value is found at the i-th position in the observed OR simulated array, the i-th
         value of the observed and simulated array are removed before the computation.
 
-    remove_neg: boolean, optional
+    remove_neg:
         If True, when a negative value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
 
-    remove_zero: boolean, optional
+    remove_zero:
         If true, when a zero value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
@@ -401,7 +406,7 @@ def mle(
     References
     ----------
     - Törnqvist, Leo, Pentti Vartia, and Yrjö O. Vartia. “How Should Relative Changes Be Measured?”
-      The American Statistician 39, no. 1 (1985): 43–46.
+      The American Statistician 39, no. 1 (1985): 43-46.
 
     """
     simulated_array, observed_array = treat_values(
@@ -419,13 +424,13 @@ def mle(
 
 
 def male(
-    simulated_array,
-    observed_array,
-    replace_nan=None,
-    replace_inf=None,
-    remove_neg=False,
-    remove_zero=False,
-):
+    simulated_array: FloatArray,
+    observed_array: FloatArray,
+    replace_nan: float | None = None,
+    replace_inf: float | None = None,
+    remove_neg: bool = False,
+    remove_zero: bool = False,
+) -> float:
     """Compute the mean absolute log error of the simulated and observed data.
 
     .. image:: /pictures/MALE.png
@@ -437,28 +442,28 @@ def male(
 
     Parameters
     ----------
-    simulated_array: one dimensional ndarray
+    simulated_array:
         An array of simulated data from the time series.
 
-    observed_array: one dimensional ndarray
+    observed_array:
         An array of observed data from the time series.
 
-    replace_nan: float, optional
+    replace_nan:
         If given, indicates which value to replace NaN values with in the two arrays. If None, when
         a NaN value is found at the i-th position in the observed OR simulated array, the i-th value
         of the observed and simulated array are removed before the computation.
 
-    replace_inf: float, optional
+    replace_inf:
         If given, indicates which value to replace Inf values with in the two arrays. If None, when
         an inf value is found at the i-th position in the observed OR simulated array, the i-th
         value of the observed and simulated array are removed before the computation.
 
-    remove_neg: boolean, optional
+    remove_neg:
         If True, when a negative value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
 
-    remove_zero: boolean, optional
+    remove_zero:
         If true, when a zero value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
@@ -483,7 +488,7 @@ def male(
     References
     ----------
     - Törnqvist, Leo, Pentti Vartia, and Yrjö O. Vartia. “How Should Relative Changes Be Measured?”
-      The American Statistician 39, no. 1 (1985): 43–46.
+      The American Statistician 39, no. 1 (1985): 43-46.
 
     """
     simulated_array, observed_array = treat_values(
@@ -501,13 +506,13 @@ def male(
 
 
 def msle(
-    simulated_array,
-    observed_array,
-    replace_nan=None,
-    replace_inf=None,
-    remove_neg=False,
-    remove_zero=False,
-):
+    simulated_array: FloatArray,
+    observed_array: FloatArray,
+    replace_nan: float | None = None,
+    replace_inf: float | None = None,
+    remove_neg: bool = False,
+    remove_zero: bool = False,
+) -> float:
     """Compute the mean squared log error of the simulated and observed data.
 
     .. image:: /pictures/MSLE.png
@@ -519,28 +524,28 @@ def msle(
 
     Parameters
     ----------
-    simulated_array: one dimensional ndarray
+    simulated_array:
         An array of simulated data from the time series.
 
-    observed_array: one dimensional ndarray
+    observed_array:
         An array of observed data from the time series.
 
-    replace_nan: float, optional
+    replace_nan:
         If given, indicates which value to replace NaN values with in the two arrays. If None, when
         a NaN value is found at the i-th position in the observed OR simulated array, the i-th value
         of the observed and simulated array are removed before the computation.
 
-    replace_inf: float, optional
+    replace_inf:
         If given, indicates which value to replace Inf values with in the two arrays. If None, when
         an inf value is found at the i-th position in the observed OR simulated array, the i-th
         value of the observed and simulated array are removed before the computation.
 
-    remove_neg: boolean, optional
+    remove_neg:
         If True, when a negative value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
 
-    remove_zero: boolean, optional
+    remove_zero:
         If true, when a zero value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
@@ -565,7 +570,7 @@ def msle(
     References
     ----------
     - Törnqvist, Leo, Pentti Vartia, and Yrjö O. Vartia. “How Should Relative Changes Be Measured?”
-      The American Statistician 39, no. 1 (1985): 43–46.
+      The American Statistician 39, no. 1 (1985): 43-46.
 
     """
     simulated_array, observed_array = treat_values(
@@ -583,13 +588,13 @@ def msle(
 
 
 def mde(
-    simulated_array,
-    observed_array,
-    replace_nan=None,
-    replace_inf=None,
-    remove_neg=False,
-    remove_zero=False,
-):
+    simulated_array: FloatArray,
+    observed_array: FloatArray,
+    replace_nan: float | None = None,
+    replace_inf: float | None = None,
+    remove_neg: bool = False,
+    remove_zero: bool = False,
+) -> float:
     """Compute the median error (MdE) between the simulated and observed data.
 
     .. image:: /pictures/MdE.png
@@ -601,28 +606,28 @@ def mde(
 
     Parameters
     ----------
-    simulated_array: one dimensional ndarray
+    simulated_array:
         An array of simulated data from the time series.
 
-    observed_array: one dimensional ndarray
+    observed_array:
         An array of observed data from the time series.
 
-    replace_nan: float, optional
+    replace_nan:
         If given, indicates which value to replace NaN values with in the two arrays. If None, when
         a NaN value is found at the i-th position in the observed OR simulated array, the i-th value
         of the observed and simulated array are removed before the computation.
 
-    replace_inf: float, optional
+    replace_inf:
         If given, indicates which value to replace Inf values with in the two arrays. If None, when
         an inf value is found at the i-th position in the observed OR simulated array, the i-th
         value of the observed and simulated array are removed before the computation.
 
-    remove_neg: boolean, optional
+    remove_neg:
         If True, when a negative value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
 
-    remove_zero: boolean, optional
+    remove_zero:
         If true, when a zero value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
@@ -658,13 +663,13 @@ def mde(
 
 
 def mdae(
-    simulated_array,
-    observed_array,
-    replace_nan=None,
-    replace_inf=None,
-    remove_neg=False,
-    remove_zero=False,
-):
+    simulated_array: FloatArray,
+    observed_array: FloatArray,
+    replace_nan: float | None = None,
+    replace_inf: float | None = None,
+    remove_neg: bool = False,
+    remove_zero: bool = False,
+) -> float:
     """Compute the median absolute error (MdAE) between the simulated and observed data.
 
     .. image:: /pictures/MdAE.png
@@ -676,28 +681,28 @@ def mdae(
 
     Parameters
     ----------
-    simulated_array: one dimensional ndarray
+    simulated_array:
         An array of simulated data from the time series.
 
-    observed_array: one dimensional ndarray
+    observed_array:
         An array of observed data from the time series.
 
-    replace_nan: float, optional
+    replace_nan:
         If given, indicates which value to replace NaN values with in the two arrays. If None, when
         a NaN value is found at the i-th position in the observed OR simulated array, the i-th value
         of the observed and simulated array are removed before the computation.
 
-    replace_inf: float, optional
+    replace_inf:
         If given, indicates which value to replace Inf values with in the two arrays. If None, when
         an inf value is found at the i-th position in the observed OR simulated array, the i-th
         value of the observed and simulated array are removed before the computation.
 
-    remove_neg: boolean, optional
+    remove_neg:
         If True, when a negative value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
 
-    remove_zero: boolean, optional
+    remove_zero:
         If true, when a zero value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
@@ -733,13 +738,13 @@ def mdae(
 
 
 def mdse(
-    simulated_array,
-    observed_array,
-    replace_nan=None,
-    replace_inf=None,
-    remove_neg=False,
-    remove_zero=False,
-):
+    simulated_array: FloatArray,
+    observed_array: FloatArray,
+    replace_nan: float | None = None,
+    replace_inf: float | None = None,
+    remove_neg: bool = False,
+    remove_zero: bool = False,
+) -> float:
     """Compute the median squared error (MdSE) between the simulated and observed data.
 
     .. image:: /pictures/MdSE.png
@@ -751,28 +756,28 @@ def mdse(
 
     Parameters
     ----------
-    simulated_array: one dimensional ndarray
+    simulated_array:
         An array of simulated data from the time series.
 
-    observed_array: one dimensional ndarray
+    observed_array:
         An array of observed data from the time series.
 
-    replace_nan: float, optional
+    replace_nan:
         If given, indicates which value to replace NaN values with in the two arrays. If None, when
         a NaN value is found at the i-th position in the observed OR simulated array, the i-th value
         of the observed and simulated array are removed before the computation.
 
-    replace_inf: float, optional
+    replace_inf:
         If given, indicates which value to replace Inf values with in the two arrays. If None, when
         an inf value is found at the i-th position in the observed OR simulated array, the i-th
         value of the observed and simulated array are removed before the computation.
 
-    remove_neg: boolean, optional
+    remove_neg:
         If True, when a negative value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
 
-    remove_zero: boolean, optional
+    remove_zero:
         If true, when a zero value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
@@ -808,13 +813,13 @@ def mdse(
 
 
 def ed(
-    simulated_array,
-    observed_array,
-    replace_nan=None,
-    replace_inf=None,
-    remove_neg=False,
-    remove_zero=False,
-):
+    simulated_array: FloatArray,
+    observed_array: FloatArray,
+    replace_nan: float | None = None,
+    replace_inf: float | None = None,
+    remove_neg: bool = False,
+    remove_zero: bool = False,
+) -> float:
     """Compute the Euclidean distance between predicted and observed values in vector space.
 
     .. image:: /pictures/ED.png
@@ -824,28 +829,28 @@ def ed(
 
     Parameters
     ----------
-    simulated_array: one dimensional ndarray
+    simulated_array:
         An array of simulated data from the time series.
 
-    observed_array: one dimensional ndarray
+    observed_array:
         An array of observed data from the time series.
 
-    replace_nan: float, optional
+    replace_nan:
         If given, indicates which value to replace NaN values with in the two arrays. If None, when
         a NaN value is found at the i-th position in the observed OR simulated array, the i-th value
         of the observed and simulated array are removed before the computation.
 
-    replace_inf: float, optional
+    replace_inf:
         If given, indicates which value to replace Inf values with in the two arrays. If None, when
         an inf value is found at the i-th position in the observed OR simulated array, the i-th
         value of the observed and simulated array are removed before the computation.
 
-    remove_neg: boolean, optional
+    remove_neg:
         If True, when a negative value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
 
-    remove_zero: boolean, optional
+    remove_zero:
         If true, when a zero value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
@@ -885,13 +890,13 @@ def ed(
 
 
 def ned(
-    simulated_array,
-    observed_array,
-    replace_nan=None,
-    replace_inf=None,
-    remove_neg=False,
-    remove_zero=False,
-):
+    simulated_array: FloatArray,
+    observed_array: FloatArray,
+    replace_nan: float | None = None,
+    replace_inf: float | None = None,
+    remove_neg: bool = False,
+    remove_zero: bool = False,
+) -> float:
     """Compute the normalized Euclidian distance between the simulated and observed data in vector space.
 
     .. image:: /pictures/NED.png
@@ -902,28 +907,28 @@ def ned(
 
     Parameters
     ----------
-    simulated_array: one dimensional ndarray
+    simulated_array:
         An array of simulated data from the time series.
 
-    observed_array: one dimensional ndarray
+    observed_array:
         An array of observed data from the time series.
 
-    replace_nan: float, optional
+    replace_nan:
         If given, indicates which value to replace NaN values with in the two arrays. If None, when
         a NaN value is found at the i-th position in the observed OR simulated array, the i-th value
         of the observed and simulated array are removed before the computation.
 
-    replace_inf: float, optional
+    replace_inf:
         If given, indicates which value to replace Inf values with in the two arrays. If None, when
         an inf value is found at the i-th position in the observed OR simulated array, the i-th
         value of the observed and simulated array are removed before the computation.
 
-    remove_neg: boolean, optional
+    remove_neg:
         If True, when a negative value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
 
-    remove_zero: boolean, optional
+    remove_zero:
         If true, when a zero value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
@@ -965,13 +970,13 @@ def ned(
 
 
 def rmse(
-    simulated_array,
-    observed_array,
-    replace_nan=None,
-    replace_inf=None,
-    remove_neg=False,
-    remove_zero=False,
-):
+    simulated_array: FloatArray,
+    observed_array: FloatArray,
+    replace_nan: float | None = None,
+    replace_inf: float | None = None,
+    remove_neg: bool = False,
+    remove_zero: bool = False,
+) -> float:
     """Compute the root mean square error between the simulated and observed data.
 
     .. image:: /pictures/RMSE.png
@@ -984,28 +989,28 @@ def rmse(
 
     Parameters
     ----------
-    simulated_array: one dimensional ndarray
+    simulated_array:
         An array of simulated data from the time series.
 
-    observed_array: one dimensional ndarray
+    observed_array:
         An array of observed data from the time series.
 
-    replace_nan: float, optional
+    replace_nan:
         If given, indicates which value to replace NaN values with in the two arrays. If None, when
         a NaN value is found at the i-th position in the observed OR simulated array, the i-th value
         of the observed and simulated array are removed before the computation.
 
-    replace_inf: float, optional
+    replace_inf:
         If given, indicates which value to replace Inf values with in the two arrays. If None, when
         an inf value is found at the i-th position in the observed OR simulated array, the i-th
         value of the observed and simulated array are removed before the computation.
 
-    remove_neg: boolean, optional
+    remove_neg:
         If True, when a negative value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
 
-    remove_zero: boolean, optional
+    remove_zero:
         If true, when a zero value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
@@ -1047,13 +1052,13 @@ def rmse(
 
 
 def rmsle(
-    simulated_array,
-    observed_array,
-    replace_nan=None,
-    replace_inf=None,
-    remove_neg=False,
-    remove_zero=False,
-):
+    simulated_array: FloatArray,
+    observed_array: FloatArray,
+    replace_nan: float | None = None,
+    replace_inf: float | None = None,
+    remove_neg: bool = False,
+    remove_zero: bool = False,
+) -> float:
     """Compute the root mean square log error between the simulated and observed data.
 
     .. image:: /pictures/RMSLE.png
@@ -1067,28 +1072,28 @@ def rmsle(
 
     Parameters
     ----------
-    simulated_array: one dimensional ndarray
+    simulated_array:
         An array of simulated data from the time series.
 
-    observed_array: one dimensional ndarray
+    observed_array:
         An array of observed data from the time series.
 
-    replace_nan: float, optional
+    replace_nan:
         If given, indicates which value to replace NaN values with in the two arrays. If None, when
         a NaN value is found at the i-th position in the observed OR simulated array, the i-th value
         of the observed and simulated array are removed before the computation.
 
-    replace_inf: float, optional
+    replace_inf:
         If given, indicates which value to replace Inf values with in the two arrays. If None, when
         an inf value is found at the i-th position in the observed OR simulated array, the i-th
         value of the observed and simulated array are removed before the computation.
 
-    remove_neg: boolean, optional
+    remove_neg:
         If True, when a negative value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
 
-    remove_zero: boolean, optional
+    remove_zero:
         If true, when a zero value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
@@ -1131,13 +1136,13 @@ def rmsle(
 
 
 def nrmse_range(
-    simulated_array,
-    observed_array,
-    replace_nan=None,
-    replace_inf=None,
-    remove_neg=False,
-    remove_zero=False,
-):
+    simulated_array: FloatArray,
+    observed_array: FloatArray,
+    replace_nan: float | None = None,
+    replace_inf: float | None = None,
+    remove_neg: bool = False,
+    remove_zero: bool = False,
+) -> float:
     """Compute the range normalized root mean square error between the simulated and observed data.
 
     .. image:: /pictures/NRMSE_Range.png
@@ -1150,28 +1155,28 @@ def nrmse_range(
 
     Parameters
     ----------
-    simulated_array: one dimensional ndarray
+    simulated_array:
         An array of simulated data from the time series.
 
-    observed_array: one dimensional ndarray
+    observed_array:
         An array of observed data from the time series.
 
-    replace_nan: float, optional
+    replace_nan:
         If given, indicates which value to replace NaN values with in the two arrays. If None, when
         a NaN value is found at the i-th position in the observed OR simulated array, the i-th value
         of the observed and simulated array are removed before the computation.
 
-    replace_inf: float, optional
+    replace_inf:
         If given, indicates which value to replace Inf values with in the two arrays. If None, when
         an inf value is found at the i-th position in the observed OR simulated array, the i-th
         value of the observed and simulated array are removed before the computation.
 
-    remove_neg: boolean, optional
+    remove_neg:
         If True, when a negative value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
 
-    remove_zero: boolean, optional
+    remove_zero:
         If true, when a zero value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
@@ -1214,13 +1219,13 @@ def nrmse_range(
 
 
 def nrmse_mean(
-    simulated_array,
-    observed_array,
-    replace_nan=None,
-    replace_inf=None,
-    remove_neg=False,
-    remove_zero=False,
-):
+    simulated_array: FloatArray,
+    observed_array: FloatArray,
+    replace_nan: float | None = None,
+    replace_inf: float | None = None,
+    remove_neg: bool = False,
+    remove_zero: bool = False,
+) -> float:
     """Compute the mean normalized root mean square error between the simulated and observed data.
 
     .. image:: /pictures/NRMSE_Mean.png
@@ -1232,28 +1237,28 @@ def nrmse_mean(
 
     Parameters
     ----------
-    simulated_array: one dimensional ndarray
+    simulated_array:
         An array of simulated data from the time series.
 
-    observed_array: one dimensional ndarray
+    observed_array:
         An array of observed data from the time series.
 
-    replace_nan: float, optional
+    replace_nan:
         If given, indicates which value to replace NaN values with in the two arrays. If None, when
         a NaN value is found at the i-th position in the observed OR simulated array, the i-th value
         of the observed and simulated array are removed before the computation.
 
-    replace_inf: float, optional
+    replace_inf:
         If given, indicates which value to replace Inf values with in the two arrays. If None, when
         an inf value is found at the i-th position in the observed OR simulated array, the i-th
         value of the observed and simulated array are removed before the computation.
 
-    remove_neg: boolean, optional
+    remove_neg:
         If True, when a negative value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
 
-    remove_zero: boolean, optional
+    remove_zero:
         If true, when a zero value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
@@ -1295,13 +1300,13 @@ def nrmse_mean(
 
 
 def nrmse_iqr(
-    simulated_array,
-    observed_array,
-    replace_nan=None,
-    replace_inf=None,
-    remove_neg=False,
-    remove_zero=False,
-):
+    simulated_array: FloatArray,
+    observed_array: FloatArray,
+    replace_nan: float | None = None,
+    replace_inf: float | None = None,
+    remove_neg: bool = False,
+    remove_zero: bool = False,
+) -> float:
     """Compute the IQR normalized root mean square error between the simulated and observed data.
 
     .. image:: /pictures/NRMSE_IQR.png
@@ -1314,28 +1319,28 @@ def nrmse_iqr(
 
     Parameters
     ----------
-    simulated_array: one dimensional ndarray
+    simulated_array:
         An array of simulated data from the time series.
 
-    observed_array: one dimensional ndarray
+    observed_array:
         An array of observed data from the time series.
 
-    replace_nan: float, optional
+    replace_nan:
         If given, indicates which value to replace NaN values with in the two arrays. If None, when
         a NaN value is found at the i-th position in the observed OR simulated array, the i-th value
         of the observed and simulated array are removed before the computation.
 
-    replace_inf: float, optional
+    replace_inf:
         If given, indicates which value to replace Inf values with in the two arrays. If None, when
         an inf value is found at the i-th position in the observed OR simulated array, the i-th
         value of the observed and simulated array are removed before the computation.
 
-    remove_neg: boolean, optional
+    remove_neg:
         If True, when a negative value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
 
-    remove_zero: boolean, optional
+    remove_zero:
         If true, when a zero value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
@@ -1379,13 +1384,13 @@ def nrmse_iqr(
 
 
 def irmse(
-    simulated_array,
-    observed_array,
-    replace_nan=None,
-    replace_inf=None,
-    remove_neg=False,
-    remove_zero=False,
-):
+    simulated_array: FloatArray,
+    observed_array: FloatArray,
+    replace_nan: float | None = None,
+    replace_inf: float | None = None,
+    remove_neg: bool = False,
+    remove_zero: bool = False,
+) -> float:
     """Compute the inertial root mean square error (IRMSE) between the simulated and observed data.
 
     .. image:: /pictures/IRMSE.png
@@ -1398,28 +1403,28 @@ def irmse(
 
     Parameters
     ----------
-    simulated_array: one dimensional ndarray
+    simulated_array:
         An array of simulated data from the time series.
 
-    observed_array: one dimensional ndarray
+    observed_array:
         An array of observed data from the time series.
 
-    replace_nan: float, optional
+    replace_nan:
         If given, indicates which value to replace NaN values with in the two arrays. If None, when
         a NaN value is found at the i-th position in the observed OR simulated array, the i-th value
         of the observed and simulated array are removed before the computation.
 
-    replace_inf: float, optional
+    replace_inf:
         If given, indicates which value to replace Inf values with in the two arrays. If None, when
         an inf value is found at the i-th position in the observed OR simulated array, the i-th
         value of the observed and simulated array are removed before the computation.
 
-    remove_neg: boolean, optional
+    remove_neg:
         If True, when a negative value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
 
-    remove_zero: boolean, optional
+    remove_zero:
         If true, when a zero value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
@@ -1467,14 +1472,14 @@ def irmse(
 
 
 def mase(
-    simulated_array,
-    observed_array,
-    m=1,
-    replace_nan=None,
-    replace_inf=None,
-    remove_neg=False,
-    remove_zero=False,
-):
+    simulated_array: FloatArray,
+    observed_array: FloatArray,
+    m: int = 1,
+    replace_nan: float | None = None,
+    replace_inf: float | None = None,
+    remove_neg: bool = False,
+    remove_zero: bool = False,
+) -> float:
     """Compute the mean absolute scaled error between the simulated and observed data.
 
     .. image:: /pictures/MASE.png
@@ -1485,31 +1490,31 @@ def mase(
 
     Parameters
     ----------
-    simulated_array: one dimensional ndarray
+    simulated_array:
         An array of simulated data from the time series.
 
-    observed_array: one dimensional ndarray
+    observed_array:
         An array of observed data from the time series.
 
     m: int
         If given, indicates the seasonal period m. If not given, the default is 1.
 
-    replace_nan: float, optional
+    replace_nan:
         If given, indicates which value to replace NaN values with in the two arrays. If None, when
         a NaN value is found at the i-th position in the observed OR simulated array, the i-th value
         of the observed and simulated array are removed before the computation.
 
-    replace_inf: float, optional
+    replace_inf:
         If given, indicates which value to replace Inf values with in the two arrays. If None, when
         an inf value is found at the i-th position in the observed OR simulated array, the i-th
         value of the observed and simulated array are removed before the computation.
 
-    remove_neg: boolean, optional
+    remove_neg:
         If True, when a negative value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
 
-    remove_zero: boolean, optional
+    remove_zero:
         If true, when a zero value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
@@ -1552,13 +1557,13 @@ def mase(
 
 
 def pearson_r(
-    simulated_array,
-    observed_array,
-    replace_nan=None,
-    replace_inf=None,
-    remove_neg=False,
-    remove_zero=False,
-):
+    simulated_array: FloatArray,
+    observed_array: FloatArray,
+    replace_nan: float | None = None,
+    replace_inf: float | None = None,
+    remove_neg: bool = False,
+    remove_zero: bool = False,
+) -> float:
     """Compute the pearson correlation coefficient.
 
     .. image:: /pictures/R_pearson.png
@@ -1570,28 +1575,28 @@ def pearson_r(
 
     Parameters
     ----------
-    simulated_array: one dimensional ndarray
+    simulated_array:
         An array of simulated data from the time series.
 
-    observed_array: one dimensional ndarray
+    observed_array:
         An array of observed data from the time series.
 
-    replace_nan: float, optional
+    replace_nan:
         If given, indicates which value to replace NaN values with in the two arrays. If None, when
         a NaN value is found at the i-th position in the observed OR simulated array, the i-th value
         of the observed and simulated array are removed before the computation.
 
-    replace_inf: float, optional
+    replace_inf:
         If given, indicates which value to replace Inf values with in the two arrays. If None, when
         an inf value is found at the i-th position in the observed OR simulated array, the i-th
         value of the observed and simulated array are removed before the computation.
 
-    remove_neg: boolean, optional
+    remove_neg:
         If True, when a negative value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
 
-    remove_zero: boolean, optional
+    remove_zero:
         If true, when a zero value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
@@ -1637,13 +1642,13 @@ def pearson_r(
 
 
 def spearman_r(
-    simulated_array,
-    observed_array,
-    replace_nan=None,
-    replace_inf=None,
-    remove_neg=False,
-    remove_zero=False,
-):
+    simulated_array: FloatArray,
+    observed_array: FloatArray,
+    replace_nan: float | None = None,
+    replace_inf: float | None = None,
+    remove_neg: bool = False,
+    remove_zero: bool = False,
+) -> float:
     """Compute the spearman rank correlation coefficient.
 
     .. image:: /pictures/R_spearman.png
@@ -1657,28 +1662,28 @@ def spearman_r(
 
     Parameters
     ----------
-    simulated_array: one dimensional ndarray
+    simulated_array:
         An array of simulated data from the time series.
 
-    observed_array: one dimensional ndarray
+    observed_array:
         An array of observed data from the time series.
 
-    replace_nan: float, optional
+    replace_nan:
         If given, indicates which value to replace NaN values with in the two arrays. If None, when
         a NaN value is found at the i-th position in the observed OR simulated array, the i-th value
         of the observed and simulated array are removed before the computation.
 
-    replace_inf: float, optional
+    replace_inf:
         If given, indicates which value to replace Inf values with in the two arrays. If None, when
         an inf value is found at the i-th position in the observed OR simulated array, the i-th
         value of the observed and simulated array are removed before the computation.
 
-    remove_neg: boolean, optional
+    remove_neg:
         If True, when a negative value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
 
-    remove_zero: boolean, optional
+    remove_zero:
         If true, when a zero value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
@@ -1701,7 +1706,7 @@ def spearman_r(
     References
     ----------
     - Spearman C (1904). "The proof and measurement of association between two things". American
-      Journal of Psychology. 15: 72–101. doi:10.2307/1412159
+      Journal of Psychology. 15: 72-101. doi:10.2307/1412159
 
     """
     simulated_array, observed_array = treat_values(
@@ -1728,13 +1733,13 @@ def spearman_r(
 
 
 def r_squared(
-    simulated_array,
-    observed_array,
-    replace_nan=None,
-    replace_inf=None,
-    remove_neg=False,
-    remove_zero=False,
-):
+    simulated_array: FloatArray,
+    observed_array: FloatArray,
+    replace_nan: float | None = None,
+    replace_inf: float | None = None,
+    remove_neg: bool = False,
+    remove_zero: bool = False,
+) -> float:
     """Compute the the Coefficient of Determination (r2).
 
     .. image:: /pictures/r2.png
@@ -1747,28 +1752,28 @@ def r_squared(
 
     Parameters
     ----------
-    simulated_array: one dimensional ndarray
+    simulated_array:
         An array of simulated data from the time series.
 
-    observed_array: one dimensional ndarray
+    observed_array:
         An array of observed data from the time series.
 
-    replace_nan: float, optional
+    replace_nan:
         If given, indicates which value to replace NaN values with in the two arrays. If None, when
         a NaN value is found at the i-th position in the observed OR simulated array, the i-th value
         of the observed and simulated array are removed before the computation.
 
-    replace_inf: float, optional
+    replace_inf:
         If given, indicates which value to replace Inf values with in the two arrays. If None, when
         an inf value is found at the i-th position in the observed OR simulated array, the i-th
         value of the observed and simulated array are removed before the computation.
 
-    remove_neg: boolean, optional
+    remove_neg:
         If True, when a negative value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
 
-    remove_zero: boolean, optional
+    remove_zero:
         If true, when a zero value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
@@ -1802,13 +1807,13 @@ def r_squared(
 
 
 def acc(
-    simulated_array,
-    observed_array,
-    replace_nan=None,
-    replace_inf=None,
-    remove_neg=False,
-    remove_zero=False,
-):
+    simulated_array: FloatArray,
+    observed_array: FloatArray,
+    replace_nan: float | None = None,
+    replace_inf: float | None = None,
+    remove_neg: bool = False,
+    remove_zero: bool = False,
+) -> float:
     """Compute the the anomaly correlation coefficient (ACC).
 
     .. image:: /pictures/ACC.png
@@ -1822,28 +1827,28 @@ def acc(
 
     Parameters
     ----------
-    simulated_array: one dimensional ndarray
+    simulated_array:
         An array of simulated data from the time series.
 
-    observed_array: one dimensional ndarray
+    observed_array:
         An array of observed data from the time series.
 
-    replace_nan: float, optional
+    replace_nan:
         If given, indicates which value to replace NaN values with in the two arrays. If None, when
         a NaN value is found at the i-th position in the observed OR simulated array, the i-th value
         of the observed and simulated array are removed before the computation.
 
-    replace_inf: float, optional
+    replace_inf:
         If given, indicates which value to replace Inf values with in the two arrays. If None, when
         an inf value is found at the i-th position in the observed OR simulated array, the i-th
         value of the observed and simulated array are removed before the computation.
 
-    remove_neg: boolean, optional
+    remove_neg:
         If True, when a negative value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
 
-    remove_zero: boolean, optional
+    remove_zero:
         If true, when a zero value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
@@ -1870,9 +1875,9 @@ def acc(
       no. 1 (2012): 17531.
     - Miyakoda, K., G. D. Hembree, R. F. Strickler, and I. Shulman. “Cumulative Results of Extended
       Forecast Experiments I. Model Performance for Winter Cases.” Monthly Weather Review 100, no.
-      12(1972): 836–55.
+      12(1972): 836-55.
     - Murphy, Allan H., and Edward S. Epstein. “Skill Scores and Correlation Coefficients in Model
-      Verification.” Monthly Weather Review 117, no. 3 (1989): 572–82.
+      Verification.” Monthly Weather Review 117, no. 3 (1989): 572-82.
 
     """
     simulated_array, observed_array = treat_values(
@@ -1891,13 +1896,13 @@ def acc(
 
 
 def mape(
-    simulated_array,
-    observed_array,
-    replace_nan=None,
-    replace_inf=None,
-    remove_neg=False,
-    remove_zero=False,
-):
+    simulated_array: FloatArray,
+    observed_array: FloatArray,
+    replace_nan: float | None = None,
+    replace_inf: float | None = None,
+    remove_neg: bool = False,
+    remove_zero: bool = False,
+) -> float:
     """Compute the the mean absolute percentage error (MAPE).
 
     .. image:: /pictures/MAPE.png
@@ -1909,28 +1914,28 @@ def mape(
 
     Parameters
     ----------
-    simulated_array: one dimensional ndarray
+    simulated_array:
         An array of simulated data from the time series.
 
-    observed_array: one dimensional ndarray
+    observed_array:
         An array of observed data from the time series.
 
-    replace_nan: float, optional
+    replace_nan:
         If given, indicates which value to replace NaN values with in the two arrays. If None, when
         a NaN value is found at the i-th position in the observed OR simulated array, the i-th value
         of the observed and simulated array are removed before the computation.
 
-    replace_inf: float, optional
+    replace_inf:
         If given, indicates which value to replace Inf values with in the two arrays. If None, when
         an inf value is found at the i-th position in the observed OR simulated array, the i-th
         value of the observed and simulated array are removed before the computation.
 
-    remove_neg: boolean, optional
+    remove_neg:
         If True, when a negative value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
 
-    remove_zero: boolean, optional
+    remove_zero:
         If true, when a zero value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
@@ -1967,13 +1972,13 @@ def mape(
 
 
 def mapd(
-    simulated_array,
-    observed_array,
-    replace_nan=None,
-    replace_inf=None,
-    remove_neg=False,
-    remove_zero=False,
-):
+    simulated_array: FloatArray,
+    observed_array: FloatArray,
+    replace_nan: float | None = None,
+    replace_inf: float | None = None,
+    remove_neg: bool = False,
+    remove_zero: bool = False,
+) -> float:
     """Compute the the mean absolute percentage deviation (MAPD).
 
     .. image:: /pictures/MAPD.png
@@ -1984,28 +1989,28 @@ def mapd(
 
     Parameters
     ----------
-    simulated_array: one dimensional ndarray
+    simulated_array:
         An array of simulated data from the time series.
 
-    observed_array: one dimensional ndarray
+    observed_array:
         An array of observed data from the time series.
 
-    replace_nan: float, optional
+    replace_nan:
         If given, indicates which value to replace NaN values with in the two arrays. If None, when
         a NaN value is found at the i-th position in the observed OR simulated array, the i-th value
         of the observed and simulated array are removed before the computation.
 
-    replace_inf: float, optional
+    replace_inf:
         If given, indicates which value to replace Inf values with in the two arrays. If None, when
         an inf value is found at the i-th position in the observed OR simulated array, the i-th
         value of the observed and simulated array are removed before the computation.
 
-    remove_neg: boolean, optional
+    remove_neg:
         If True, when a negative value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
 
-    remove_zero: boolean, optional
+    remove_zero:
         If true, when a zero value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
@@ -2041,13 +2046,13 @@ def mapd(
 
 
 def maape(
-    simulated_array,
-    observed_array,
-    replace_nan=None,
-    replace_inf=None,
-    remove_neg=False,
-    remove_zero=False,
-):
+    simulated_array: FloatArray,
+    observed_array: FloatArray,
+    replace_nan: float | None = None,
+    replace_inf: float | None = None,
+    remove_neg: bool = False,
+    remove_zero: bool = False,
+) -> float:
     """Compute the the Mean Arctangent Absolute Percentage Error (MAAPE).
 
     .. image:: /pictures/MAAPE.png
@@ -2059,28 +2064,28 @@ def maape(
 
     Parameters
     ----------
-    simulated_array: one dimensional ndarray
+    simulated_array:
         An array of simulated data from the time series.
 
-    observed_array: one dimensional ndarray
+    observed_array:
         An array of observed data from the time series.
 
-    replace_nan: float, optional
+    replace_nan:
         If given, indicates which value to replace NaN values with in the two arrays. If None, when
         a NaN value is found at the i-th position in the observed OR simulated array, the i-th value
         of the observed and simulated array are removed before the computation.
 
-    replace_inf: float, optional
+    replace_inf:
         If given, indicates which value to replace Inf values with in the two arrays. If None, when
         an inf value is found at the i-th position in the observed OR simulated array, the i-th
         value of the observed and simulated array are removed before the computation.
 
-    remove_neg: boolean, optional
+    remove_neg:
         If True, when a negative value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
 
-    remove_zero: boolean, optional
+    remove_zero:
         If true, when a zero value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
@@ -2121,13 +2126,13 @@ def maape(
 
 
 def smape1(
-    simulated_array,
-    observed_array,
-    replace_nan=None,
-    replace_inf=None,
-    remove_neg=False,
-    remove_zero=False,
-):
+    simulated_array: FloatArray,
+    observed_array: FloatArray,
+    replace_nan: float | None = None,
+    replace_inf: float | None = None,
+    remove_neg: bool = False,
+    remove_zero: bool = False,
+) -> float:
     """Compute the the Symmetric Mean Absolute Percentage Error (1) (SMAPE1).
 
     .. image:: /pictures/SMAPE1.png
@@ -2138,28 +2143,28 @@ def smape1(
 
     Parameters
     ----------
-    simulated_array: one dimensional ndarray
+    simulated_array:
         An array of simulated data from the time series.
 
-    observed_array: one dimensional ndarray
+    observed_array:
         An array of observed data from the time series.
 
-    replace_nan: float, optional
+    replace_nan:
         If given, indicates which value to replace NaN values with in the two arrays. If None, when
         a NaN value is found at the i-th position in the observed OR simulated array, the i-th value
         of the observed and simulated array are removed before the computation.
 
-    replace_inf: float, optional
+    replace_inf:
         If given, indicates which value to replace Inf values with in the two arrays. If None, when
         an inf value is found at the i-th position in the observed OR simulated array, the i-th
         value of the observed and simulated array are removed before the computation.
 
-    remove_neg: boolean, optional
+    remove_neg:
         If True, when a negative value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
 
-    remove_zero: boolean, optional
+    remove_zero:
         If true, when a zero value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
@@ -2207,13 +2212,13 @@ def smape1(
 
 
 def smape2(
-    simulated_array,
-    observed_array,
-    replace_nan=None,
-    replace_inf=None,
-    remove_neg=False,
-    remove_zero=False,
-):
+    simulated_array: FloatArray,
+    observed_array: FloatArray,
+    replace_nan: float | None = None,
+    replace_inf: float | None = None,
+    remove_neg: bool = False,
+    remove_zero: bool = False,
+) -> float:
     """Compute the the Symmetric Mean Absolute Percentage Error (2) (SMAPE2).
 
     .. image:: /pictures/SMAPE2.png
@@ -2224,28 +2229,28 @@ def smape2(
 
     Parameters
     ----------
-    simulated_array: one dimensional ndarray
+    simulated_array:
         An array of simulated data from the time series.
 
-    observed_array: one dimensional ndarray
+    observed_array:
         An array of observed data from the time series.
 
-    replace_nan: float, optional
+    replace_nan:
         If given, indicates which value to replace NaN values with in the two arrays. If None, when
         a NaN value is found at the i-th position in the observed OR simulated array, the i-th value
         of the observed and simulated array are removed before the computation.
 
-    replace_inf: float, optional
+    replace_inf:
         If given, indicates which value to replace Inf values with in the two arrays. If None, when
         an inf value is found at the i-th position in the observed OR simulated array, the i-th
         value of the observed and simulated array are removed before the computation.
 
-    remove_neg: boolean, optional
+    remove_neg:
         If True, when a negative value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
 
-    remove_zero: boolean, optional
+    remove_zero:
         If true, when a zero value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
@@ -2294,13 +2299,13 @@ def smape2(
 
 
 def d(
-    simulated_array,
-    observed_array,
-    replace_nan=None,
-    replace_inf=None,
-    remove_neg=False,
-    remove_zero=False,
-):
+    simulated_array: FloatArray,
+    observed_array: FloatArray,
+    replace_nan: float | None = None,
+    replace_inf: float | None = None,
+    remove_neg: bool = False,
+    remove_zero: bool = False,
+) -> float:
     """Compute the the index of agreement (d).
 
     .. image:: /pictures/d.png
@@ -2311,28 +2316,28 @@ def d(
 
     Parameters
     ----------
-    simulated_array: one dimensional ndarray
+    simulated_array:
         An array of simulated data from the time series.
 
-    observed_array: one dimensional ndarray
+    observed_array:
         An array of observed data from the time series.
 
-    replace_nan: float, optional
+    replace_nan:
         If given, indicates which value to replace NaN values with in the two arrays. If None, when
         a NaN value is found at the i-th position in the observed OR simulated array, the i-th value
         of the observed and simulated array are removed before the computation.
 
-    replace_inf: float, optional
+    replace_inf:
         If given, indicates which value to replace Inf values with in the two arrays. If None, when
         an inf value is found at the i-th position in the observed OR simulated array, the i-th
         value of the observed and simulated array are removed before the computation.
 
-    remove_neg: boolean, optional
+    remove_neg:
         If True, when a negative value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
 
-    remove_zero: boolean, optional
+    remove_zero:
         If true, when a zero value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
@@ -2354,7 +2359,7 @@ def d(
 
     References
     ----------
-    - Legates, D.R., McCabe Jr, G.J., 1999. Evaluating the use of “goodness‐of‐fit” Measures in
+    - Legates, D.R., McCabe Jr, G.J., 1999. Evaluating the use of “goodness-of-fit” Measures in
       hydrologic and hydroclimatic model validation. Water Resources Research 35(1) 233-241.
     - Willmott, C.J., Robeson, S.M., Matsuura, K., 2012. A refined index of model performance.
       International Journal of Climatology 32(13) 2088-2094.
@@ -2376,13 +2381,13 @@ def d(
 
 
 def d1(
-    simulated_array,
-    observed_array,
-    replace_nan=None,
-    replace_inf=None,
-    remove_neg=False,
-    remove_zero=False,
-):
+    simulated_array: FloatArray,
+    observed_array: FloatArray,
+    replace_nan: float | None = None,
+    replace_inf: float | None = None,
+    remove_neg: bool = False,
+    remove_zero: bool = False,
+) -> float:
     """Compute the the index of agreement (d1).
 
     .. image:: /pictures/d1.png
@@ -2394,28 +2399,28 @@ def d1(
 
     Parameters
     ----------
-    simulated_array: one dimensional ndarray
+    simulated_array:
         An array of simulated data from the time series.
 
-    observed_array: one dimensional ndarray
+    observed_array:
         An array of observed data from the time series.
 
-    replace_nan: float, optional
+    replace_nan:
         If given, indicates which value to replace NaN values with in the two arrays. If None, when
         a NaN value is found at the i-th position in the observed OR simulated array, the i-th value
         of the observed and simulated array are removed before the computation.
 
-    replace_inf: float, optional
+    replace_inf:
         If given, indicates which value to replace Inf values with in the two arrays. If None, when
         an inf value is found at the i-th position in the observed OR simulated array, the i-th
         value of the observed and simulated array are removed before the computation.
 
-    remove_neg: boolean, optional
+    remove_neg:
         If True, when a negative value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
 
-    remove_zero: boolean, optional
+    remove_zero:
         If true, when a zero value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
@@ -2459,47 +2464,47 @@ def d1(
 
 
 def dr(
-    simulated_array,
-    observed_array,
-    replace_nan=None,
-    replace_inf=None,
-    remove_neg=False,
-    remove_zero=False,
-):
+    simulated_array: FloatArray,
+    observed_array: FloatArray,
+    replace_nan: float | None = None,
+    replace_inf: float | None = None,
+    remove_neg: bool = False,
+    remove_zero: bool = False,
+) -> float:
     """Compute the the refined index of agreement (dr).
 
     .. image:: /pictures/dr.png
 
     **Range:** -1 ≤ dr < 1, does not indicate bias, larger is better.
 
-    **Notes:** Reformulation of Willmott’s index of agreement. This metric was created to address
+    **Notes:** Reformulation of Willmott's index of agreement. This metric was created to address
     issues in the index of agreement and the Nash-Sutcliffe efficiency metric. Meant to be a
     flexible metric for use in climatology.
 
     Parameters
     ----------
-    simulated_array: one dimensional ndarray
+    simulated_array:
         An array of simulated data from the time series.
 
-    observed_array: one dimensional ndarray
+    observed_array:
         An array of observed data from the time series.
 
-    replace_nan: float, optional
+    replace_nan:
         If given, indicates which value to replace NaN values with in the two arrays. If None, when
         a NaN value is found at the i-th position in the observed OR simulated array, the i-th value
         of the observed and simulated array are removed before the computation.
 
-    replace_inf: float, optional
+    replace_inf:
         If given, indicates which value to replace Inf values with in the two arrays. If None, when
         an inf value is found at the i-th position in the observed OR simulated array, the i-th
         value of the observed and simulated array are removed before the computation.
 
-    remove_neg: boolean, optional
+    remove_neg:
         If True, when a negative value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
 
-    remove_zero: boolean, optional
+    remove_zero:
         If true, when a zero value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
@@ -2538,18 +2543,17 @@ def dr(
     b = 2 * np.sum(np.abs(observed_array - observed_array.mean()))
     if a <= b:
         return 1 - (a / b)
-    else:
-        return (b / a) - 1
+    return (b / a) - 1
 
 
 def drel(
-    simulated_array,
-    observed_array,
-    replace_nan=None,
-    replace_inf=None,
-    remove_neg=False,
-    remove_zero=False,
-):
+    simulated_array: FloatArray,
+    observed_array: FloatArray,
+    replace_nan: float | None = None,
+    replace_inf: float | None = None,
+    remove_neg: bool = False,
+    remove_zero: bool = False,
+) -> float:
     """Compute the the relative index of agreement (drel).
 
     .. image:: /pictures/drel.png
@@ -2560,28 +2564,28 @@ def drel(
 
     Parameters
     ----------
-    simulated_array: one dimensional ndarray
+    simulated_array:
         An array of simulated data from the time series.
 
-    observed_array: one dimensional ndarray
+    observed_array:
         An array of observed data from the time series.
 
-    replace_nan: float, optional
+    replace_nan:
         If given, indicates which value to replace NaN values with in the two arrays. If None, when
         a NaN value is found at the i-th position in the observed OR simulated array, the i-th value
         of the observed and simulated array are removed before the computation.
 
-    replace_inf: float, optional
+    replace_inf:
         If given, indicates which value to replace Inf values with in the two arrays. If None, when
         an inf value is found at the i-th position in the observed OR simulated array, the i-th
         value of the observed and simulated array are removed before the computation.
 
-    remove_neg: boolean, optional
+    remove_neg:
         If True, when a negative value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
 
-    remove_zero: boolean, optional
+    remove_zero:
         If true, when a zero value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
@@ -2624,14 +2628,14 @@ def drel(
 
 
 def dmod(
-    simulated_array,
-    observed_array,
-    j=1,
-    replace_nan=None,
-    replace_inf=None,
-    remove_neg=False,
-    remove_zero=False,
-):
+    simulated_array: FloatArray,
+    observed_array: FloatArray,
+    j: int = 1,
+    replace_nan: float | None = None,
+    replace_inf: float | None = None,
+    remove_neg: bool = False,
+    remove_zero: bool = False,
+) -> float:
     """Compute the the modified index of agreement (dmod).
 
     .. image:: /pictures/dmod.png
@@ -2643,32 +2647,32 @@ def dmod(
 
     Parameters
     ----------
-    simulated_array: one dimensional ndarray
+    simulated_array:
         An array of simulated data from the time series.
 
-    observed_array: one dimensional ndarray
+    observed_array:
         An array of observed data from the time series.
 
     j: int or float
         Optional input indicating the j values desired. A higher j places more emphasis on
         outliers. j is 1 by default.
 
-    replace_nan: float, optional
+    replace_nan:
         If given, indicates which value to replace NaN values with in the two arrays. If None, when
         a NaN value is found at the i-th position in the observed OR simulated array, the i-th value
         of the observed and simulated array are removed before the computation.
 
-    replace_inf: float, optional
+    replace_inf:
         If given, indicates which value to replace Inf values with in the two arrays. If None, when
         an inf value is found at the i-th position in the observed OR simulated array, the i-th
         value of the observed and simulated array are removed before the computation.
 
-    remove_neg: boolean, optional
+    remove_neg:
         If True, when a negative value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
 
-    remove_zero: boolean, optional
+    remove_zero:
         If true, when a zero value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
@@ -2716,13 +2720,13 @@ def dmod(
 
 
 def watt_m(
-    simulated_array,
-    observed_array,
-    replace_nan=None,
-    replace_inf=None,
-    remove_neg=False,
-    remove_zero=False,
-):
+    simulated_array: FloatArray,
+    observed_array: FloatArray,
+    replace_nan: float | None = None,
+    replace_inf: float | None = None,
+    remove_neg: bool = False,
+    remove_zero: bool = False,
+) -> float:
     """Compute Watterson's M (M).
 
     .. image:: /pictures/M.png
@@ -2733,28 +2737,28 @@ def watt_m(
 
     Parameters
     ----------
-    simulated_array: one dimensional ndarray
+    simulated_array:
         An array of simulated data from the time series.
 
-    observed_array: one dimensional ndarray
+    observed_array:
         An array of observed data from the time series.
 
-    replace_nan: float, optional
+    replace_nan:
         If given, indicates which value to replace NaN values with in the two arrays. If None, when
         a NaN value is found at the i-th position in the observed OR simulated array, the i-th value
         of the observed and simulated array are removed before the computation.
 
-    replace_inf: float, optional
+    replace_inf:
         If given, indicates which value to replace Inf values with in the two arrays. If None, when
         an inf value is found at the i-th position in the observed OR simulated array, the i-th
         value of the observed and simulated array are removed before the computation.
 
-    remove_neg: boolean, optional
+    remove_neg:
         If True, when a negative value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
 
-    remove_zero: boolean, optional
+    remove_zero:
         If true, when a zero value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
@@ -2776,7 +2780,7 @@ def watt_m(
 
     References
     ----------
-    - Watterson, I.G., 1996. Non‐dimensional measures of climate model performance. International
+    - Watterson, I.G., 1996. Non-dimensional measures of climate model performance. International
       Journal of Climatology 16(4) 379-391.
 
     """
@@ -2798,13 +2802,13 @@ def watt_m(
 
 
 def mb_r(
-    simulated_array,
-    observed_array,
-    replace_nan=None,
-    replace_inf=None,
-    remove_neg=False,
-    remove_zero=False,
-):
+    simulated_array: FloatArray,
+    observed_array: FloatArray,
+    replace_nan: float | None = None,
+    replace_inf: float | None = None,
+    remove_neg: bool = False,
+    remove_zero: bool = False,
+) -> float:
     """Compute Mielke-Berry R value (MB R).
 
     .. image:: /pictures/MB_R.png
@@ -2815,28 +2819,28 @@ def mb_r(
 
     Parameters
     ----------
-    simulated_array: one dimensional ndarray
+    simulated_array:
         An array of simulated data from the time series.
 
-    observed_array: one dimensional ndarray
+    observed_array:
         An array of observed data from the time series.
 
-    replace_nan: float, optional
+    replace_nan:
         If given, indicates which value to replace NaN values with in the two arrays. If None, when
         a NaN value is found at the i-th position in the observed OR simulated array, the i-th value
         of the observed and simulated array are removed before the computation.
 
-    replace_inf: float, optional
+    replace_inf:
         If given, indicates which value to replace Inf values with in the two arrays. If None, when
         an inf value is found at the i-th position in the observed OR simulated array, the i-th
         value of the observed and simulated array are removed before the computation.
 
-    remove_neg: boolean, optional
+    remove_neg:
         If True, when a negative value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
 
-    remove_zero: boolean, optional
+    remove_zero:
         If true, when a zero value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
@@ -2909,13 +2913,13 @@ def mb_r(
 
 
 def nse(
-    simulated_array,
-    observed_array,
-    replace_nan=None,
-    replace_inf=None,
-    remove_neg=False,
-    remove_zero=False,
-):
+    simulated_array: FloatArray,
+    observed_array: FloatArray,
+    replace_nan: float | None = None,
+    replace_inf: float | None = None,
+    remove_neg: bool = False,
+    remove_zero: bool = False,
+) -> float:
     """Compute the Nash-Sutcliffe Efficiency.
 
     .. image:: /pictures/NSE.png
@@ -2929,28 +2933,28 @@ def nse(
 
     Parameters
     ----------
-    simulated_array: one dimensional ndarray
+    simulated_array:
         An array of simulated data from the time series.
 
-    observed_array: one dimensional ndarray
+    observed_array:
         An array of observed data from the time series.
 
-    replace_nan: float, optional
+    replace_nan:
         If given, indicates which value to replace NaN values with in the two arrays. If None, when
         a NaN value is found at the i-th position in the observed OR simulated array, the i-th value
         of the observed and simulated array are removed before the computation.
 
-    replace_inf: float, optional
+    replace_inf:
         If given, indicates which value to replace Inf values with in the two arrays. If None, when
         an inf value is found at the i-th position in the observed OR simulated array, the i-th
         value of the observed and simulated array are removed before the computation.
 
-    remove_neg: boolean, optional
+    remove_neg:
         If True, when a negative value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
 
-    remove_zero: boolean, optional
+    remove_zero:
         If true, when a zero value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
@@ -2997,14 +3001,14 @@ def nse(
 
 
 def nse_mod(
-    simulated_array,
-    observed_array,
-    j=1,
-    replace_nan=None,
-    replace_inf=None,
-    remove_neg=False,
-    remove_zero=False,
-):
+    simulated_array: FloatArray,
+    observed_array: FloatArray,
+    j: int = 1,
+    replace_nan: float | None = None,
+    replace_inf: float | None = None,
+    remove_neg: bool = False,
+    remove_zero: bool = False,
+) -> float:
     """Compute the modified Nash-Sutcliffe efficiency (NSE mod).
 
     .. image:: /pictures/NSEmod.png
@@ -3016,32 +3020,32 @@ def nse_mod(
 
     Parameters
     ----------
-    simulated_array: one dimensional ndarray
+    simulated_array:
         An array of simulated data from the time series.
 
-    observed_array: one dimensional ndarray
+    observed_array:
         An array of observed data from the time series.
 
     j: int or float
         If given, sets the value of j to the input. j is 1 by default. A higher j gives more
         emphasis to outliers
 
-    replace_nan: float, optional
+    replace_nan:
         If given, indicates which value to replace NaN values with in the two arrays. If None, when
         a NaN value is found at the i-th position in the observed OR simulated array, the i-th value
         of the observed and simulated array are removed before the computation.
 
-    replace_inf: float, optional
+    replace_inf:
         If given, indicates which value to replace Inf values with in the two arrays. If None, when
         an inf value is found at the i-th position in the observed OR simulated array, the i-th
         value of the observed and simulated array are removed before the computation.
 
-    remove_neg: boolean, optional
+    remove_neg:
         If True, when a negative value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
 
-    remove_zero: boolean, optional
+    remove_zero:
         If true, when a zero value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
@@ -3082,13 +3086,13 @@ def nse_mod(
 
 
 def nse_rel(
-    simulated_array,
-    observed_array,
-    replace_nan=None,
-    replace_inf=None,
-    remove_neg=False,
-    remove_zero=False,
-):
+    simulated_array: FloatArray,
+    observed_array: FloatArray,
+    replace_nan: float | None = None,
+    replace_inf: float | None = None,
+    remove_neg: bool = False,
+    remove_zero: bool = False,
+) -> float:
     """Compute the relative Nash-Sutcliffe efficiency (NSE rel).
 
     .. image:: /pictures/NSErel.png
@@ -3100,28 +3104,28 @@ def nse_rel(
 
     Parameters
     ----------
-    simulated_array: one dimensional ndarray
+    simulated_array:
         An array of simulated data from the time series.
 
-    observed_array: one dimensional ndarray
+    observed_array:
         An array of observed data from the time series.
 
-    replace_nan: float, optional
+    replace_nan:
         If given, indicates which value to replace NaN values with in the two arrays. If None, when
         a NaN value is found at the i-th position in the observed OR simulated array, the i-th value
         of the observed and simulated array are removed before the computation.
 
-    replace_inf: float, optional
+    replace_inf:
         If given, indicates which value to replace Inf values with in the two arrays. If None, when
         an inf value is found at the i-th position in the observed OR simulated array, the i-th
         value of the observed and simulated array are removed before the computation.
 
-    remove_neg: boolean, optional
+    remove_neg:
         If True, when a negative value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
 
-    remove_zero: boolean, optional
+    remove_zero:
         If true, when a zero value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
@@ -3162,15 +3166,15 @@ def nse_rel(
 
 
 def kge_2009(
-    simulated_array,
-    observed_array,
-    s=(1, 1, 1),
-    replace_nan=None,
-    replace_inf=None,
-    remove_neg=False,
-    remove_zero=False,
-    return_all=False,
-):
+    simulated_array: FloatArray,
+    observed_array: FloatArray,
+    s: tuple[float, float, float] = (1, 1, 1),
+    replace_nan: float | None = None,
+    replace_inf: float | None = None,
+    remove_neg: bool = False,
+    remove_zero: bool = False,
+    return_all: bool = False,
+) -> float | tuple[float, float, float, float]:
     """Compute the Kling-Gupta efficiency (2009).
 
     .. image:: /pictures/KGE_2009.png
@@ -3183,44 +3187,43 @@ def kge_2009(
 
     Parameters
     ----------
-    simulated_array: one dimensional ndarray
+    simulated_array:
         An array of simulated data from the time series.
 
-    observed_array: one dimensional ndarray
+    observed_array:
         An array of observed data from the time series.
 
-    s: tuple of length three
+    s:
         Represents the scaling factors to be used for re-scaling the Pearson product-moment
         correlation coefficient (r), Alpha, and Beta, respectively.
 
-    replace_nan: float, optional
+    replace_nan:
         If given, indicates which value to replace NaN values with in the two arrays. If None, when
         a NaN value is found at the i-th position in the observed OR simulated array, the i-th value
         of the observed and simulated array are removed before the computation.
 
-    replace_inf: float, optional
+    replace_inf:
         If given, indicates which value to replace Inf values with in the two arrays. If None, when
         an inf value is found at the i-th position in the observed OR simulated array, the i-th
         value of the observed and simulated array are removed before the computation.
 
-    remove_neg: boolean, optional
+    remove_neg:
         If True, when a negative value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
 
-    remove_zero: boolean, optional
+    remove_zero:
         If true, when a zero value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
 
-    return_all: bool
+    return_all:
         If True, returns all of the components of the KGE metric, which are r, alpha, and beta,
         respectively.
 
     Returns
     -------
-    float (tuple of float)
-        The Kling-Gupta (2009) efficiency value, unless the return_all parameter is True.
+    The Kling-Gupta (2009) efficiency value, unless the return_all parameter is True.
 
     Examples
     --------
@@ -3293,20 +3296,19 @@ def kge_2009(
 
     if return_all:
         return pr, alpha, beta, kge
-    else:
-        return kge
+    return kge
 
 
 def kge_2012(
-    simulated_array,
-    observed_array,
-    s=(1, 1, 1),
-    replace_nan=None,
-    replace_inf=None,
-    remove_neg=False,
-    remove_zero=False,
-    return_all=False,
-):
+    simulated_array: FloatArray,
+    observed_array: FloatArray,
+    s: tuple[float, float, float] = (1, 1, 1),
+    replace_nan: float | None = None,
+    replace_inf: float | None = None,
+    remove_neg: bool = False,
+    remove_zero: bool = False,
+    return_all: bool = False,
+) -> float | tuple[float, float, float, float]:
     """Compute the Kling-Gupta efficiency (2012).
 
     .. image:: /pictures/KGE_2012.png
@@ -3318,37 +3320,37 @@ def kge_2012(
 
     Parameters
     ----------
-    simulated_array: one dimensional ndarray
+    simulated_array:
         An array of simulated data from the time series.
 
-    observed_array: one dimensional ndarray
+    observed_array:
         An array of observed data from the time series.
 
-    s: tuple of length three
+    s:
         Represents the scaling factors to be used for re-scaling the Pearson product-moment
         correlation coefficient (r), gamma, and Beta, respectively.
 
-    replace_nan: float, optional
+    replace_nan:
         If given, indicates which value to replace NaN values with in the two arrays. If None, when
         a NaN value is found at the i-th position in the observed OR simulated array, the i-th value
         of the observed and simulated array are removed before the computation.
 
-    replace_inf: float, optional
+    replace_inf:
         If given, indicates which value to replace Inf values with in the two arrays. If None, when
         an inf value is found at the i-th position in the observed OR simulated array, the i-th
         value of the observed and simulated array are removed before the computation.
 
-    remove_neg: boolean, optional
+    remove_neg:
         If True, when a negative value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
 
-    remove_zero: boolean, optional
+    remove_zero:
         If true, when a zero value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
 
-    return_all: bool
+    return_all:
         If True, returns all of the components of the KGE metric, which are r, gamma, and beta,
         respectively.
 
@@ -3437,19 +3439,18 @@ def kge_2012(
 
     if return_all:
         return pr, gam, beta, kge
-    else:
-        return kge
+    return kge
 
 
 def lm_index(
-    simulated_array,
-    observed_array,
-    obs_bar_p=None,
-    replace_nan=None,
-    replace_inf=None,
-    remove_neg=False,
-    remove_zero=False,
-):
+    simulated_array: FloatArray,
+    observed_array: FloatArray,
+    obs_bar_p: float | None = None,
+    replace_nan: float | None = None,
+    replace_inf: float | None = None,
+    remove_neg: bool = False,
+    remove_zero: bool = False,
+) -> float:
     """Compute the Legate-McCabe Efficiency Index.
 
     .. image:: /pictures/E1p.png
@@ -3460,31 +3461,31 @@ def lm_index(
 
     Parameters
     ----------
-    simulated_array: one dimensional ndarray
+    simulated_array:
         An array of simulated data from the time series.
 
-    observed_array: one dimensional ndarray
+    observed_array:
         An array of observed data from the time series.
 
-    obs_bar_p: float
+    obs_bar_p:
         Seasonal or other selected average. If None, the mean of the observed array will be used.
 
-    replace_nan: float, optional
+    replace_nan:
         If given, indicates which value to replace NaN values with in the two arrays. If None, when
         a NaN value is found at the i-th position in the observed OR simulated array, the i-th value
         of the observed and simulated array are removed before the computation.
 
-    replace_inf: float, optional
+    replace_inf:
         If given, indicates which value to replace Inf values with in the two arrays. If None, when
         an inf value is found at the i-th position in the observed OR simulated array, the i-th
         value of the observed and simulated array are removed before the computation.
 
-    remove_neg: boolean, optional
+    remove_neg:
         If True, when a negative value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
 
-    remove_zero: boolean, optional
+    remove_zero:
         If true, when a zero value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
@@ -3506,7 +3507,7 @@ def lm_index(
 
     References
     ----------
-    - Legates, D.R., McCabe Jr, G.J., 1999. Evaluating the use of “goodness‐of‐fit” Measures in
+    - Legates, D.R., McCabe Jr, G.J., 1999. Evaluating the use of “goodness-of-fit” Measures in
       hydrologic and hydroclimatic model validation. Water Resources Research 35(1) 233-241.
       Lehmann, E.L., Casella, G., 1998. Springer Texts in Statistics. Springer-Verlag, New York.
 
@@ -3526,21 +3527,20 @@ def lm_index(
         a = np.abs(simulated_array - observed_array)
         b = np.abs(observed_array - obs_bar_p)
         return 1 - (np.sum(a) / np.sum(b))
-    else:
-        a = np.abs(simulated_array - observed_array)
-        b = np.abs(observed_array - mean_obs)
-        return 1 - (np.sum(a) / np.sum(b))
+    a = np.abs(simulated_array - observed_array)
+    b = np.abs(observed_array - mean_obs)
+    return 1 - (np.sum(a) / np.sum(b))
 
 
 def d1_p(
-    simulated_array,
-    observed_array,
-    obs_bar_p=None,
-    replace_nan=None,
-    replace_inf=None,
-    remove_neg=False,
-    remove_zero=False,
-):
+    simulated_array: FloatArray,
+    observed_array: FloatArray,
+    obs_bar_p: float | None = None,
+    replace_nan: float | None = None,
+    replace_inf: float | None = None,
+    remove_neg: bool = False,
+    remove_zero: bool = False,
+) -> float:
     """Compute the Legate-McCabe Index of Agreement.
 
     .. image:: /pictures/D1p.png
@@ -3551,31 +3551,31 @@ def d1_p(
 
     Parameters
     ----------
-    simulated_array: one dimensional ndarray
+    simulated_array:
         An array of simulated data from the time series.
 
-    observed_array: one dimensional ndarray
+    observed_array:
         An array of observed data from the time series.
 
-    obs_bar_p: float
+    obs_bar_p:
         Seasonal or other selected average. If None, the mean of the observed array will be used.
 
-    replace_nan: float, optional
+    replace_nan:
         If given, indicates which value to replace NaN values with in the two arrays. If None, when
         a NaN value is found at the i-th position in the observed OR simulated array, the i-th value
         of the observed and simulated array are removed before the computation.
 
-    replace_inf: float, optional
+    replace_inf:
         If given, indicates which value to replace Inf values with in the two arrays. If None, when
         an inf value is found at the i-th position in the observed OR simulated array, the i-th
         value of the observed and simulated array are removed before the computation.
 
-    remove_neg: boolean, optional
+    remove_neg:
         If True, when a negative value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
 
-    remove_zero: boolean, optional
+    remove_zero:
         If true, when a zero value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
@@ -3597,7 +3597,7 @@ def d1_p(
 
     References
     ----------
-    - Legates, D.R., McCabe Jr, G.J., 1999. Evaluating the use of “goodness‐of‐fit” Measures in
+    - Legates, D.R., McCabe Jr, G.J., 1999. Evaluating the use of “goodness-of-fit” Measures in
       hydrologic and hydroclimatic model validation. Water Resources Research 35(1) 233-241.
       Lehmann, E.L., Casella, G., 1998. Springer Texts in Statistics. Springer-Verlag, New York.
 
@@ -3615,21 +3615,20 @@ def d1_p(
         a = np.abs(observed_array - simulated_array)
         b = np.abs(simulated_array - obs_bar_p) + np.abs(observed_array - obs_bar_p)
         return 1 - (np.sum(a) / np.sum(b))
-    else:
-        mean_obs = np.mean(observed_array)
-        a = np.abs(observed_array - simulated_array)
-        b = np.abs(simulated_array - mean_obs) + np.abs(observed_array - mean_obs)
-        return 1 - (np.sum(a) / np.sum(b))
+    mean_obs = np.mean(observed_array)
+    a = np.abs(observed_array - simulated_array)
+    b = np.abs(simulated_array - mean_obs) + np.abs(observed_array - mean_obs)
+    return 1 - (np.sum(a) / np.sum(b))
 
 
 def ve(
-    simulated_array,
-    observed_array,
-    replace_nan=None,
-    replace_inf=None,
-    remove_neg=False,
-    remove_zero=False,
-):
+    simulated_array: FloatArray,
+    observed_array: FloatArray,
+    replace_nan: float | None = None,
+    replace_inf: float | None = None,
+    remove_neg: bool = False,
+    remove_zero: bool = False,
+) -> float:
     """Compute the Volumetric Efficiency (VE).
 
     .. image:: /pictures/VE.png
@@ -3640,28 +3639,28 @@ def ve(
 
     Parameters
     ----------
-    simulated_array: one dimensional ndarray
+    simulated_array:
         An array of simulated data from the time series.
 
-    observed_array: one dimensional ndarray
+    observed_array:
         An array of observed data from the time series.
 
-    replace_nan: float, optional
+    replace_nan:
         If given, indicates which value to replace NaN values with in the two arrays. If None, when
         a NaN value is found at the i-th position in the observed OR simulated array, the i-th value
         of the observed and simulated array are removed before the computation.
 
-    replace_inf: float, optional
+    replace_inf:
         If given, indicates which value to replace Inf values with in the two arrays. If None, when
         an inf value is found at the i-th position in the observed OR simulated array, the i-th
         value of the observed and simulated array are removed before the computation.
 
-    remove_neg: boolean, optional
+    remove_neg:
         If True, when a negative value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
 
-    remove_zero: boolean, optional
+    remove_zero:
         If true, when a zero value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
@@ -3702,13 +3701,13 @@ def ve(
 
 
 def sa(
-    simulated_array,
-    observed_array,
-    replace_nan=None,
-    replace_inf=None,
-    remove_neg=False,
-    remove_zero=False,
-):
+    simulated_array: FloatArray,
+    observed_array: FloatArray,
+    replace_nan: float | None = None,
+    replace_inf: float | None = None,
+    remove_neg: bool = False,
+    remove_zero: bool = False,
+) -> float:
     """Compute the Spectral Angle (SA).
 
     .. image:: /pictures/SA.png
@@ -3716,32 +3715,32 @@ def sa(
     **Range:** -π/2 ≤ SA < π/2, closer to 0 is better.
 
     **Notes:** The spectral angle metric measures the angle between the two vectors in hyperspace.
-    It indicates how well the shape of the two series match – not magnitude.
+    It indicates how well the shape of the two series match - not magnitude.
 
     Parameters
     ----------
-    simulated_array: one dimensional ndarray
+    simulated_array:
         An array of simulated data from the time series.
 
-    observed_array: one dimensional ndarray
+    observed_array:
         An array of observed data from the time series.
 
-    replace_nan: float, optional
+    replace_nan:
         If given, indicates which value to replace NaN values with in the two arrays. If None, when
         a NaN value is found at the i-th position in the observed OR simulated array, the i-th value
         of the observed and simulated array are removed before the computation.
 
-    replace_inf: float, optional
+    replace_inf:
         If given, indicates which value to replace Inf values with in the two arrays. If None, when
         an inf value is found at the i-th position in the observed OR simulated array, the i-th
         value of the observed and simulated array are removed before the computation.
 
-    remove_neg: boolean, optional
+    remove_neg:
         If True, when a negative value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
 
-    remove_zero: boolean, optional
+    remove_zero:
         If true, when a zero value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
@@ -3783,13 +3782,13 @@ def sa(
 
 
 def sc(
-    simulated_array,
-    observed_array,
-    replace_nan=None,
-    replace_inf=None,
-    remove_neg=False,
-    remove_zero=False,
-):
+    simulated_array: FloatArray,
+    observed_array: FloatArray,
+    replace_nan: float | None = None,
+    replace_inf: float | None = None,
+    remove_neg: bool = False,
+    remove_zero: bool = False,
+) -> float:
     """Compute the Spectral Correlation (SC).
 
     .. image:: /pictures/SC.png
@@ -3797,32 +3796,32 @@ def sc(
     **Range:** -π/2 ≤ SA < π/2, closer to 0 is better.
 
     **Notes:** The spectral correlation metric measures the angle between the two vectors in
-    hyperspace. It indicates how well the shape of the two series match – not magnitude.
+    hyperspace. It indicates how well the shape of the two series match - not magnitude.
 
     Parameters
     ----------
-    simulated_array: one dimensional ndarray
+    simulated_array:
         An array of simulated data from the time series.
 
-    observed_array: one dimensional ndarray
+    observed_array:
         An array of observed data from the time series.
 
-    replace_nan: float, optional
+    replace_nan:
         If given, indicates which value to replace NaN values with in the two arrays. If None, when
         a NaN value is found at the i-th position in the observed OR simulated array, the i-th value
         of the observed and simulated array are removed before the computation.
 
-    replace_inf: float, optional
+    replace_inf:
         If given, indicates which value to replace Inf values with in the two arrays. If None, when
         an inf value is found at the i-th position in the observed OR simulated array, the i-th
         value of the observed and simulated array are removed before the computation.
 
-    remove_neg: boolean, optional
+    remove_neg:
         If True, when a negative value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
 
-    remove_zero: boolean, optional
+    remove_zero:
         If true, when a zero value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
@@ -3869,13 +3868,13 @@ def sc(
 
 
 def sid(
-    simulated_array,
-    observed_array,
-    replace_nan=None,
-    replace_inf=None,
-    remove_neg=False,
-    remove_zero=False,
-):
+    simulated_array: FloatArray,
+    observed_array: FloatArray,
+    replace_nan: float | None = None,
+    replace_inf: float | None = None,
+    remove_neg: bool = False,
+    remove_zero: bool = False,
+) -> float:
     """Compute the Spectral Information Divergence (SID).
 
     .. image:: /pictures/SID.png
@@ -3883,32 +3882,32 @@ def sid(
     **Range:** -π/2 ≤ SID < π/2, closer to 0 is better.
 
     **Notes:** The spectral information divergence measures the angle between the two vectors in
-    hyperspace. It indicates how well the shape of the two series match – not magnitude.
+    hyperspace. It indicates how well the shape of the two series match - not magnitude.
 
     Parameters
     ----------
-    simulated_array: one dimensional ndarray
+    simulated_array:
         An array of simulated data from the time series.
 
-    observed_array: one dimensional ndarray
+    observed_array:
         An array of observed data from the time series.
 
-    replace_nan: float, optional
+    replace_nan:
         If given, indicates which value to replace NaN values with in the two arrays. If None, when
         a NaN value is found at the i-th position in the observed OR simulated array, the i-th value
         of the observed and simulated array are removed before the computation.
 
-    replace_inf: float, optional
+    replace_inf:
         If given, indicates which value to replace Inf values with in the two arrays. If None, when
         an inf value is found at the i-th position in the observed OR simulated array, the i-th
         value of the observed and simulated array are removed before the computation.
 
-    remove_neg: boolean, optional
+    remove_neg:
         If True, when a negative value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
 
-    remove_zero: boolean, optional
+    remove_zero:
         If true, when a zero value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
@@ -3953,13 +3952,13 @@ def sid(
 
 
 def sga(
-    simulated_array,
-    observed_array,
-    replace_nan=None,
-    replace_inf=None,
-    remove_neg=False,
-    remove_zero=False,
-):
+    simulated_array: FloatArray,
+    observed_array: FloatArray,
+    replace_nan: float | None = None,
+    replace_inf: float | None = None,
+    remove_neg: bool = False,
+    remove_zero: bool = False,
+) -> float:
     """Compute the Spectral Gradient Angle (SGA).
 
     .. image:: /pictures/SGA.png
@@ -3967,33 +3966,33 @@ def sga(
     **Range:** -π/2 ≤ SID < π/2, closer to 0 is better.
 
     **Notes:** The spectral gradient angle measures the angle between the two vectors in
-    hyperspace. It indicates how well the shape of the two series match – not magnitude.
+    hyperspace. It indicates how well the shape of the two series match - not magnitude.
     SG is the gradient of the simulated or observed time series.
 
     Parameters
     ----------
-    simulated_array: one dimensional ndarray
+    simulated_array:
         An array of simulated data from the time series.
 
-    observed_array: one dimensional ndarray
+    observed_array:
         An array of observed data from the time series.
 
-    replace_nan: float, optional
+    replace_nan:
         If given, indicates which value to replace NaN values with in the two arrays. If None, when
         a NaN value is found at the i-th position in the observed OR simulated array, the i-th value
         of the observed and simulated array are removed before the computation.
 
-    replace_inf: float, optional
+    replace_inf:
         If given, indicates which value to replace Inf values with in the two arrays. If None, when
         an inf value is found at the i-th position in the observed OR simulated array, the i-th
         value of the observed and simulated array are removed before the computation.
 
-    remove_neg: boolean, optional
+    remove_neg:
         If True, when a negative value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
 
-    remove_zero: boolean, optional
+    remove_zero:
         If true, when a zero value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
@@ -4042,13 +4041,13 @@ def sga(
 
 
 def h1_mhe(
-    simulated_array,
-    observed_array,
-    replace_nan=None,
-    replace_inf=None,
-    remove_neg=False,
-    remove_zero=False,
-):
+    simulated_array: FloatArray,
+    observed_array: FloatArray,
+    replace_nan: float | None = None,
+    replace_inf: float | None = None,
+    remove_neg: bool = False,
+    remove_zero: bool = False,
+) -> float:
     """Compute the H1 mean error.
 
     .. image:: /pictures/H1.png
@@ -4060,28 +4059,28 @@ def h1_mhe(
 
     Parameters
     ----------
-    simulated_array: one dimensional ndarray
+    simulated_array:
         An array of simulated data from the time series.
 
-    observed_array: one dimensional ndarray
+    observed_array:
         An array of observed data from the time series.
 
-    replace_nan: float, optional
+    replace_nan:
         If given, indicates which value to replace NaN values with in the two arrays. If None, when
         a NaN value is found at the i-th position in the observed OR simulated array, the i-th value
         of the observed and simulated array are removed before the computation.
 
-    replace_inf: float, optional
+    replace_inf:
         If given, indicates which value to replace Inf values with in the two arrays. If None, when
         an inf value is found at the i-th position in the observed OR simulated array, the i-th
         value of the observed and simulated array are removed before the computation.
 
-    remove_neg: boolean, optional
+    remove_neg:
         If True, when a negative value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
 
-    remove_zero: boolean, optional
+    remove_zero:
         If true, when a zero value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
@@ -4121,13 +4120,13 @@ def h1_mhe(
 
 
 def h1_mahe(
-    simulated_array,
-    observed_array,
-    replace_nan=None,
-    replace_inf=None,
-    remove_neg=False,
-    remove_zero=False,
-):
+    simulated_array: FloatArray,
+    observed_array: FloatArray,
+    replace_nan: float | None = None,
+    replace_inf: float | None = None,
+    remove_neg: bool = False,
+    remove_zero: bool = False,
+) -> float:
     """Compute the H1 absolute error.
 
     .. image:: /pictures/H1.png
@@ -4139,28 +4138,28 @@ def h1_mahe(
 
     Parameters
     ----------
-    simulated_array: one dimensional ndarray
+    simulated_array:
         An array of simulated data from the time series.
 
-    observed_array: one dimensional ndarray
+    observed_array:
         An array of observed data from the time series.
 
-    replace_nan: float, optional
+    replace_nan:
         If given, indicates which value to replace NaN values with in the two arrays. If None, when
         a NaN value is found at the i-th position in the observed OR simulated array, the i-th value
         of the observed and simulated array are removed before the computation.
 
-    replace_inf: float, optional
+    replace_inf:
         If given, indicates which value to replace Inf values with in the two arrays. If None, when
         an inf value is found at the i-th position in the observed OR simulated array, the i-th
         value of the observed and simulated array are removed before the computation.
 
-    remove_neg: boolean, optional
+    remove_neg:
         If True, when a negative value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
 
-    remove_zero: boolean, optional
+    remove_zero:
         If true, when a zero value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
@@ -4200,13 +4199,13 @@ def h1_mahe(
 
 
 def h1_rmshe(
-    simulated_array,
-    observed_array,
-    replace_nan=None,
-    replace_inf=None,
-    remove_neg=False,
-    remove_zero=False,
-):
+    simulated_array: FloatArray,
+    observed_array: FloatArray,
+    replace_nan: float | None = None,
+    replace_inf: float | None = None,
+    remove_neg: bool = False,
+    remove_zero: bool = False,
+) -> float:
     """Compute the H1 root mean square error.
 
     .. image:: /pictures/H1.png
@@ -4218,28 +4217,28 @@ def h1_rmshe(
 
     Parameters
     ----------
-    simulated_array: one dimensional ndarray
+    simulated_array:
         An array of simulated data from the time series.
 
-    observed_array: one dimensional ndarray
+    observed_array:
         An array of observed data from the time series.
 
-    replace_nan: float, optional
+    replace_nan:
         If given, indicates which value to replace NaN values with in the two arrays. If None, when
         a NaN value is found at the i-th position in the observed OR simulated array, the i-th value
         of the observed and simulated array are removed before the computation.
 
-    replace_inf: float, optional
+    replace_inf:
         If given, indicates which value to replace Inf values with in the two arrays. If None, when
         an inf value is found at the i-th position in the observed OR simulated array, the i-th
         value of the observed and simulated array are removed before the computation.
 
-    remove_neg: boolean, optional
+    remove_neg:
         If True, when a negative value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
 
-    remove_zero: boolean, optional
+    remove_zero:
         If true, when a zero value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
@@ -4279,13 +4278,13 @@ def h1_rmshe(
 
 
 def h2_mhe(
-    simulated_array,
-    observed_array,
-    replace_nan=None,
-    replace_inf=None,
-    remove_neg=False,
-    remove_zero=False,
-):
+    simulated_array: FloatArray,
+    observed_array: FloatArray,
+    replace_nan: float | None = None,
+    replace_inf: float | None = None,
+    remove_neg: bool = False,
+    remove_zero: bool = False,
+) -> float:
     """Compute the H2 mean error.
 
     .. image:: /pictures/H2.png
@@ -4297,28 +4296,28 @@ def h2_mhe(
 
     Parameters
     ----------
-    simulated_array: one dimensional ndarray
+    simulated_array:
         An array of simulated data from the time series.
 
-    observed_array: one dimensional ndarray
+    observed_array:
         An array of observed data from the time series.
 
-    replace_nan: float, optional
+    replace_nan:
         If given, indicates which value to replace NaN values with in the two arrays. If None, when
         a NaN value is found at the i-th position in the observed OR simulated array, the i-th value
         of the observed and simulated array are removed before the computation.
 
-    replace_inf: float, optional
+    replace_inf:
         If given, indicates which value to replace Inf values with in the two arrays. If None, when
         an inf value is found at the i-th position in the observed OR simulated array, the i-th
         value of the observed and simulated array are removed before the computation.
 
-    remove_neg: boolean, optional
+    remove_neg:
         If True, when a negative value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
 
-    remove_zero: boolean, optional
+    remove_zero:
         If true, when a zero value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
@@ -4358,13 +4357,13 @@ def h2_mhe(
 
 
 def h2_mahe(
-    simulated_array,
-    observed_array,
-    replace_nan=None,
-    replace_inf=None,
-    remove_neg=False,
-    remove_zero=False,
-):
+    simulated_array: FloatArray,
+    observed_array: FloatArray,
+    replace_nan: float | None = None,
+    replace_inf: float | None = None,
+    remove_neg: bool = False,
+    remove_zero: bool = False,
+) -> float:
     """Compute the H2 mean absolute error.
 
     .. image:: /pictures/H2.png
@@ -4376,28 +4375,28 @@ def h2_mahe(
 
     Parameters
     ----------
-    simulated_array: one dimensional ndarray
+    simulated_array:
         An array of simulated data from the time series.
 
-    observed_array: one dimensional ndarray
+    observed_array:
         An array of observed data from the time series.
 
-    replace_nan: float, optional
+    replace_nan:
         If given, indicates which value to replace NaN values with in the two arrays. If None, when
         a NaN value is found at the i-th position in the observed OR simulated array, the i-th value
         of the observed and simulated array are removed before the computation.
 
-    replace_inf: float, optional
+    replace_inf:
         If given, indicates which value to replace Inf values with in the two arrays. If None, when
         an inf value is found at the i-th position in the observed OR simulated array, the i-th
         value of the observed and simulated array are removed before the computation.
 
-    remove_neg: boolean, optional
+    remove_neg:
         If True, when a negative value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
 
-    remove_zero: boolean, optional
+    remove_zero:
         If true, when a zero value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
@@ -4437,13 +4436,13 @@ def h2_mahe(
 
 
 def h2_rmshe(
-    simulated_array,
-    observed_array,
-    replace_nan=None,
-    replace_inf=None,
-    remove_neg=False,
-    remove_zero=False,
-):
+    simulated_array: FloatArray,
+    observed_array: FloatArray,
+    replace_nan: float | None = None,
+    replace_inf: float | None = None,
+    remove_neg: bool = False,
+    remove_zero: bool = False,
+) -> float:
     """Compute the H2 root mean square error.
 
     .. image:: /pictures/H1.png
@@ -4455,28 +4454,28 @@ def h2_rmshe(
 
     Parameters
     ----------
-    simulated_array: one dimensional ndarray
+    simulated_array:
         An array of simulated data from the time series.
 
-    observed_array: one dimensional ndarray
+    observed_array:
         An array of observed data from the time series.
 
-    replace_nan: float, optional
+    replace_nan:
         If given, indicates which value to replace NaN values with in the two arrays. If None, when
         a NaN value is found at the i-th position in the observed OR simulated array, the i-th value
         of the observed and simulated array are removed before the computation.
 
-    replace_inf: float, optional
+    replace_inf:
         If given, indicates which value to replace Inf values with in the two arrays. If None, when
         an inf value is found at the i-th position in the observed OR simulated array, the i-th
         value of the observed and simulated array are removed before the computation.
 
-    remove_neg: boolean, optional
+    remove_neg:
         If True, when a negative value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
 
-    remove_zero: boolean, optional
+    remove_zero:
         If true, when a zero value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
@@ -4516,13 +4515,13 @@ def h2_rmshe(
 
 
 def h3_mhe(
-    simulated_array,
-    observed_array,
-    replace_nan=None,
-    replace_inf=None,
-    remove_neg=False,
-    remove_zero=False,
-):
+    simulated_array: FloatArray,
+    observed_array: FloatArray,
+    replace_nan: float | None = None,
+    replace_inf: float | None = None,
+    remove_neg: bool = False,
+    remove_zero: bool = False,
+) -> float:
     """Compute the H3 mean error.
 
     .. image:: /pictures/H3.png
@@ -4534,28 +4533,28 @@ def h3_mhe(
 
     Parameters
     ----------
-    simulated_array: one dimensional ndarray
+    simulated_array:
         An array of simulated data from the time series.
 
-    observed_array: one dimensional ndarray
+    observed_array:
         An array of observed data from the time series.
 
-    replace_nan: float, optional
+    replace_nan:
         If given, indicates which value to replace NaN values with in the two arrays. If None, when
         a NaN value is found at the i-th position in the observed OR simulated array, the i-th value
         of the observed and simulated array are removed before the computation.
 
-    replace_inf: float, optional
+    replace_inf:
         If given, indicates which value to replace Inf values with in the two arrays. If None, when
         an inf value is found at the i-th position in the observed OR simulated array, the i-th
         value of the observed and simulated array are removed before the computation.
 
-    remove_neg: boolean, optional
+    remove_neg:
         If True, when a negative value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
 
-    remove_zero: boolean, optional
+    remove_zero:
         If true, when a zero value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
@@ -4595,13 +4594,13 @@ def h3_mhe(
 
 
 def h3_mahe(
-    simulated_array,
-    observed_array,
-    replace_nan=None,
-    replace_inf=None,
-    remove_neg=False,
-    remove_zero=False,
-):
+    simulated_array: FloatArray,
+    observed_array: FloatArray,
+    replace_nan: float | None = None,
+    replace_inf: float | None = None,
+    remove_neg: bool = False,
+    remove_zero: bool = False,
+) -> float:
     """Compute the H3 mean absolute error.
 
     .. image:: /pictures/H3.png
@@ -4613,28 +4612,28 @@ def h3_mahe(
 
     Parameters
     ----------
-    simulated_array: one dimensional ndarray
+    simulated_array:
         An array of simulated data from the time series.
 
-    observed_array: one dimensional ndarray
+    observed_array:
         An array of observed data from the time series.
 
-    replace_nan: float, optional
+    replace_nan:
         If given, indicates which value to replace NaN values with in the two arrays. If None, when
         a NaN value is found at the i-th position in the observed OR simulated array, the i-th value
         of the observed and simulated array are removed before the computation.
 
-    replace_inf: float, optional
+    replace_inf:
         If given, indicates which value to replace Inf values with in the two arrays. If None, when
         an inf value is found at the i-th position in the observed OR simulated array, the i-th
         value of the observed and simulated array are removed before the computation.
 
-    remove_neg: boolean, optional
+    remove_neg:
         If True, when a negative value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
 
-    remove_zero: boolean, optional
+    remove_zero:
         If true, when a zero value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
@@ -4674,13 +4673,13 @@ def h3_mahe(
 
 
 def h3_rmshe(
-    simulated_array,
-    observed_array,
-    replace_nan=None,
-    replace_inf=None,
-    remove_neg=False,
-    remove_zero=False,
-):
+    simulated_array: FloatArray,
+    observed_array: FloatArray,
+    replace_nan: float | None = None,
+    replace_inf: float | None = None,
+    remove_neg: bool = False,
+    remove_zero: bool = False,
+) -> float:
     """Compute the H3 root mean square error.
 
     .. image:: /pictures/H3.png
@@ -4692,28 +4691,28 @@ def h3_rmshe(
 
     Parameters
     ----------
-    simulated_array: one dimensional ndarray
+    simulated_array:
         An array of simulated data from the time series.
 
-    observed_array: one dimensional ndarray
+    observed_array:
         An array of observed data from the time series.
 
-    replace_nan: float, optional
+    replace_nan:
         If given, indicates which value to replace NaN values with in the two arrays. If None, when
         a NaN value is found at the i-th position in the observed OR simulated array, the i-th value
         of the observed and simulated array are removed before the computation.
 
-    replace_inf: float, optional
+    replace_inf:
         If given, indicates which value to replace Inf values with in the two arrays. If None, when
         an inf value is found at the i-th position in the observed OR simulated array, the i-th
         value of the observed and simulated array are removed before the computation.
 
-    remove_neg: boolean, optional
+    remove_neg:
         If True, when a negative value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
 
-    remove_zero: boolean, optional
+    remove_zero:
         If true, when a zero value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
@@ -4753,13 +4752,13 @@ def h3_rmshe(
 
 
 def h4_mhe(
-    simulated_array,
-    observed_array,
-    replace_nan=None,
-    replace_inf=None,
-    remove_neg=False,
-    remove_zero=False,
-):
+    simulated_array: FloatArray,
+    observed_array: FloatArray,
+    replace_nan: float | None = None,
+    replace_inf: float | None = None,
+    remove_neg: bool = False,
+    remove_zero: bool = False,
+) -> float:
     """Compute the H4 mean error.
 
     .. image:: /pictures/H4.png
@@ -4771,28 +4770,28 @@ def h4_mhe(
 
     Parameters
     ----------
-    simulated_array: one dimensional ndarray
+    simulated_array:
         An array of simulated data from the time series.
 
-    observed_array: one dimensional ndarray
+    observed_array:
         An array of observed data from the time series.
 
-    replace_nan: float, optional
+    replace_nan:
         If given, indicates which value to replace NaN values with in the two arrays. If None, when
         a NaN value is found at the i-th position in the observed OR simulated array, the i-th value
         of the observed and simulated array are removed before the computation.
 
-    replace_inf: float, optional
+    replace_inf:
         If given, indicates which value to replace Inf values with in the two arrays. If None, when
         an inf value is found at the i-th position in the observed OR simulated array, the i-th
         value of the observed and simulated array are removed before the computation.
 
-    remove_neg: boolean, optional
+    remove_neg:
         If True, when a negative value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
 
-    remove_zero: boolean, optional
+    remove_zero:
         If true, when a zero value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
@@ -4832,13 +4831,13 @@ def h4_mhe(
 
 
 def h4_mahe(
-    simulated_array,
-    observed_array,
-    replace_nan=None,
-    replace_inf=None,
-    remove_neg=False,
-    remove_zero=False,
-):
+    simulated_array: FloatArray,
+    observed_array: FloatArray,
+    replace_nan: float | None = None,
+    replace_inf: float | None = None,
+    remove_neg: bool = False,
+    remove_zero: bool = False,
+) -> float:
     """Compute the H4 mean absolute error.
 
     .. image:: /pictures/H4.png
@@ -4850,28 +4849,28 @@ def h4_mahe(
 
     Parameters
     ----------
-    simulated_array: one dimensional ndarray
+    simulated_array:
         An array of simulated data from the time series.
 
-    observed_array: one dimensional ndarray
+    observed_array:
         An array of observed data from the time series.
 
-    replace_nan: float, optional
+    replace_nan:
         If given, indicates which value to replace NaN values with in the two arrays. If None, when
         a NaN value is found at the i-th position in the observed OR simulated array, the i-th value
         of the observed and simulated array are removed before the computation.
 
-    replace_inf: float, optional
+    replace_inf:
         If given, indicates which value to replace Inf values with in the two arrays. If None, when
         an inf value is found at the i-th position in the observed OR simulated array, the i-th
         value of the observed and simulated array are removed before the computation.
 
-    remove_neg: boolean, optional
+    remove_neg:
         If True, when a negative value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
 
-    remove_zero: boolean, optional
+    remove_zero:
         If true, when a zero value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
@@ -4911,13 +4910,13 @@ def h4_mahe(
 
 
 def h4_rmshe(
-    simulated_array,
-    observed_array,
-    replace_nan=None,
-    replace_inf=None,
-    remove_neg=False,
-    remove_zero=False,
-):
+    simulated_array: FloatArray,
+    observed_array: FloatArray,
+    replace_nan: float | None = None,
+    replace_inf: float | None = None,
+    remove_neg: bool = False,
+    remove_zero: bool = False,
+) -> float:
     """Compute the H4 mean error.
 
     .. image:: /pictures/H4.png
@@ -4929,28 +4928,28 @@ def h4_rmshe(
 
     Parameters
     ----------
-    simulated_array: one dimensional ndarray
+    simulated_array:
         An array of simulated data from the time series.
 
-    observed_array: one dimensional ndarray
+    observed_array:
         An array of observed data from the time series.
 
-    replace_nan: float, optional
+    replace_nan:
         If given, indicates which value to replace NaN values with in the two arrays. If None, when
         a NaN value is found at the i-th position in the observed OR simulated array, the i-th value
         of the observed and simulated array are removed before the computation.
 
-    replace_inf: float, optional
+    replace_inf:
         If given, indicates which value to replace Inf values with in the two arrays. If None, when
         an inf value is found at the i-th position in the observed OR simulated array, the i-th
         value of the observed and simulated array are removed before the computation.
 
-    remove_neg: boolean, optional
+    remove_neg:
         If True, when a negative value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
 
-    remove_zero: boolean, optional
+    remove_zero:
         If true, when a zero value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
@@ -4990,13 +4989,13 @@ def h4_rmshe(
 
 
 def h5_mhe(
-    simulated_array,
-    observed_array,
-    replace_nan=None,
-    replace_inf=None,
-    remove_neg=False,
-    remove_zero=False,
-):
+    simulated_array: FloatArray,
+    observed_array: FloatArray,
+    replace_nan: float | None = None,
+    replace_inf: float | None = None,
+    remove_neg: bool = False,
+    remove_zero: bool = False,
+) -> float:
     """Compute the H5 mean error.
 
     .. image:: /pictures/H5.png
@@ -5008,28 +5007,28 @@ def h5_mhe(
 
     Parameters
     ----------
-    simulated_array: one dimensional ndarray
+    simulated_array:
         An array of simulated data from the time series.
 
-    observed_array: one dimensional ndarray
+    observed_array:
         An array of observed data from the time series.
 
-    replace_nan: float, optional
+    replace_nan:
         If given, indicates which value to replace NaN values with in the two arrays. If None, when
         a NaN value is found at the i-th position in the observed OR simulated array, the i-th value
         of the observed and simulated array are removed before the computation.
 
-    replace_inf: float, optional
+    replace_inf:
         If given, indicates which value to replace Inf values with in the two arrays. If None, when
         an inf value is found at the i-th position in the observed OR simulated array, the i-th
         value of the observed and simulated array are removed before the computation.
 
-    remove_neg: boolean, optional
+    remove_neg:
         If True, when a negative value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
 
-    remove_zero: boolean, optional
+    remove_zero:
         If true, when a zero value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
@@ -5071,13 +5070,13 @@ def h5_mhe(
 
 
 def h5_mahe(
-    simulated_array,
-    observed_array,
-    replace_nan=None,
-    replace_inf=None,
-    remove_neg=False,
-    remove_zero=False,
-):
+    simulated_array: FloatArray,
+    observed_array: FloatArray,
+    replace_nan: float | None = None,
+    replace_inf: float | None = None,
+    remove_neg: bool = False,
+    remove_zero: bool = False,
+) -> float:
     """Compute the H5 mean absolute error.
 
     .. image:: /pictures/H5.png
@@ -5089,28 +5088,28 @@ def h5_mahe(
 
     Parameters
     ----------
-    simulated_array: one dimensional ndarray
+    simulated_array:
         An array of simulated data from the time series.
 
-    observed_array: one dimensional ndarray
+    observed_array:
         An array of observed data from the time series.
 
-    replace_nan: float, optional
+    replace_nan:
         If given, indicates which value to replace NaN values with in the two arrays. If None, when
         a NaN value is found at the i-th position in the observed OR simulated array, the i-th value
         of the observed and simulated array are removed before the computation.
 
-    replace_inf: float, optional
+    replace_inf:
         If given, indicates which value to replace Inf values with in the two arrays. If None, when
         an inf value is found at the i-th position in the observed OR simulated array, the i-th
         value of the observed and simulated array are removed before the computation.
 
-    remove_neg: boolean, optional
+    remove_neg:
         If True, when a negative value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
 
-    remove_zero: boolean, optional
+    remove_zero:
         If true, when a zero value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
@@ -5152,13 +5151,13 @@ def h5_mahe(
 
 
 def h5_rmshe(
-    simulated_array,
-    observed_array,
-    replace_nan=None,
-    replace_inf=None,
-    remove_neg=False,
-    remove_zero=False,
-):
+    simulated_array: FloatArray,
+    observed_array: FloatArray,
+    replace_nan: float | None = None,
+    replace_inf: float | None = None,
+    remove_neg: bool = False,
+    remove_zero: bool = False,
+) -> float:
     """Compute the H5 root mean square error.
 
     .. image:: /pictures/H5.png
@@ -5170,28 +5169,28 @@ def h5_rmshe(
 
     Parameters
     ----------
-    simulated_array: one dimensional ndarray
+    simulated_array:
         An array of simulated data from the time series.
 
-    observed_array: one dimensional ndarray
+    observed_array:
         An array of observed data from the time series.
 
-    replace_nan: float, optional
+    replace_nan:
         If given, indicates which value to replace NaN values with in the two arrays. If None, when
         a NaN value is found at the i-th position in the observed OR simulated array, the i-th value
         of the observed and simulated array are removed before the computation.
 
-    replace_inf: float, optional
+    replace_inf:
         If given, indicates which value to replace Inf values with in the two arrays. If None, when
         an inf value is found at the i-th position in the observed OR simulated array, the i-th
         value of the observed and simulated array are removed before the computation.
 
-    remove_neg: boolean, optional
+    remove_neg:
         If True, when a negative value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
 
-    remove_zero: boolean, optional
+    remove_zero:
         If true, when a zero value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
@@ -5233,14 +5232,14 @@ def h5_rmshe(
 
 
 def h6_mhe(
-    simulated_array,
-    observed_array,
-    k=1,
-    replace_nan=None,
-    replace_inf=None,
-    remove_neg=False,
-    remove_zero=False,
-):
+    simulated_array: FloatArray,
+    observed_array: FloatArray,
+    k: int = 1,
+    replace_nan: float | None = None,
+    replace_inf: float | None = None,
+    remove_neg: bool = False,
+    remove_zero: bool = False,
+) -> float:
     """Compute the H6 mean error.
 
     .. image:: /pictures/H6.png
@@ -5252,31 +5251,31 @@ def h6_mhe(
 
     Parameters
     ----------
-    simulated_array: one dimensional ndarray
+    simulated_array:
         An array of simulated data from the time series.
 
-    observed_array: one dimensional ndarray
+    observed_array:
         An array of observed data from the time series.
 
     k: int or float
         If given, sets the value of k. If None, k=1.
 
-    replace_nan: float, optional
+    replace_nan:
         If given, indicates which value to replace NaN values with in the two arrays. If None, when
         a NaN value is found at the i-th position in the observed OR simulated array, the i-th value
         of the observed and simulated array are removed before the computation.
 
-    replace_inf: float, optional
+    replace_inf:
         If given, indicates which value to replace Inf values with in the two arrays. If None, when
         an inf value is found at the i-th position in the observed OR simulated array, the i-th
         value of the observed and simulated array are removed before the computation.
 
-    remove_neg: boolean, optional
+    remove_neg:
         If True, when a negative value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
 
-    remove_zero: boolean, optional
+    remove_zero:
         If true, when a zero value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
@@ -5318,14 +5317,14 @@ def h6_mhe(
 
 
 def h6_mahe(
-    simulated_array,
-    observed_array,
-    k=1,
-    replace_nan=None,
-    replace_inf=None,
-    remove_neg=False,
-    remove_zero=False,
-):
+    simulated_array: FloatArray,
+    observed_array: FloatArray,
+    k: int = 1,
+    replace_nan: float | None = None,
+    replace_inf: float | None = None,
+    remove_neg: bool = False,
+    remove_zero: bool = False,
+) -> float:
     """Compute the H6 mean absolute error.
 
     .. image:: /pictures/H6.png
@@ -5337,31 +5336,31 @@ def h6_mahe(
 
     Parameters
     ----------
-    simulated_array: one dimensional ndarray
+    simulated_array:
         An array of simulated data from the time series.
 
-    observed_array: one dimensional ndarray
+    observed_array:
         An array of observed data from the time series.
 
     k: int or float
         If given, sets the value of k. If None, k=1.
 
-    replace_nan: float, optional
+    replace_nan:
         If given, indicates which value to replace NaN values with in the two arrays. If None, when
         a NaN value is found at the i-th position in the observed OR simulated array, the i-th value
         of the observed and simulated array are removed before the computation.
 
-    replace_inf: float, optional
+    replace_inf:
         If given, indicates which value to replace Inf values with in the two arrays. If None, when
         an inf value is found at the i-th position in the observed OR simulated array, the i-th
         value of the observed and simulated array are removed before the computation.
 
-    remove_neg: boolean, optional
+    remove_neg:
         If True, when a negative value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
 
-    remove_zero: boolean, optional
+    remove_zero:
         If true, when a zero value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
@@ -5403,14 +5402,14 @@ def h6_mahe(
 
 
 def h6_rmshe(
-    simulated_array,
-    observed_array,
-    k=1,
-    replace_nan=None,
-    replace_inf=None,
-    remove_neg=False,
-    remove_zero=False,
-):
+    simulated_array: FloatArray,
+    observed_array: FloatArray,
+    k: int = 1,
+    replace_nan: float | None = None,
+    replace_inf: float | None = None,
+    remove_neg: bool = False,
+    remove_zero: bool = False,
+) -> float:
     """Compute the H6 root mean square error.
 
     .. image:: /pictures/H6.png
@@ -5422,31 +5421,31 @@ def h6_rmshe(
 
     Parameters
     ----------
-    simulated_array: one dimensional ndarray
+    simulated_array:
         An array of simulated data from the time series.
 
-    observed_array: one dimensional ndarray
+    observed_array:
         An array of observed data from the time series.
 
     k: int or float
         If given, sets the value of k. If None, k=1.
 
-    replace_nan: float, optional
+    replace_nan:
         If given, indicates which value to replace NaN values with in the two arrays. If None, when
         a NaN value is found at the i-th position in the observed OR simulated array, the i-th value
         of the observed and simulated array are removed before the computation.
 
-    replace_inf: float, optional
+    replace_inf:
         If given, indicates which value to replace Inf values with in the two arrays. If None, when
         an inf value is found at the i-th position in the observed OR simulated array, the i-th
         value of the observed and simulated array are removed before the computation.
 
-    remove_neg: boolean, optional
+    remove_neg:
         If True, when a negative value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
 
-    remove_zero: boolean, optional
+    remove_zero:
         If true, when a zero value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
@@ -5488,13 +5487,13 @@ def h6_rmshe(
 
 
 def h7_mhe(
-    simulated_array,
-    observed_array,
-    replace_nan=None,
-    replace_inf=None,
-    remove_neg=False,
-    remove_zero=False,
-):
+    simulated_array: FloatArray,
+    observed_array: FloatArray,
+    replace_nan: float | None = None,
+    replace_inf: float | None = None,
+    remove_neg: bool = False,
+    remove_zero: bool = False,
+) -> float:
     """Compute the H7 mean error.
 
     .. image:: /pictures/H7.png
@@ -5506,28 +5505,28 @@ def h7_mhe(
 
     Parameters
     ----------
-    simulated_array: one dimensional ndarray
+    simulated_array:
         An array of simulated data from the time series.
 
-    observed_array: one dimensional ndarray
+    observed_array:
         An array of observed data from the time series.
 
-    replace_nan: float, optional
+    replace_nan:
         If given, indicates which value to replace NaN values with in the two arrays. If None, when
         a NaN value is found at the i-th position in the observed OR simulated array, the i-th value
         of the observed and simulated array are removed before the computation.
 
-    replace_inf: float, optional
+    replace_inf:
         If given, indicates which value to replace Inf values with in the two arrays. If None, when
         an inf value is found at the i-th position in the observed OR simulated array, the i-th
         value of the observed and simulated array are removed before the computation.
 
-    remove_neg: boolean, optional
+    remove_neg:
         If True, when a negative value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
 
-    remove_zero: boolean, optional
+    remove_zero:
         If true, when a zero value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
@@ -5567,13 +5566,13 @@ def h7_mhe(
 
 
 def h7_mahe(
-    simulated_array,
-    observed_array,
-    replace_nan=None,
-    replace_inf=None,
-    remove_neg=False,
-    remove_zero=False,
-):
+    simulated_array: FloatArray,
+    observed_array: FloatArray,
+    replace_nan: float | None = None,
+    replace_inf: float | None = None,
+    remove_neg: bool = False,
+    remove_zero: bool = False,
+) -> float:
     """Compute the H7 mean absolute error.
 
     .. image:: /pictures/H7.png
@@ -5585,28 +5584,28 @@ def h7_mahe(
 
     Parameters
     ----------
-    simulated_array: one dimensional ndarray
+    simulated_array:
         An array of simulated data from the time series.
 
-    observed_array: one dimensional ndarray
+    observed_array:
         An array of observed data from the time series.
 
-    replace_nan: float, optional
+    replace_nan:
         If given, indicates which value to replace NaN values with in the two arrays. If None, when
         a NaN value is found at the i-th position in the observed OR simulated array, the i-th value
         of the observed and simulated array are removed before the computation.
 
-    replace_inf: float, optional
+    replace_inf:
         If given, indicates which value to replace Inf values with in the two arrays. If None, when
         an inf value is found at the i-th position in the observed OR simulated array, the i-th
         value of the observed and simulated array are removed before the computation.
 
-    remove_neg: boolean, optional
+    remove_neg:
         If True, when a negative value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
 
-    remove_zero: boolean, optional
+    remove_zero:
         If true, when a zero value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
@@ -5646,13 +5645,13 @@ def h7_mahe(
 
 
 def h7_rmshe(
-    simulated_array,
-    observed_array,
-    replace_nan=None,
-    replace_inf=None,
-    remove_neg=False,
-    remove_zero=False,
-):
+    simulated_array: FloatArray,
+    observed_array: FloatArray,
+    replace_nan: float | None = None,
+    replace_inf: float | None = None,
+    remove_neg: bool = False,
+    remove_zero: bool = False,
+) -> float:
     """Compute the H7 root mean square error.
 
     .. image:: /pictures/H7.png
@@ -5664,28 +5663,28 @@ def h7_rmshe(
 
     Parameters
     ----------
-    simulated_array: one dimensional ndarray
+    simulated_array:
         An array of simulated data from the time series.
 
-    observed_array: one dimensional ndarray
+    observed_array:
         An array of observed data from the time series.
 
-    replace_nan: float, optional
+    replace_nan:
         If given, indicates which value to replace NaN values with in the two arrays. If None, when
         a NaN value is found at the i-th position in the observed OR simulated array, the i-th value
         of the observed and simulated array are removed before the computation.
 
-    replace_inf: float, optional
+    replace_inf:
         If given, indicates which value to replace Inf values with in the two arrays. If None, when
         an inf value is found at the i-th position in the observed OR simulated array, the i-th
         value of the observed and simulated array are removed before the computation.
 
-    remove_neg: boolean, optional
+    remove_neg:
         If True, when a negative value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
 
-    remove_zero: boolean, optional
+    remove_zero:
         If true, when a zero value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
@@ -5725,13 +5724,13 @@ def h7_rmshe(
 
 
 def h8_mhe(
-    simulated_array,
-    observed_array,
-    replace_nan=None,
-    replace_inf=None,
-    remove_neg=False,
-    remove_zero=False,
-):
+    simulated_array: FloatArray,
+    observed_array: FloatArray,
+    replace_nan: float | None = None,
+    replace_inf: float | None = None,
+    remove_neg: bool = False,
+    remove_zero: bool = False,
+) -> float:
     """Compute the H8 mean error.
 
     .. image:: /pictures/H8.png
@@ -5743,28 +5742,28 @@ def h8_mhe(
 
     Parameters
     ----------
-    simulated_array: one dimensional ndarray
+    simulated_array:
         An array of simulated data from the time series.
 
-    observed_array: one dimensional ndarray
+    observed_array:
         An array of observed data from the time series.
 
-    replace_nan: float, optional
+    replace_nan:
         If given, indicates which value to replace NaN values with in the two arrays. If None, when
         a NaN value is found at the i-th position in the observed OR simulated array, the i-th value
         of the observed and simulated array are removed before the computation.
 
-    replace_inf: float, optional
+    replace_inf:
         If given, indicates which value to replace Inf values with in the two arrays. If None, when
         an inf value is found at the i-th position in the observed OR simulated array, the i-th
         value of the observed and simulated array are removed before the computation.
 
-    remove_neg: boolean, optional
+    remove_neg:
         If True, when a negative value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
 
-    remove_zero: boolean, optional
+    remove_zero:
         If true, when a zero value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
@@ -5804,13 +5803,13 @@ def h8_mhe(
 
 
 def h8_mahe(
-    simulated_array,
-    observed_array,
-    replace_nan=None,
-    replace_inf=None,
-    remove_neg=False,
-    remove_zero=False,
-):
+    simulated_array: FloatArray,
+    observed_array: FloatArray,
+    replace_nan: float | None = None,
+    replace_inf: float | None = None,
+    remove_neg: bool = False,
+    remove_zero: bool = False,
+) -> float:
     """Compute the H8 mean absolute error.
 
     .. image:: /pictures/H8.png
@@ -5822,28 +5821,28 @@ def h8_mahe(
 
     Parameters
     ----------
-    simulated_array: one dimensional ndarray
+    simulated_array:
         An array of simulated data from the time series.
 
-    observed_array: one dimensional ndarray
+    observed_array:
         An array of observed data from the time series.
 
-    replace_nan: float, optional
+    replace_nan:
         If given, indicates which value to replace NaN values with in the two arrays. If None, when
         a NaN value is found at the i-th position in the observed OR simulated array, the i-th value
         of the observed and simulated array are removed before the computation.
 
-    replace_inf: float, optional
+    replace_inf:
         If given, indicates which value to replace Inf values with in the two arrays. If None, when
         an inf value is found at the i-th position in the observed OR simulated array, the i-th
         value of the observed and simulated array are removed before the computation.
 
-    remove_neg: boolean, optional
+    remove_neg:
         If True, when a negative value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
 
-    remove_zero: boolean, optional
+    remove_zero:
         If true, when a zero value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
@@ -5883,13 +5882,13 @@ def h8_mahe(
 
 
 def h8_rmshe(
-    simulated_array,
-    observed_array,
-    replace_nan=None,
-    replace_inf=None,
-    remove_neg=False,
-    remove_zero=False,
-):
+    simulated_array: FloatArray,
+    observed_array: FloatArray,
+    replace_nan: float | None = None,
+    replace_inf: float | None = None,
+    remove_neg: bool = False,
+    remove_zero: bool = False,
+) -> float:
     """Compute the H8 root mean square error.
 
     .. image:: /pictures/H8.png
@@ -5901,28 +5900,28 @@ def h8_rmshe(
 
     Parameters
     ----------
-    simulated_array: one dimensional ndarray
+    simulated_array:
         An array of simulated data from the time series.
 
-    observed_array: one dimensional ndarray
+    observed_array:
         An array of observed data from the time series.
 
-    replace_nan: float, optional
+    replace_nan:
         If given, indicates which value to replace NaN values with in the two arrays. If None, when
         a NaN value is found at the i-th position in the observed OR simulated array, the i-th value
         of the observed and simulated array are removed before the computation.
 
-    replace_inf: float, optional
+    replace_inf:
         If given, indicates which value to replace Inf values with in the two arrays. If None, when
         an inf value is found at the i-th position in the observed OR simulated array, the i-th
         value of the observed and simulated array are removed before the computation.
 
-    remove_neg: boolean, optional
+    remove_neg:
         If True, when a negative value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
 
-    remove_zero: boolean, optional
+    remove_zero:
         If true, when a zero value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
@@ -5975,13 +5974,13 @@ def h8_rmshe(
 
 
 def h10_mhe(
-    simulated_array,
-    observed_array,
-    replace_nan=None,
-    replace_inf=None,
-    remove_neg=False,
-    remove_zero=False,
-):
+    simulated_array: FloatArray,
+    observed_array: FloatArray,
+    replace_nan: float | None = None,
+    replace_inf: float | None = None,
+    remove_neg: bool = False,
+    remove_zero: bool = False,
+) -> float:
     """Compute the H10 mean error.
 
     .. image:: /pictures/H10.png
@@ -5993,28 +5992,28 @@ def h10_mhe(
 
     Parameters
     ----------
-    simulated_array: one dimensional ndarray
+    simulated_array:
         An array of simulated data from the time series.
 
-    observed_array: one dimensional ndarray
+    observed_array:
         An array of observed data from the time series.
 
-    replace_nan: float, optional
+    replace_nan:
         If given, indicates which value to replace NaN values with in the two arrays. If None, when
         a NaN value is found at the i-th position in the observed OR simulated array, the i-th value
         of the observed and simulated array are removed before the computation.
 
-    replace_inf: float, optional
+    replace_inf:
         If given, indicates which value to replace Inf values with in the two arrays. If None, when
         an inf value is found at the i-th position in the observed OR simulated array, the i-th
         value of the observed and simulated array are removed before the computation.
 
-    remove_neg: boolean, optional
+    remove_neg:
         If True, when a negative value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
 
-    remove_zero: boolean, optional
+    remove_zero:
         If true, when a zero value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
@@ -6054,13 +6053,13 @@ def h10_mhe(
 
 
 def h10_mahe(
-    simulated_array,
-    observed_array,
-    replace_nan=None,
-    replace_inf=None,
-    remove_neg=False,
-    remove_zero=False,
-):
+    simulated_array: FloatArray,
+    observed_array: FloatArray,
+    replace_nan: float | None = None,
+    replace_inf: float | None = None,
+    remove_neg: bool = False,
+    remove_zero: bool = False,
+) -> float:
     """Compute the H10 mean absolute error.
 
     .. image:: /pictures/H10.png
@@ -6072,28 +6071,28 @@ def h10_mahe(
 
     Parameters
     ----------
-    simulated_array: one dimensional ndarray
+    simulated_array:
         An array of simulated data from the time series.
 
-    observed_array: one dimensional ndarray
+    observed_array:
         An array of observed data from the time series.
 
-    replace_nan: float, optional
+    replace_nan:
         If given, indicates which value to replace NaN values with in the two arrays. If None, when
         a NaN value is found at the i-th position in the observed OR simulated array, the i-th value
         of the observed and simulated array are removed before the computation.
 
-    replace_inf: float, optional
+    replace_inf:
         If given, indicates which value to replace Inf values with in the two arrays. If None, when
         an inf value is found at the i-th position in the observed OR simulated array, the i-th
         value of the observed and simulated array are removed before the computation.
 
-    remove_neg: boolean, optional
+    remove_neg:
         If True, when a negative value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
 
-    remove_zero: boolean, optional
+    remove_zero:
         If true, when a zero value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
@@ -6133,13 +6132,13 @@ def h10_mahe(
 
 
 def h10_rmshe(
-    simulated_array,
-    observed_array,
-    replace_nan=None,
-    replace_inf=None,
-    remove_neg=False,
-    remove_zero=False,
-):
+    simulated_array: FloatArray,
+    observed_array: FloatArray,
+    replace_nan: float | None = None,
+    replace_inf: float | None = None,
+    remove_neg: bool = False,
+    remove_zero: bool = False,
+) -> float:
     """Compute the H10 root mean square error.
 
     .. image:: /pictures/H10.png
@@ -6151,28 +6150,28 @@ def h10_rmshe(
 
     Parameters
     ----------
-    simulated_array: one dimensional ndarray
+    simulated_array:
         An array of simulated data from the time series.
 
-    observed_array: one dimensional ndarray
+    observed_array:
         An array of observed data from the time series.
 
-    replace_nan: float, optional
+    replace_nan:
         If given, indicates which value to replace NaN values with in the two arrays. If None, when
         a NaN value is found at the i-th position in the observed OR simulated array, the i-th value
         of the observed and simulated array are removed before the computation.
 
-    replace_inf: float, optional
+    replace_inf:
         If given, indicates which value to replace Inf values with in the two arrays. If None, when
         an inf value is found at the i-th position in the observed OR simulated array, the i-th
         value of the observed and simulated array are removed before the computation.
 
-    remove_neg: boolean, optional
+    remove_neg:
         If True, when a negative value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
 
-    remove_zero: boolean, optional
+    remove_zero:
         If true, when a zero value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
@@ -6217,13 +6216,13 @@ def h10_rmshe(
 
 
 def g_mean_diff(
-    simulated_array,
-    observed_array,
-    replace_nan=None,
-    replace_inf=None,
-    remove_neg=False,
-    remove_zero=False,
-):
+    simulated_array: FloatArray,
+    observed_array: FloatArray,
+    replace_nan: float | None = None,
+    replace_inf: float | None = None,
+    remove_neg: bool = False,
+    remove_zero: bool = False,
+) -> float:
     """Compute the geometric mean difference.
 
     .. image:: /pictures/GMD.png
@@ -6235,28 +6234,28 @@ def g_mean_diff(
 
     Parameters
     ----------
-    simulated_array: one dimensional ndarray
+    simulated_array:
         An array of simulated data from the time series.
 
-    observed_array: one dimensional ndarray
+    observed_array:
         An array of observed data from the time series.
 
-    replace_nan: float, optional
+    replace_nan:
         If given, indicates which value to replace NaN values with in the two arrays. If None, when
         a NaN value is found at the i-th position in the observed OR simulated array, the i-th value
         of the observed and simulated array are removed before the computation.
 
-    replace_inf: float, optional
+    replace_inf:
         If given, indicates which value to replace Inf values with in the two arrays. If None, when
         an inf value is found at the i-th position in the observed OR simulated array, the i-th
         value of the observed and simulated array are removed before the computation.
 
-    remove_neg: boolean, optional
+    remove_neg:
         If True, when a negative value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
 
-    remove_zero: boolean, optional
+    remove_zero:
         If true, when a zero value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
@@ -6292,13 +6291,13 @@ def g_mean_diff(
 
 
 def mean_var(
-    simulated_array,
-    observed_array,
-    replace_nan=None,
-    replace_inf=None,
-    remove_neg=False,
-    remove_zero=False,
-):
+    simulated_array: FloatArray,
+    observed_array: FloatArray,
+    replace_nan: float | None = None,
+    replace_inf: float | None = None,
+    remove_neg: bool = False,
+    remove_zero: bool = False,
+) -> float:
     """Compute the mean variance.
 
     .. image:: /pictures/MV.png
@@ -6309,28 +6308,28 @@ def mean_var(
 
     Parameters
     ----------
-    simulated_array: one dimensional ndarray
+    simulated_array:
         An array of simulated data from the time series.
 
-    observed_array: one dimensional ndarray
+    observed_array:
         An array of observed data from the time series.
 
-    replace_nan: float, optional
+    replace_nan:
         If given, indicates which value to replace NaN values with in the two arrays. If None, when
         a NaN value is found at the i-th position in the observed OR simulated array, the i-th value
         of the observed and simulated array are removed before the computation.
 
-    replace_inf: float, optional
+    replace_inf:
         If given, indicates which value to replace Inf values with in the two arrays. If None, when
         an inf value is found at the i-th position in the observed OR simulated array, the i-th
         value of the observed and simulated array are removed before the computation.
 
-    remove_neg: boolean, optional
+    remove_neg:
         If True, when a negative value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
 
-    remove_zero: boolean, optional
+    remove_zero:
         If true, when a zero value is found at the i-th position in the observed OR simulated
         array, the i-th value of the observed AND simulated array are removed before the
         computation.
@@ -6610,13 +6609,13 @@ for i in range(len(function_list)):
 
 
 def treat_values(
-    simulated_array,
-    observed_array,
-    replace_nan=None,
-    replace_inf=None,
-    remove_neg=False,
-    remove_zero=False,
-):
+    simulated_array: FloatArray,
+    observed_array: FloatArray,
+    replace_nan: float | None = None,
+    replace_inf: float | None = None,
+    remove_neg: bool = False,
+    remove_zero: bool = False,
+) -> tuple[FloatArray, FloatArray]:
     """Remove the nan, negative, and inf values in two numpy arrays."""
     sim_copy = np.copy(simulated_array)
     obs_copy = np.copy(observed_array)
