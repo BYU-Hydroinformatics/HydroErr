@@ -6677,7 +6677,7 @@ def treat_values(  # noqa: C901
 
             warnings.warn(
                 f"Row(s) {np.where(~all_inf_indices)[0]} contained Inf or -Inf values and"
-                "the row(s) have been removed (Rows are zero indexed).",
+                " the row(s) have been removed (Rows are zero indexed).",
                 UserWarning,
                 stacklevel=2,
             )

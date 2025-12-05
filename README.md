@@ -1,4 +1,3 @@
-[![Build Status](https://travis-ci.org/BYU-Hydroinformatics/HydroErr.svg?branch=master)](https://travis-ci.org/BYU-Hydroinformatics/HydroErr)
 [![codecov](https://codecov.io/gh/BYU-Hydroinformatics/HydroErr/branch/master/graph/badge.svg)](https://codecov.io/gh/BYU-Hydroinformatics/HydroErr)
 
 Goodness of fit metrics for use in comparison studies, specifically for use in the field of hydrology

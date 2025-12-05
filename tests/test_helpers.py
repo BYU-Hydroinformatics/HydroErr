@@ -36,6 +36,7 @@ class TestHelperFunctions:
         check.is_true(issubclass(w[2].category, UserWarning))
         check.is_true(issubclass(w[3].category, UserWarning))
 
+        print(w[1].message)
         check.is_true(
             "Row(s) [0 1] contained NaN values and the row(s) have been removed "
             "(Rows are zero indexed)." in str(w[0].message)
