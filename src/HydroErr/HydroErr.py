@@ -162,8 +162,8 @@ def me(
     - Fisher, R.A., 1920. A Mathematical Examination of the Methods of Determining the Accuracy of
       an Observation by the Mean Error, and by the Mean Square Error. Monthly Notices of the Royal
       Astronomical Society 80 758 - 770.
+
     """
-    # Treating missing values
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
@@ -237,7 +237,6 @@ def mae(
 
     Examples
     --------
-
     >>> import HydroErr as he
     >>> import numpy as np
 
@@ -245,9 +244,8 @@ def mae(
     >>> obs = np.array([4.7, 6, 10, 2.5, 4, 6.8])
     >>> he.mae(sim, obs)
     0.5666666666666665
-    """
 
-    # Checking and cleaning the data
+    """
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
@@ -268,8 +266,7 @@ def mse(
     remove_neg=False,
     remove_zero=False,
 ):
-    """
-    Compute the mean squared error of the simulated and observed data.
+    """Compute the mean squared error of the simulated and observed data.
 
     .. image:: /pictures/MSE.png
 
@@ -313,7 +310,6 @@ def mse(
 
     Examples
     --------
-
     >>> import HydroErr as he
     >>> import numpy as np
 
@@ -326,9 +322,8 @@ def mse(
     ----------
     - Wang, Zhou, and Alan C. Bovik. “Mean Squared Error: Love It or Leave It? A New Look at Signal
       Fidelity Measures.” IEEE Signal Processing Magazine 26, no. 1 (2009): 98–117.
-    """
 
-    # Checking and cleaning the data
+    """
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
@@ -349,8 +344,7 @@ def mle(
     remove_neg=False,
     remove_zero=False,
 ):
-    """
-    Compute the mean log error of the simulated and observed data.
+    """Compute the mean log error of the simulated and observed data.
 
     .. image:: /pictures/MLE.png
 
@@ -394,7 +388,6 @@ def mle(
 
     Examples
     --------
-
     Note that the value is very small because it is in log space.
 
     >>> import HydroErr as he
@@ -409,10 +402,8 @@ def mle(
     ----------
     - Törnqvist, Leo, Pentti Vartia, and Yrjö O. Vartia. “How Should Relative Changes Be Measured?”
       The American Statistician 39, no. 1 (1985): 43–46.
+
     """
-
-    # Checking and cleaning the data
-
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
@@ -435,8 +426,7 @@ def male(
     remove_neg=False,
     remove_zero=False,
 ):
-    """
-    Compute the mean absolute log error of the simulated and observed data.
+    """Compute the mean absolute log error of the simulated and observed data.
 
     .. image:: /pictures/MALE.png
 
@@ -480,7 +470,6 @@ def male(
 
     Examples
     --------
-
     Note that the value is very small because it is in log space.
 
     >>> import HydroErr as he
@@ -495,10 +484,8 @@ def male(
     ----------
     - Törnqvist, Leo, Pentti Vartia, and Yrjö O. Vartia. “How Should Relative Changes Be Measured?”
       The American Statistician 39, no. 1 (1985): 43–46.
+
     """
-
-    # Checking and cleaning the data
-
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
@@ -521,8 +508,7 @@ def msle(
     remove_neg=False,
     remove_zero=False,
 ):
-    """
-    Compute the mean squared log error of the simulated and observed data.
+    """Compute the mean squared log error of the simulated and observed data.
 
     .. image:: /pictures/MSLE.png
 
@@ -566,7 +552,6 @@ def msle(
 
     Examples
     --------
-
     Note that the value is very small because it is in log space.
 
     >>> import HydroErr as he
@@ -583,8 +568,6 @@ def msle(
       The American Statistician 39, no. 1 (1985): 43–46.
 
     """
-    # Checking and cleaning the data
-
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
@@ -607,8 +590,7 @@ def mde(
     remove_neg=False,
     remove_zero=False,
 ):
-    """
-    Compute the median error (MdE) between the simulated and observed data.
+    """Compute the median error (MdE) between the simulated and observed data.
 
     .. image:: /pictures/MdE.png
 
@@ -647,7 +629,6 @@ def mde(
 
     Examples
     --------
-
     Note that the last outlier residual in the time series is negated using the median.
 
     >>> import HydroErr as he
@@ -664,9 +645,6 @@ def mde(
         The median error value.
 
     """
-
-    # Checking and cleaning the data
-
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
@@ -687,8 +665,7 @@ def mdae(
     remove_neg=False,
     remove_zero=False,
 ):
-    """
-    Compute the median absolute error (MdAE) between the simulated and observed data.
+    """Compute the median absolute error (MdAE) between the simulated and observed data.
 
     .. image:: /pictures/MdAE.png
 
@@ -727,7 +704,6 @@ def mdae(
 
     Examples
     --------
-
     Note that the last outlier residual in the time series is negated using the median.
 
     >>> import HydroErr as he
@@ -744,9 +720,6 @@ def mdae(
         The median absolute error value.
 
     """
-
-    # Checking and cleaning the data
-
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
@@ -767,8 +740,7 @@ def mdse(
     remove_neg=False,
     remove_zero=False,
 ):
-    """
-    Compute the median squared error (MdSE) between the simulated and observed data.
+    """Compute the median squared error (MdSE) between the simulated and observed data.
 
     .. image:: /pictures/MdSE.png
 
@@ -807,7 +779,6 @@ def mdse(
 
     Examples
     --------
-
     Note that the last outlier residual in the time series is negated using the median.
 
     >>> import HydroErr as he
@@ -824,9 +795,6 @@ def mdse(
         The median squared error value.
 
     """
-
-    # Checking and cleaning the data
-
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
@@ -847,8 +815,7 @@ def ed(
     remove_neg=False,
     remove_zero=False,
 ):
-    """
-    Compute the Euclidean distance between predicted and observed values in vector space.
+    """Compute the Euclidean distance between predicted and observed values in vector space.
 
     .. image:: /pictures/ED.png
 
@@ -885,7 +852,6 @@ def ed(
 
     Examples
     --------
-
     >>> import HydroErr as he
     >>> import numpy as np
 
@@ -904,10 +870,8 @@ def ed(
     - Kennard, M. J., Mackay, S. J., Pusey, B. J., Olden, J. D., & Marsh, N. (2010). Quantifying
       uncertainty in estimation of hydrologic metrics for ecohydrological studies. River Research
       and Applications, 26(2), 137-156.
+
     """
-
-    # Checking and cleaning the data
-
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
@@ -928,8 +892,7 @@ def ned(
     remove_neg=False,
     remove_zero=False,
 ):
-    """
-    Compute the normalized Euclidian distance between the simulated and observed data in vector
+    """Compute the normalized Euclidian distance between the simulated and observed data in vector
     space.
 
     .. image:: /pictures/NED.png
@@ -986,10 +949,8 @@ def ned(
     - Kennard, M. J., Mackay, S. J., Pusey, B. J., Olden, J. D., & Marsh, N. (2010). Quantifying
       uncertainty in estimation of hydrologic metrics for ecohydrological studies. River Research
       and Applications, 26(2), 137-156.
+
     """
-
-    # Checking and cleaning the data
-
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
@@ -1012,9 +973,7 @@ def rmse(
     remove_neg=False,
     remove_zero=False,
 ):
-    """
-
-    Compute the root mean square error between the simulated and observed data.
+    """Compute the root mean square error between the simulated and observed data.
 
     .. image:: /pictures/RMSE.png
 
@@ -1059,7 +1018,6 @@ def rmse(
 
     Examples
     --------
-
     >>> import HydroErr as he
     >>> import numpy as np
 
@@ -1075,10 +1033,8 @@ def rmse(
       Climate Research 30(1) 79-82.
     - Hyndman, R.J., Koehler, A.B., 2006. Another look at measures of forecast accuracy.
       International Journal of Forecasting 22(4) 679-688.
+
     """
-
-    # Checking and cleaning the data
-
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
@@ -1099,9 +1055,7 @@ def rmsle(
     remove_neg=False,
     remove_zero=False,
 ):
-    """
-
-    Compute the root mean square log error between the simulated and observed data.
+    """Compute the root mean square log error between the simulated and observed data.
 
     .. image:: /pictures/RMSLE.png
 
@@ -1147,7 +1101,6 @@ def rmsle(
 
     Examples
     --------
-
     Notice that the value is very small because it is in log space.
 
     >>> import HydroErr as he
@@ -1165,8 +1118,8 @@ def rmsle(
     - Willmott, C.J., Matsuura, K., 2005. Advantages of the mean absolute error (MAE) over the
       root mean square error (RMSE) in assessing average model performance.
       Climate Research 30(1) 79-82.
-    """
 
+    """
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
@@ -1231,7 +1184,6 @@ def nrmse_range(
 
     Examples
     --------
-
     >>> import HydroErr as he
     >>> import numpy as np
 
@@ -1245,10 +1197,8 @@ def nrmse_range(
     - Pontius, R.G., Thontteh, O., Chen, H., 2008. Components of information for multiple
       resolution comparison between maps that share a real variable. Environmental and Ecological
       Statistics 15(2) 111-142.
+
     """
-
-    # Checking and cleaning the data
-
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
@@ -1316,7 +1266,6 @@ def nrmse_mean(
 
     Examples
     --------
-
     >>> import HydroErr as he
     >>> import numpy as np
 
@@ -1332,9 +1281,6 @@ def nrmse_mean(
       Statistics 15(2) 111-142.
 
     """
-
-    # Checking and cleaning the data
-
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
@@ -1402,7 +1348,6 @@ def nrmse_iqr(
 
     Examples
     --------
-
     >>> import HydroErr as he
     >>> import numpy as np
 
@@ -1418,9 +1363,6 @@ def nrmse_iqr(
       Statistics 15(2) 111-142.
 
     """
-
-    # Checking and cleaning the data
-
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
@@ -1445,9 +1387,7 @@ def irmse(
     remove_neg=False,
     remove_zero=False,
 ):
-    """
-
-    Compute the inertial root mean square error (IRMSE) between the simulated and observed data.
+    """Compute the inertial root mean square error (IRMSE) between the simulated and observed data.
 
     .. image:: /pictures/IRMSE.png
 
@@ -1492,7 +1432,6 @@ def irmse(
 
     Examples
     --------
-
     >>> import HydroErr as he
     >>> import numpy as np
 
@@ -1505,10 +1444,8 @@ def irmse(
     ----------
     - Daga, M., Deo, M.C., 2009. Alternative data-driven methods to estimate wind from waves by
       inverse modeling. Natural Hazards 49(2) 293-310.
+
     """
-
-    # Checking and cleaning the data
-
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
@@ -1585,7 +1522,6 @@ def mase(
 
     Examples
     --------
-
     >>> import HydroErr as he
     >>> import numpy as np
 
@@ -1598,10 +1534,8 @@ def mase(
     ----------
     - Hyndman, R.J., Koehler, A.B., 2006. Another look at measures of forecast accuracy.
       International Journal of Forecasting 22(4) 679-688.
+
     """
-
-    # Checking and cleaning the data
-
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
@@ -1626,9 +1560,7 @@ def pearson_r(
     remove_neg=False,
     remove_zero=False,
 ):
-    """
-
-    Compute the pearson correlation coefficient.
+    """Compute the pearson correlation coefficient.
 
     .. image:: /pictures/R_pearson.png
 
@@ -1672,7 +1604,6 @@ def pearson_r(
 
     Examples
     --------
-
     >>> import HydroErr as he
     >>> import numpy as np
 
@@ -1687,8 +1618,6 @@ def pearson_r(
       Proceedings of the Royal Society of London, 58, 240-242.
 
     """
-    # Checking and cleaning the data
-
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
@@ -1716,9 +1645,7 @@ def spearman_r(
     remove_neg=False,
     remove_zero=False,
 ):
-    """
-
-    Compute the spearman rank correlation coefficient.
+    """Compute the spearman rank correlation coefficient.
 
     .. image:: /pictures/R_spearman.png
 
@@ -1763,8 +1690,7 @@ def spearman_r(
         The Spearman rank correlation coefficient.
 
     Examples
-    ----------
-
+    --------
     >>> import HydroErr as he
     >>> import numpy as np
 
@@ -1777,9 +1703,8 @@ def spearman_r(
     ----------
     - Spearman C (1904). "The proof and measurement of association between two things". American
       Journal of Psychology. 15: 72–101. doi:10.2307/1412159
-    """
 
-    # Treats data
+    """
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
@@ -1811,9 +1736,7 @@ def r_squared(
     remove_neg=False,
     remove_zero=False,
 ):
-    """
-
-    Compute the the Coefficient of Determination (r2).
+    """Compute the the Coefficient of Determination (r2).
 
     .. image:: /pictures/r2.png
 
@@ -1868,8 +1791,6 @@ def r_squared(
     ----------
 
     """
-
-    # Treats data
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
@@ -1892,9 +1813,7 @@ def acc(
     remove_neg=False,
     remove_zero=False,
 ):
-    """
-
-    Compute the the anomaly correlation coefficient (ACC).
+    """Compute the the anomaly correlation coefficient (ACC).
 
     .. image:: /pictures/ACC.png
 
@@ -1960,8 +1879,6 @@ def acc(
       Verification.” Monthly Weather Review 117, no. 3 (1989): 572–82.
 
     """
-
-    # Treats data
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
@@ -1985,9 +1902,7 @@ def mape(
     remove_neg=False,
     remove_zero=False,
 ):
-    """
-
-    Compute the the mean absolute percentage error (MAPE).
+    """Compute the the mean absolute percentage error (MAPE).
 
     .. image:: /pictures/MAPE.png
 
@@ -2031,7 +1946,6 @@ def mape(
 
     Examples
     --------
-
     >>> import HydroErr as he
     >>> import numpy as np
 
@@ -2042,9 +1956,8 @@ def mape(
 
     References
     ----------
-    """
 
-    # Treats data
+    """
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
@@ -2111,7 +2024,6 @@ def mapd(
 
     Examples
     --------
-
     >>> import HydroErr as he
     >>> import numpy as np
 
@@ -2122,9 +2034,8 @@ def mapd(
 
     References
     ----------
-    """
 
-    # Treats data
+    """
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
@@ -2191,7 +2102,6 @@ def maape(
 
     Examples
     --------
-
     >>> import HydroErr as he
     >>> import numpy as np
 
@@ -2204,9 +2114,8 @@ def maape(
     ----------
     - Kim, S., Kim, H., 2016. A new metric of absolute percentage error for intermittent demand
       forecasts. International Journal of Forecasting 32(3) 669-679.
-    """
 
-    # Treats data
+    """
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
@@ -2229,9 +2138,7 @@ def smape1(
     remove_neg=False,
     remove_zero=False,
 ):
-    """
-
-    Compute the the Symmetric Mean Absolute Percentage Error (1) (SMAPE1).
+    """Compute the the Symmetric Mean Absolute Percentage Error (1) (SMAPE1).
 
     .. image:: /pictures/SMAPE1.png
 
@@ -2274,7 +2181,6 @@ def smape1(
 
     Examples
     --------
-
     Note that if we switch the simulated and observed arrays the result is the same
 
     >>> import HydroErr as he
@@ -2295,8 +2201,6 @@ def smape1(
       of Forecasting 15(4) 405-408.
 
     """
-
-    # Treats data
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
@@ -2320,9 +2224,7 @@ def smape2(
     remove_neg=False,
     remove_zero=False,
 ):
-    """
-
-    Compute the the Symmetric Mean Absolute Percentage Error (2) (SMAPE2).
+    """Compute the the Symmetric Mean Absolute Percentage Error (2) (SMAPE2).
 
     .. image:: /pictures/SMAPE2.png
 
@@ -2365,7 +2267,6 @@ def smape2(
 
     Examples
     --------
-
     Note that switching the simulated and observed arrays yields the same results
 
     >>> import HydroErr as he
@@ -2385,9 +2286,8 @@ def smape2(
       93-98.
     - Goodwin, P., Lawton, R., 1999. On the asymmetry of the symmetric MAPE. International Journal
       of Forecasting 15(4) 405-408.
-    """
 
-    # Treats data
+    """
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
@@ -2411,9 +2311,7 @@ def d(
     remove_neg=False,
     remove_zero=False,
 ):
-    """
-
-    Compute the the index of agreement (d).
+    """Compute the the index of agreement (d).
 
     .. image:: /pictures/d.png
 
@@ -2470,9 +2368,8 @@ def d(
       hydrologic and hydroclimatic model validation. Water Resources Research 35(1) 233-241.
     - Willmott, C.J., Robeson, S.M., Matsuura, K., 2012. A refined index of model performance.
       International Journal of Climatology 32(13) 2088-2094.
-    """
 
-    # Treats data
+    """
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
@@ -2496,9 +2393,7 @@ def d1(
     remove_neg=False,
     remove_zero=False,
 ):
-    """
-
-    Compute the the index of agreement (d1).
+    """Compute the the index of agreement (d1).
 
     .. image:: /pictures/d1.png
 
@@ -2542,7 +2437,6 @@ def d1(
 
     Examples
     --------
-
     >>> import HydroErr as he
     >>> import numpy as np
 
@@ -2555,9 +2449,8 @@ def d1(
     ----------
     - Willmott, C.J., Robeson, S.M., Matsuura, K., 2012. A refined index of model performance.
       International Journal of Climatology 32(13) 2088-2094.
-    """
 
-    # Treats data
+    """
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
@@ -2583,9 +2476,7 @@ def dr(
     remove_neg=False,
     remove_zero=False,
 ):
-    """
-
-    Compute the the refined index of agreement (dr).
+    """Compute the the refined index of agreement (dr).
 
     .. image:: /pictures/dr.png
 
@@ -2630,7 +2521,6 @@ def dr(
 
     Examples
     --------
-
     >>> import HydroErr as he
     >>> import numpy as np
 
@@ -2643,9 +2533,8 @@ def dr(
     ----------
     - Willmott, C.J., Robeson, S.M., Matsuura, K., 2012. A refined index of model performance.
       International Journal of Climatology 32(13) 2088-2094.
-    """
 
-    # Treats data
+    """
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
@@ -2714,7 +2603,6 @@ def drel(
 
     Examples
     --------
-
     >>> import HydroErr as he
     >>> import numpy as np
 
@@ -2727,9 +2615,8 @@ def drel(
     ----------
     - Krause, P., Boyle, D., Bäse, F., 2005. Comparison of different efficiency criteria for
       hydrological model assessment. Advances in geosciences 5 89-97.
-    """
 
-    # Treats data
+    """
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
@@ -2755,9 +2642,7 @@ def dmod(
     remove_neg=False,
     remove_zero=False,
 ):
-    """
-
-    Compute the the modified index of agreement (dmod).
+    """Compute the the modified index of agreement (dmod).
 
     .. image:: /pictures/dmod.png
 
@@ -2805,7 +2690,6 @@ def dmod(
 
     Examples
     --------
-
     Note that using the default is the same as calculating the d1 metric. Changing the value of j
     modification of the metric.
 
@@ -2821,13 +2705,10 @@ def dmod(
 
     References
     ----------
-
     - Krause, P., Boyle, D., Bäse, F., 2005. Comparison of different efficiency criteria for
       hydrological model assessment. Advances in geosciences 5 89-97.
 
     """
-
-    # Treats data
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
@@ -2895,7 +2776,6 @@ def watt_m(
 
     Examples
     --------
-
     >>> import HydroErr as he
     >>> import numpy as np
 
@@ -2908,9 +2788,8 @@ def watt_m(
     ----------
     - Watterson, I.G., 1996. Non‐dimensional measures of climate model performance. International
       Journal of Climatology 16(4) 379-391.
-    """
 
-    # Treats data
+    """
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
@@ -2936,9 +2815,7 @@ def mb_r(
     remove_neg=False,
     remove_zero=False,
 ):
-    """
-
-    Compute Mielke-Berry R value (MB R).
+    """Compute Mielke-Berry R value (MB R).
 
     .. image:: /pictures/MB_R.png
 
@@ -3004,7 +2881,6 @@ def mb_r(
 
     Examples
     --------
-
     >>> import HydroErr as he
     >>> import numpy as np
 
@@ -3022,8 +2898,6 @@ def mb_r(
       Springer Science & Business Media.
 
     """
-
-    # Treats data
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
@@ -3098,7 +2972,6 @@ def nse(
 
     Examples
     --------
-
     >>> import HydroErr as he
     >>> import numpy as np
 
@@ -3117,9 +2990,8 @@ def nse(
       I — A discussion of principles. Journal of Hydrology 282-290.
     - Willmott, C.J., Robeson, S.M., Matsuura, K., 2012. A refined index of model performance.
       International Journal of Climatology 32(13) 2088-2094.
-    """
 
-    # Treats data
+    """
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
@@ -3191,7 +3063,6 @@ def nse_mod(
 
     Examples
     --------
-
     >>> import HydroErr as he
     >>> import numpy as np
 
@@ -3206,8 +3077,6 @@ def nse_mod(
       hydrological model assessment. Advances in geosciences 5 89-97.
 
     """
-
-    # Treats data
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
@@ -3230,9 +3099,7 @@ def nse_rel(
     remove_neg=False,
     remove_zero=False,
 ):
-    """
-
-    Compute the relative Nash-Sutcliffe efficiency (NSE rel).
+    """Compute the relative Nash-Sutcliffe efficiency (NSE rel).
 
     .. image:: /pictures/NSErel.png
 
@@ -3276,7 +3143,6 @@ def nse_rel(
 
     Examples
     --------
-
     >>> import HydroErr as he
     >>> import numpy as np
 
@@ -3289,9 +3155,8 @@ def nse_rel(
     ----------
     - Krause, P., Boyle, D., Bäse, F., 2005. Comparison of different efficiency criteria for
       hydrological model assessment. Advances in geosciences 5 89-97.
-    """
 
-    # Treats data
+    """
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
@@ -3369,7 +3234,6 @@ def kge_2009(
 
     Examples
     --------
-
     >>> import HydroErr as he
     >>> import numpy as np
 
@@ -3386,9 +3250,8 @@ def kge_2009(
     - Gupta, H. V., Kling, H., Yilmaz, K. K., & Martinez, G. F. (2009). Decomposition of the mean
       squared error and NSE performance criteria: Implications for improving hydrological modelling.
       Journal of Hydrology, 377(1-2), 80-91.
-    """
 
-    # Treats data
+    """
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
@@ -3454,9 +3317,7 @@ def kge_2012(
     remove_zero=False,
     return_all=False,
 ):
-    """
-
-    Compute the Kling-Gupta efficiency (2012).
+    """Compute the Kling-Gupta efficiency (2012).
 
     .. image:: /pictures/KGE_2012.png
 
@@ -3508,7 +3369,6 @@ def kge_2012(
 
     Examples
     --------
-
     >>> import HydroErr as he
     >>> import numpy as np
 
@@ -3527,7 +3387,6 @@ def kge_2012(
       an ensemble of climate change scenarios. Journal of Hydrology, 424, 264-277.
 
     """
-
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
@@ -3601,9 +3460,7 @@ def lm_index(
     remove_neg=False,
     remove_zero=False,
 ):
-    """
-
-    Compute the Legate-McCabe Efficiency Index.
+    """Compute the Legate-McCabe Efficiency Index.
 
     .. image:: /pictures/E1p.png
 
@@ -3649,7 +3506,6 @@ def lm_index(
 
     Examples
     --------
-
     >>> import HydroErr as he
     >>> import numpy as np
 
@@ -3663,9 +3519,8 @@ def lm_index(
     - Legates, D.R., McCabe Jr, G.J., 1999. Evaluating the use of “goodness‐of‐fit” Measures in
       hydrologic and hydroclimatic model validation. Water Resources Research 35(1) 233-241.
       Lehmann, E.L., Casella, G., 1998. Springer Texts in Statistics. Springer-Verlag, New York.
-    """
 
-    # Treats data
+    """
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
@@ -3742,7 +3597,6 @@ def d1_p(
 
     Examples
     --------
-
     >>> import HydroErr as he
     >>> import numpy as np
 
@@ -3756,9 +3610,8 @@ def d1_p(
     - Legates, D.R., McCabe Jr, G.J., 1999. Evaluating the use of “goodness‐of‐fit” Measures in
       hydrologic and hydroclimatic model validation. Water Resources Research 35(1) 233-241.
       Lehmann, E.L., Casella, G., 1998. Springer Texts in Statistics. Springer-Verlag, New York.
-    """
 
-    # Treats data
+    """
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
@@ -3787,9 +3640,7 @@ def ve(
     remove_neg=False,
     remove_zero=False,
 ):
-    """
-
-    Compute the Volumetric Efficiency (VE).
+    """Compute the Volumetric Efficiency (VE).
 
     .. image:: /pictures/VE.png
 
@@ -3832,7 +3683,6 @@ def ve(
 
     Examples
     --------
-
     >>> import HydroErr as he
     >>> import numpy as np
 
@@ -3845,9 +3695,8 @@ def ve(
     ----------
     - Criss, R.E., Winston, W.E., 2008. Do Nash values have value? Discussion and alternate
       proposals. Hydrological Processes 22(14) 2723.
-    """
 
-    # Treats data
+    """
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
@@ -3914,7 +3763,6 @@ def sa(
 
     Examples
     --------
-
     >>> import HydroErr as he
     >>> import numpy as np
 
@@ -3928,9 +3776,8 @@ def sa(
     - Robila, S.A., Gershman, A., 2005. Spectral matching accuracy in processing hyperspectral
       data, Signals, Circuits and Systems, 2005. ISSCS 2005. International Symposium on. IEEE,
       pp. 163-166.
-    """
 
-    # Treats data
+    """
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
@@ -3997,7 +3844,6 @@ def sc(
 
     Examples
     --------
-
     >>> import HydroErr as he
     >>> import numpy as np
 
@@ -4011,9 +3857,8 @@ def sc(
     - Robila, S.A., Gershman, A., 2005. Spectral matching accuracy in processing hyperspectral
       data, Signals, Circuits and Systems, 2005. ISSCS 2005. International Symposium on. IEEE,
       pp. 163-166.
-    """
 
-    # Treats data
+    """
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
@@ -4085,7 +3930,6 @@ def sid(
 
     Examples
     --------
-
     >>> import HydroErr as he
     >>> import numpy as np
 
@@ -4099,9 +3943,8 @@ def sid(
     - Robila, S.A., Gershman, A., 2005. Spectral matching accuracy in processing hyperspectral
       data, Signals, Circuits and Systems, 2005. ISSCS 2005. International Symposium on. IEEE,
       pp. 163-166.
-    """
 
-    # Treats data
+    """
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
@@ -4172,7 +4015,6 @@ def sga(
 
     Examples
     --------
-
     >>> import HydroErr as he
     >>> import numpy as np
 
@@ -4186,9 +4028,8 @@ def sga(
     - Robila, S.A., Gershman, A., 2005. Spectral matching accuracy in processing hyperspectral
       data, Signals, Circuits and Systems, 2005. ISSCS 2005. International Symposium on. IEEE,
       pp. 163-166.
-    """
 
-    # Treats data
+    """
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
@@ -4262,7 +4103,6 @@ def h1_mhe(
 
     Examples
     --------
-
     >>> import HydroErr as he
     >>> import numpy as np
 
@@ -4275,9 +4115,8 @@ def h1_mhe(
     ----------
     - Tornquist, L., Vartia, P., Vartia, Y.O., 1985. How Should Relative Changes be Measured?
       The American Statistician 43-46.
-    """
 
-    # Treats data
+    """
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
@@ -4299,9 +4138,7 @@ def h1_mahe(
     remove_neg=False,
     remove_zero=False,
 ):
-    """
-
-    Compute the H1 absolute error.
+    """Compute the H1 absolute error.
 
     .. image:: /pictures/H1.png
     .. image:: /pictures/AHE.png
@@ -4345,7 +4182,6 @@ def h1_mahe(
 
     Examples
     --------
-
     >>> import HydroErr as he
     >>> import numpy as np
 
@@ -4358,9 +4194,8 @@ def h1_mahe(
     ----------
     - Tornquist, L., Vartia, P., Vartia, Y.O., 1985. How Should Relative Changes be Measured?
       The American Statistician 43-46.
-    """
 
-    # Treats data
+    """
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
@@ -4426,7 +4261,6 @@ def h1_rmshe(
 
     Examples
     --------
-
     >>> import HydroErr as he
     >>> import numpy as np
 
@@ -4441,8 +4275,6 @@ def h1_rmshe(
       The American Statistician 43-46.
 
     """
-
-    # Treats data
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
@@ -4464,9 +4296,7 @@ def h2_mhe(
     remove_neg=False,
     remove_zero=False,
 ):
-    """
-
-    Compute the H2 mean error.
+    """Compute the H2 mean error.
 
     .. image:: /pictures/H2.png
     .. image:: /pictures/MHE.png
@@ -4510,7 +4340,6 @@ def h2_mhe(
 
     Examples
     --------
-
     >>> import HydroErr as he
     >>> import numpy as np
 
@@ -4523,9 +4352,8 @@ def h2_mhe(
     ----------
     - Tornquist, L., Vartia, P., Vartia, Y.O., 1985. How Should Relative Changes be Measured?
       The American Statistician 43-46.
-    """
 
-    # Treats data
+    """
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
@@ -4547,9 +4375,7 @@ def h2_mahe(
     remove_neg=False,
     remove_zero=False,
 ):
-    """
-
-    Compute the H2 mean absolute error.
+    """Compute the H2 mean absolute error.
 
     .. image:: /pictures/H2.png
     .. image:: /pictures/AHE.png
@@ -4593,7 +4419,6 @@ def h2_mahe(
 
     Examples
     --------
-
     >>> import HydroErr as he
     >>> import numpy as np
 
@@ -4608,8 +4433,6 @@ def h2_mahe(
       The American Statistician 43-46.
 
     """
-
-    # Treats data
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
@@ -4631,9 +4454,7 @@ def h2_rmshe(
     remove_neg=False,
     remove_zero=False,
 ):
-    """
-
-    Compute the H2 root mean square error.
+    """Compute the H2 root mean square error.
 
     .. image:: /pictures/H1.png
     .. image:: /pictures/MHE.png
@@ -4677,7 +4498,6 @@ def h2_rmshe(
 
     Examples
     --------
-
     >>> import HydroErr as he
     >>> import numpy as np
 
@@ -4692,8 +4512,6 @@ def h2_rmshe(
       The American Statistician 43-46.
 
     """
-
-    # Treats data
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
@@ -4715,9 +4533,7 @@ def h3_mhe(
     remove_neg=False,
     remove_zero=False,
 ):
-    """
-
-    Compute the H3 mean error.
+    """Compute the H3 mean error.
 
     .. image:: /pictures/H3.png
     .. image:: /pictures/MHE.png
@@ -4761,7 +4577,6 @@ def h3_mhe(
 
     Examples
     --------
-
     >>> import HydroErr as he
     >>> import numpy as np
 
@@ -4776,8 +4591,6 @@ def h3_mhe(
       The American Statistician 43-46.
 
     """
-
-    # Treats data
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
@@ -4799,9 +4612,7 @@ def h3_mahe(
     remove_neg=False,
     remove_zero=False,
 ):
-    """
-
-    Compute the H3 mean absolute error.
+    """Compute the H3 mean absolute error.
 
     .. image:: /pictures/H3.png
     .. image:: /pictures/AHE.png
@@ -4845,7 +4656,6 @@ def h3_mahe(
 
     Examples
     --------
-
     >>> import HydroErr as he
     >>> import numpy as np
 
@@ -4860,8 +4670,6 @@ def h3_mahe(
       The American Statistician 43-46.
 
     """
-
-    # Treats data
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
@@ -4883,9 +4691,7 @@ def h3_rmshe(
     remove_neg=False,
     remove_zero=False,
 ):
-    """
-
-    Compute the H3 root mean square error.
+    """Compute the H3 root mean square error.
 
     .. image:: /pictures/H3.png
     .. image:: /pictures/RMSHE.png
@@ -4929,7 +4735,6 @@ def h3_rmshe(
 
     Examples
     --------
-
     >>> import HydroErr as he
     >>> import numpy as np
 
@@ -4944,8 +4749,6 @@ def h3_rmshe(
       The American Statistician 43-46.
 
     """
-
-    # Treats data
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
@@ -4967,9 +4770,7 @@ def h4_mhe(
     remove_neg=False,
     remove_zero=False,
 ):
-    """
-
-    Compute the H4 mean error.
+    """Compute the H4 mean error.
 
     .. image:: /pictures/H4.png
     .. image:: /pictures/MHE.png
@@ -5013,7 +4814,6 @@ def h4_mhe(
 
     Examples
     --------
-
     >>> import HydroErr as he
     >>> import numpy as np
 
@@ -5028,8 +4828,6 @@ def h4_mhe(
       The American Statistician 43-46.
 
     """
-
-    # Treats data
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
@@ -5051,9 +4849,7 @@ def h4_mahe(
     remove_neg=False,
     remove_zero=False,
 ):
-    """
-
-    Compute the H4 mean absolute error.
+    """Compute the H4 mean absolute error.
 
     .. image:: /pictures/H4.png
     .. image:: /pictures/AHE.png
@@ -5097,7 +4893,6 @@ def h4_mahe(
 
     Examples
     --------
-
     >>> import HydroErr as he
     >>> import numpy as np
 
@@ -5112,8 +4907,6 @@ def h4_mahe(
       The American Statistician 43-46.
 
     """
-
-    # Treats data
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
@@ -5135,9 +4928,7 @@ def h4_rmshe(
     remove_neg=False,
     remove_zero=False,
 ):
-    """
-
-    Compute the H4 mean error.
+    """Compute the H4 mean error.
 
     .. image:: /pictures/H4.png
     .. image:: /pictures/RMSHE.png
@@ -5181,7 +4972,6 @@ def h4_rmshe(
 
     Examples
     --------
-
     >>> import HydroErr as he
     >>> import numpy as np
 
@@ -5196,8 +4986,6 @@ def h4_rmshe(
       The American Statistician 43-46.
 
     """
-
-    # Treats data
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
@@ -5219,9 +5007,7 @@ def h5_mhe(
     remove_neg=False,
     remove_zero=False,
 ):
-    """
-
-    Compute the H5 mean error.
+    """Compute the H5 mean error.
 
     .. image:: /pictures/H5.png
     .. image:: /pictures/MHE.png
@@ -5265,7 +5051,6 @@ def h5_mhe(
 
     Examples
     --------
-
     >>> import HydroErr as he
     >>> import numpy as np
 
@@ -5280,8 +5065,6 @@ def h5_mhe(
       The American Statistician 43-46.
 
     """
-
-    # Treats data
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
@@ -5305,9 +5088,7 @@ def h5_mahe(
     remove_neg=False,
     remove_zero=False,
 ):
-    """
-
-    Compute the H5 mean absolute error.
+    """Compute the H5 mean absolute error.
 
     .. image:: /pictures/H5.png
     .. image:: /pictures/AHE.png
@@ -5351,7 +5132,6 @@ def h5_mahe(
 
     Examples
     --------
-
     >>> import HydroErr as he
     >>> import numpy as np
 
@@ -5366,8 +5146,6 @@ def h5_mahe(
       The American Statistician 43-46.
 
     """
-
-    # Treats data
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
@@ -5391,9 +5169,7 @@ def h5_rmshe(
     remove_neg=False,
     remove_zero=False,
 ):
-    """
-
-    Compute the H5 root mean square error.
+    """Compute the H5 root mean square error.
 
     .. image:: /pictures/H5.png
     .. image:: /pictures/RMSHE.png
@@ -5437,7 +5213,6 @@ def h5_rmshe(
 
     Examples
     --------
-
     >>> import HydroErr as he
     >>> import numpy as np
 
@@ -5452,8 +5227,6 @@ def h5_rmshe(
       The American Statistician 43-46.
 
     """
-
-    # Treats data
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
@@ -5478,9 +5251,7 @@ def h6_mhe(
     remove_neg=False,
     remove_zero=False,
 ):
-    """
-
-    Compute the H6 mean error.
+    """Compute the H6 mean error.
 
     .. image:: /pictures/H6.png
     .. image:: /pictures/MHE.png
@@ -5527,7 +5298,6 @@ def h6_mhe(
 
     Examples
     --------
-
     >>> import HydroErr as he
     >>> import numpy as np
 
@@ -5542,8 +5312,6 @@ def h6_mhe(
       The American Statistician 43-46.
 
     """
-
-    # Treats data
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
@@ -5615,7 +5383,6 @@ def h6_mahe(
 
     Examples
     --------
-
     >>> import HydroErr as he
     >>> import numpy as np
 
@@ -5630,8 +5397,6 @@ def h6_mahe(
       The American Statistician 43-46.
 
     """
-
-    # Treats data
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
@@ -5656,9 +5421,7 @@ def h6_rmshe(
     remove_neg=False,
     remove_zero=False,
 ):
-    """
-
-    Compute the H6 root mean square error.
+    """Compute the H6 root mean square error.
 
     .. image:: /pictures/H6.png
     .. image:: /pictures/RMSHE.png
@@ -5705,7 +5468,6 @@ def h6_rmshe(
 
     Examples
     --------
-
     >>> import HydroErr as he
     >>> import numpy as np
 
@@ -5720,8 +5482,6 @@ def h6_rmshe(
       The American Statistician 43-46.
 
     """
-
-    # Treats data
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
@@ -5745,9 +5505,7 @@ def h7_mhe(
     remove_neg=False,
     remove_zero=False,
 ):
-    """
-
-    Compute the H7 mean error.
+    """Compute the H7 mean error.
 
     .. image:: /pictures/H7.png
     .. image:: /pictures/MHE.png
@@ -5791,7 +5549,6 @@ def h7_mhe(
 
     Examples
     --------
-
     >>> import HydroErr as he
     >>> import numpy as np
 
@@ -5806,8 +5563,6 @@ def h7_mhe(
       The American Statistician 43-46.
 
     """
-
-    # Treats data
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
@@ -5829,9 +5584,7 @@ def h7_mahe(
     remove_neg=False,
     remove_zero=False,
 ):
-    """
-
-    Compute the H7 mean absolute error.
+    """Compute the H7 mean absolute error.
 
     .. image:: /pictures/H7.png
     .. image:: /pictures/AHE.png
@@ -5875,7 +5628,6 @@ def h7_mahe(
 
     Examples
     --------
-
     >>> import HydroErr as he
     >>> import numpy as np
 
@@ -5890,8 +5642,6 @@ def h7_mahe(
       The American Statistician 43-46.
 
     """
-
-    # Treats data
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
@@ -5913,9 +5663,7 @@ def h7_rmshe(
     remove_neg=False,
     remove_zero=False,
 ):
-    """
-
-    Compute the H7 root mean square error.
+    """Compute the H7 root mean square error.
 
     .. image:: /pictures/H7.png
     .. image:: /pictures/RMSHE.png
@@ -5959,7 +5707,6 @@ def h7_rmshe(
 
     Examples
     --------
-
     >>> import HydroErr as he
     >>> import numpy as np
 
@@ -5974,8 +5721,6 @@ def h7_rmshe(
       The American Statistician 43-46.
 
     """
-
-    # Treats data
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
@@ -6041,7 +5786,6 @@ def h8_mhe(
 
     Examples
     --------
-
     >>> import HydroErr as he
     >>> import numpy as np
 
@@ -6056,8 +5800,6 @@ def h8_mhe(
       The American Statistician 43-46.
 
     """
-
-    # Treats data
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
@@ -6079,9 +5821,7 @@ def h8_mahe(
     remove_neg=False,
     remove_zero=False,
 ):
-    """
-
-    Compute the H8 mean absolute error.
+    """Compute the H8 mean absolute error.
 
     .. image:: /pictures/H8.png
     .. image:: /pictures/AHE.png
@@ -6125,7 +5865,6 @@ def h8_mahe(
 
     Examples
     --------
-
     >>> import HydroErr as he
     >>> import numpy as np
 
@@ -6140,8 +5879,6 @@ def h8_mahe(
       The American Statistician 43-46.
 
     """
-
-    # Treats data
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
@@ -6163,9 +5900,7 @@ def h8_rmshe(
     remove_neg=False,
     remove_zero=False,
 ):
-    """
-
-    Compute the H8 root mean square error.
+    """Compute the H8 root mean square error.
 
     .. image:: /pictures/H8.png
     .. image:: /pictures/RMSHE.png
@@ -6209,7 +5944,6 @@ def h8_rmshe(
 
     Examples
     --------
-
     >>> import HydroErr as he
     >>> import numpy as np
 
@@ -6224,8 +5958,6 @@ def h8_rmshe(
       The American Statistician 43-46.
 
     """
-
-    # Treats data
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
@@ -6260,9 +5992,7 @@ def h10_mhe(
     remove_neg=False,
     remove_zero=False,
 ):
-    """
-
-    Compute the H10 mean error.
+    """Compute the H10 mean error.
 
     .. image:: /pictures/H10.png
     .. image:: /pictures/MHE.png
@@ -6306,7 +6036,6 @@ def h10_mhe(
 
     Examples
     --------
-
     >>> import HydroErr as he
     >>> import numpy as np
 
@@ -6321,8 +6050,6 @@ def h10_mhe(
       The American Statistician 43-46.
 
     """
-
-    # Treats data
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
@@ -6344,9 +6071,7 @@ def h10_mahe(
     remove_neg=False,
     remove_zero=False,
 ):
-    """
-
-    Compute the H10 mean absolute error.
+    """Compute the H10 mean absolute error.
 
     .. image:: /pictures/H10.png
     .. image:: /pictures/AHE.png
@@ -6390,7 +6115,6 @@ def h10_mahe(
 
     Examples
     --------
-
     >>> import HydroErr as he
     >>> import numpy as np
 
@@ -6405,8 +6129,6 @@ def h10_mahe(
       The American Statistician 43-46.
 
     """
-
-    # Treats data
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
@@ -6428,9 +6150,7 @@ def h10_rmshe(
     remove_neg=False,
     remove_zero=False,
 ):
-    """
-
-    Compute the H10 root mean square error.
+    """Compute the H10 root mean square error.
 
     .. image:: /pictures/H10.png
     .. image:: /pictures/RMSHE.png
@@ -6474,7 +6194,6 @@ def h10_rmshe(
 
     Examples
     --------
-
     >>> import HydroErr as he
     >>> import numpy as np
 
@@ -6489,8 +6208,6 @@ def h10_rmshe(
       The American Statistician 43-46.
 
     """
-
-    # Treats data
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
@@ -6517,9 +6234,7 @@ def g_mean_diff(
     remove_neg=False,
     remove_zero=False,
 ):
-    """
-
-    Compute the geometric mean difference.
+    """Compute the geometric mean difference.
 
     .. image:: /pictures/GMD.png
 
@@ -6563,7 +6278,6 @@ def g_mean_diff(
 
     Examples
     --------
-
     >>> import HydroErr as he
     >>> import numpy as np
 
@@ -6576,8 +6290,6 @@ def g_mean_diff(
     ----------
 
     """
-
-    # Treats data
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
@@ -6600,9 +6312,7 @@ def mean_var(
     remove_neg=False,
     remove_zero=False,
 ):
-    """
-
-    Compute the mean variance.
+    """Compute the mean variance.
 
     .. image:: /pictures/MV.png
 
@@ -6645,7 +6355,6 @@ def mean_var(
 
     Examples
     --------
-
     >>> import HydroErr as he
     >>> import numpy as np
 
@@ -6658,7 +6367,6 @@ def mean_var(
     ----------
 
     """
-
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
