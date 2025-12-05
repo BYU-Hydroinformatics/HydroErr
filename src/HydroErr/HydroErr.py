@@ -3441,9 +3441,8 @@ def kge_2009(
             )
         kge = np.nan
 
-    assert type(return_all) == bool, (
-        f"expected <type 'bool'> for parameter return_all, got {type(return_all)}"
-    )
+    if not isinstance(return_all, bool):
+        raise TypeError(f"expected <type 'bool'> for parameter return_all, got {type(return_all)}")
 
     if return_all:
         return pr, alpha, beta, kge
@@ -3590,9 +3589,8 @@ def kge_2012(
             )
         kge = np.nan
 
-    assert type(return_all) == bool, (
-        f"expected <type 'bool'> for parameter return_all, got {type(return_all)}"
-    )
+    if not isinstance(return_all, bool):
+        raise TypeError(f"expected <type 'bool'> for parameter return_all, got {type(return_all)}")
 
     if return_all:
         return pr, gam, beta, kge
