@@ -6626,7 +6626,7 @@ def treat_values(
     assert obs_copy.ndim == 1, "The observed array is not one dimensional."
 
     if sim_copy.size != obs_copy.size:
-        raise RuntimeError("The two ndarrays are not the same size.")
+        raise ValueError("The two ndarrays are not the same size.")
 
     # Treat missing data in observed_array and simulated_array, rows in simulated_array or
     # observed_array that contain nan values
