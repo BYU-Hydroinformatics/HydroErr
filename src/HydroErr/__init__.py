@@ -16,6 +16,6 @@ An example of this functionality is shown below.
 'ACC'
 """
 
-from .HydroErr import *
+from .HydroErr import *  # noqa: F403
 
 __version__ = "2.0.0"

@@ -5963,19 +5963,6 @@ def h8_rmshe(
     return np.sqrt(np.mean(h**2))
 
 
-# def h9(simulated_array, observed_array, h_type='mhe', k=1):
-#     h = (simulated_array / observed_array - 1) / \
-#         np.power(0.5 * (1 + np.power(simulated_array / observed_array, k)), 1 / k)
-#     if h_type == 'mhe':
-#         return h.mean()
-#     elif h_type == 'ahe':
-#         return np.abs(h).mean()
-#     elif h_type == 'rmshe':
-#         return np.sqrt((h**2).mean())
-#     else:
-#         raise RuntimeError("The three types available are 'mhe', 'ahe', and 'rmshe'.")
-
-
 def h10_mhe(
     simulated_array: FloatArray,
     observed_array: FloatArray,
@@ -6611,7 +6598,7 @@ for i in range(len(function_list)):
     function_list[i].abbr = metric_abbr[i]
 
 
-def treat_values(
+def treat_values(  # noqa: C901
     simulated_array: FloatArray,
     observed_array: FloatArray,
     replace_nan: float | None = None,
