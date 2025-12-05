@@ -356,8 +356,8 @@ def mle(
 
     **Range:** -inf < MLE < inf, data units, closer to zero is better.
 
-    **Notes** Same as the mean erro (ME) only use log ratios as the error term. Limits the impact of outliers, more
-    evenly weights high and low data values.
+    **Notes** Same as the mean erro (ME) only use log ratios as the error term. Limits the impact of
+    outliers, more evenly weights high and low data values.
 
     Parameters
     ----------
@@ -694,8 +694,8 @@ def mdae(
 
     **Range** 0 ≤ MdAE < inf, closer to zero is better.
 
-    **Notes** Random errors (noise) do not cancel. It is the same as the mean absolute error (MAE), only it takes the
-    median rather than the mean. Median measures reduces the impact of outliers.
+    **Notes** Random errors (noise) do not cancel. It is the same as the mean absolute error (MAE),
+    only it takes the median rather than the mean. Median measures reduces the impact of outliers.
 
     Parameters
     ----------
@@ -774,8 +774,8 @@ def mdse(
 
     **Range** 0 ≤ MdSE < inf, closer to zero is better.
 
-    **Notes** Random errors (noise) do not cancel. It is the same as the mean squared error (MSE), only it takes the
-    median rather than the mean. Median measures reduces the impact of outliers.
+    **Notes** Random errors (noise) do not cancel. It is the same as the mean squared error (MSE),
+    only it takes the median rather than the mean. Median measures reduces the impact of outliers.
 
     Parameters
     ----------
@@ -2981,8 +2981,9 @@ def mb_r(
 
     Notes
     -----
-    If a more optimized version is desired, the `numba package <http://numba.pydata.org/doc.html>`_ can be implemented
-    for a much more optimized performance when computing this metric. An example is given below.
+    If a more optimized version is desired, the `numba package <http://numba.pydata.org/doc.html>`_
+    can be implemented for a much more optimized performance when computing this metric. An example
+    is given below.
 
     >>> from numba import njit, prange
 
@@ -3358,7 +3359,8 @@ def kge_2009(
         computation.
 
     return_all: bool
-        If True, returns all of the components of the KGE metric, which are r, alpha, and beta, respectively.
+        If True, returns all of the components of the KGE metric, which are r, alpha, and beta,
+        respectively.
 
     Returns
     -------
@@ -3503,7 +3505,8 @@ def kge_2012(
         computation.
 
     return_all: bool
-        If True, returns all of the components of the KGE metric, which are r, gamma, and beta, respectively.
+        If True, returns all of the components of the KGE metric, which are r, gamma, and beta,
+        respectively.
 
     Returns
     -------
@@ -6955,9 +6958,9 @@ def treat_values(
             obs_copy[obs_nan] = replace_nan
 
             warnings.warn(
-                f"Elements(s) {np.where(sim_nan)[0]} contained NaN values in the simulated array and "
-                f"elements(s) {np.where(obs_nan)[0]} contained NaN values in the observed array and have been "
-                "replaced (Elements are zero indexed).",
+                f"Elements(s) {np.where(sim_nan)[0]} contained NaN values in the simulated array"
+                f" and elements(s) {np.where(obs_nan)[0]} contained NaN values in the observed"
+                " array and have been replaced (Elements are zero indexed).",
                 UserWarning,
             )
         else:
@@ -6968,8 +6971,8 @@ def treat_values(
             all_treatment_array = np.logical_and(all_treatment_array, all_nan_indices)
 
             warnings.warn(
-                f"Row(s) {np.where(~all_nan_indices)[0]} contained NaN values and the row(s) have been "
-                "removed (Rows are zero indexed).",
+                f"Row(s) {np.where(~all_nan_indices)[0]} contained NaN values and the row(s) have"
+                f" been removed (Rows are zero indexed).",
                 UserWarning,
             )
 
@@ -6983,9 +6986,9 @@ def treat_values(
             obs_copy[obs_inf] = replace_inf
 
             warnings.warn(
-                f"Elements(s) {np.where(sim_inf)[0]} contained Inf values in the simulated array and "
-                f"elements(s) {np.where(obs_inf)[0]} contained Inf values in the observed array and have been "
-                "replaced (Elements are zero indexed).",
+                f"Elements(s) {np.where(sim_inf)[0]} contained Inf values in the simulated array"
+                f" and elements(s) {np.where(obs_inf)[0]} contained Inf values in the observed"
+                " array and have been replaced (Elements are zero indexed).",
                 UserWarning,
             )
         else:
@@ -6995,8 +6998,8 @@ def treat_values(
             all_treatment_array = np.logical_and(all_treatment_array, all_inf_indices)
 
             warnings.warn(
-                f"Row(s) {np.where(~all_inf_indices)[0]} contained Inf or -Inf values and the row(s) have been removed (Rows "
-                "are zero indexed).",
+                f"Row(s) {np.where(~all_inf_indices)[0]} contained Inf or -Inf values and"
+                "the row(s) have been removed (Rows are zero indexed).",
                 UserWarning,
             )
 
@@ -7010,8 +7013,8 @@ def treat_values(
             all_treatment_array = np.logical_and(all_treatment_array, all_zero_indices)
 
             warnings.warn(
-                f"Row(s) {np.where(~all_zero_indices)[0]} contained zero values and the row(s) have been removed (Rows are "
-                "zero indexed).",
+                f"Row(s) {np.where(~all_zero_indices)[0]} contained zero values and the row(s)"
+                " have been removed (Rows are zero indexed).",
                 UserWarning,
             )
 
@@ -7031,8 +7034,8 @@ def treat_values(
             all_treatment_array = np.logical_and(all_treatment_array, all_neg_indices)
 
             warnings.warn(
-                f"Row(s) {np.where(~all_neg_indices)[0]} contained negative values and the row(s) have been "
-                "removed (Rows are zero indexed).",
+                f"Row(s) {np.where(~all_neg_indices)[0]} contained negative values and the row(s)"
+                f" have been removed (Rows are zero indexed).",
                 UserWarning,
             )
 
