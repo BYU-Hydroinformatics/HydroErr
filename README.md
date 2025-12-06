@@ -1,4 +1,7 @@
-[![codecov](https://codecov.io/gh/BYU-Hydroinformatics/HydroErr/branch/master/graph/badge.svg)](https://codecov.io/gh/BYU-Hydroinformatics/HydroErr)
+[![CI](https://github.com/BYU-Hydroinformatics/HydroErr/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/BYU-Hydroinformatics/HydroErr/actions/workflows/ci.yml?query=branch:master)
+[![image](https://img.shields.io/pypi/v/HydroErr.svg)](https://pypi.python.org/pypi/HydroErr)
+[![image](https://img.shields.io/pypi/l/HydroErr.svg)](https://github.com/BYU-Hydroinformatics/HydroErr/blob/master/LICENSE)
+[![image](https://img.shields.io/pypi/pyversions/HydroErr.svg)](https://pypi.python.org/pypi/HydroErr)
 
 Goodness of fit metrics for use in comparison studies, specifically for use in the field of hydrology
 
