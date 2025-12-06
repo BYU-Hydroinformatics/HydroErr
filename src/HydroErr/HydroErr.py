@@ -1793,9 +1793,11 @@ def acc(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the the anomaly correlation coefficient (ACC).
+    r"""Compute the the anomaly correlation coefficient (ACC).
 
-    .. image:: /pictures/ACC.png
+    .. math::
+
+       ACC=\frac{1}{n}\frac{\sum_{i=1}^{n}(S_i-\overline{S})(O_i-\overline{O})}{\sigma_o\sigma_s}
 
     **Range:** -1 ≤ ACC ≤ 1. -1 indicates perfect negative correlation of the variation
     pattern of the anomalies, 0 indicates complete randomness of the variation patterns of the
