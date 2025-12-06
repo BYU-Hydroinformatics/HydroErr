@@ -101,9 +101,11 @@ def me(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the mean error of the simulated and observed data.
+    r"""Compute the mean error of the simulated and observed data.
 
-    .. image:: /pictures/ME.png
+    .. math::
+
+       ME $= \frac{1}{n} \sum_{i=0}^{n} (S_i - O_i)$
 
     **Range:** -inf < MAE < inf, data units, closer to zero is better, indicates bias.
 
@@ -187,9 +189,11 @@ def mae(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the mean absolute error of the simulated and observed data.
+    r"""Compute the mean absolute error of the simulated and observed data.
 
-    .. image:: /pictures/MAE.png
+    .. math::
+
+       $MAE = \frac{1}{n} \sum_{i=0}^{n} | S_i - O_i |$
 
     **Range:** 0 ≤ MAE < inf, data units, smaller is better.
 
@@ -269,9 +273,11 @@ def mse(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the mean squared error of the simulated and observed data.
+    r"""Compute the mean squared error of the simulated and observed data.
 
-    .. image:: /pictures/MSE.png
+    .. math::
+
+       $MSE = \frac{1}{n} \sum_{i=1}^{n}(S_i - O_i)^2$
 
     **Range:** 0 ≤ MSE < inf, data units squared, smaller is better.
 
@@ -346,9 +352,11 @@ def mle(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the mean log error of the simulated and observed data.
+    r"""Compute the mean log error of the simulated and observed data.
 
-    .. image:: /pictures/MLE.png
+    .. math::
+
+       $MLE = \frac{1}{n} \sum_{i=0}^{n} ln(\frac{S_i}{O_i})$
 
     **Range:** -inf < MLE < inf, data units, closer to zero is better.
 
@@ -427,9 +435,11 @@ def male(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the mean absolute log error of the simulated and observed data.
+    r"""Compute the mean absolute log error of the simulated and observed data.
 
-    .. image:: /pictures/MALE.png
+    .. math::
+
+       $MALE = \frac{1}{n} \sum_{i=0}^{n} | ln(\frac{S_i}{O_i}) |$
 
     **Range:** 0 ≤ MALE < inf, data units squared, smaller is better.
 
@@ -508,9 +518,11 @@ def msle(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the mean squared log error of the simulated and observed data.
+    r"""Compute the mean squared log error of the simulated and observed data.
 
-    .. image:: /pictures/MSLE.png
+    .. math::
+
+       $MALE = \frac{1}{n} \sum_{i=0}^{n} (ln(\frac{S_i}{O_i}))^2$
 
     **Range:** 0 ≤ MSLE < inf, data units squared, smaller is better.
 
@@ -589,9 +601,11 @@ def mde(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the median error (MdE) between the simulated and observed data.
+    r"""Compute the median error (MdE) between the simulated and observed data.
 
-    .. image:: /pictures/MdE.png
+    .. math::
+
+       $MdE = median(S_i - O_i)$
 
     **Range** -inf < MdE < inf, closer to zero is better.
 
@@ -663,9 +677,11 @@ def mdae(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the median absolute error (MdAE) between the simulated and observed data.
+    r"""Compute the median absolute error (MdAE) between the simulated and observed data.
 
-    .. image:: /pictures/MdAE.png
+    .. math::
+
+       $MdE = median|S_i - O_i|$
 
     **Range** 0 ≤ MdAE < inf, closer to zero is better.
 
@@ -737,9 +753,11 @@ def mdse(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the median squared error (MdSE) between the simulated and observed data.
+    r"""Compute the median squared error (MdSE) between the simulated and observed data.
 
-    .. image:: /pictures/MdSE.png
+    .. math::
+
+       $MdE = median(S_i - O_i)^2$
 
     **Range** 0 ≤ MdSE < inf, closer to zero is better.
 
@@ -811,9 +829,11 @@ def ed(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the Euclidean distance between predicted and observed values in vector space.
+    r"""Compute the Euclidean distance between predicted and observed values in vector space.
 
-    .. image:: /pictures/ED.png
+    .. math::
+
+       $ED = (\sum_{i=0}^{n}|S_i-O_i|^2)^\frac{1}{2}$
 
     **Range** 0 ≤ ED < inf, smaller is better.
     **Notes** Also sometimes referred to as the L2-norm.
@@ -887,9 +907,11 @@ def ned(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the normalized Euclidian distance between the simulated and observed data in vector space.
+    r"""Compute the normalized Euclidian distance between the simulated and observed data in vector space.
 
-    .. image:: /pictures/NED.png
+    .. math::
+
+       $NED = (\sum_{i=0}^{n}|\frac{S_i}{\overline{S}}-\frac{O_i}{\overline{O}}|^2)^\frac{1}{2}$
 
     **Range** 0 ≤ NED < inf, smaller is better.
 
@@ -966,9 +988,11 @@ def rmse(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the root mean square error between the simulated and observed data.
+    r"""Compute the root mean square error between the simulated and observed data.
 
-    .. image:: /pictures/RMSE.png
+    .. math::
+
+       $RMSE = (\frac{1}{n} \sum_{i=0}^{n}(S_i-O_i)^2)^\frac{1}{2}$
 
     **Range** 0 ≤ RMSE < inf, smaller is better.
 
@@ -1047,9 +1071,11 @@ def rmsle(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the root mean square log error between the simulated and observed data.
+    r"""Compute the root mean square log error between the simulated and observed data.
 
-    .. image:: /pictures/RMSLE.png
+    .. math::
+
+       $RMSLE = (\frac{1}{n} \sum_{i=0}^{n}(ln(\frac{S_i}{O_i}))^2)^\frac{1}{2}$
 
     **Range:** 0 ≤ RMSLE < inf. Smaller is better, and it does not indicate bias.
 
@@ -1130,9 +1156,11 @@ def nrmse_range(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the range normalized root mean square error between the simulated and observed data.
+    r"""Compute the range normalized root mean square error between the simulated and observed data.
 
-    .. image:: /pictures/NRMSE_Range.png
+    .. math::
+
+       $NRMSE_{Range} = \frac{RMSE}{O_{max} - O_{min}}$
 
     **Range:** 0 ≤ NRMSE < inf.
 
@@ -1212,9 +1240,11 @@ def nrmse_mean(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the mean normalized root mean square error between the simulated and observed data.
+    r"""Compute the mean normalized root mean square error between the simulated and observed data.
 
-    .. image:: /pictures/NRMSE_Mean.png
+    .. math::
+
+       $NRMSE_{Mean} = \frac{RMSE}{\overline{O}}$
 
     **Range:** 0 ≤ NRMSE < inf.
 
@@ -1292,9 +1322,11 @@ def nrmse_iqr(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the IQR normalized root mean square error between the simulated and observed data.
+    r"""Compute the IQR normalized root mean square error between the simulated and observed data.
 
-    .. image:: /pictures/NRMSE_IQR.png
+    .. math::
+
+       $NRMSE_{quartile} = \frac{RMSE}{Quartile_3 - Quartile_1}$
 
     **Range:** 0 ≤ NRMSE < inf.
 
@@ -1375,9 +1407,13 @@ def irmse(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the inertial root mean square error (IRMSE) between the simulated and observed data.
+    r"""Compute the inertial root mean square error (IRMSE) between the simulated and observed data.
 
-    .. image:: /pictures/IRMSE.png
+    .. math::
+
+       $\Delta^{}_o=(O_2 - O_1, O_3 - O_2, ... , O_n - O_{n-1})$
+       $\sigma^{}_{\Delta^{}_o}=\sqrt{\sum_{i=1}^{n}\frac{(\Delta_{o^{}_i}-\overline{\Delta_o})^2}{n-1}}=$ std $(\Delta_o)$
+       IRMSE $= \frac{RMSE}{\sigma^{}_{\Delta^{}_o}}$
 
     **Range:** 0 ≤ IRMSE < inf, lower is better.
 
@@ -1432,7 +1468,7 @@ def irmse(
     - Daga, M., Deo, M.C., 2009. Alternative data-driven methods to estimate wind from waves by
       inverse modeling. Natural Hazards 49(2) 293-310.
 
-    """
+    """  # noqa: E501
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
@@ -1463,9 +1499,11 @@ def mase(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the mean absolute scaled error between the simulated and observed data.
+    r"""Compute the mean absolute scaled error between the simulated and observed data.
 
-    .. image:: /pictures/MASE.png
+    .. math::
+
+       $MASE = \frac{\sum_{i=1}^{n}|S_i-O_i|}{\frac{n}{n-1}\sum_{i=1}^{n}|O_i-O_{i-1}|}$
 
     **Range:**
 
@@ -1546,9 +1584,11 @@ def pearson_r(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the pearson correlation coefficient.
+    r"""Compute the pearson correlation coefficient.
 
-    .. image:: /pictures/R_pearson.png
+    .. math::
+
+       $R_{Pearson}=\frac{\sum_{i=1}^{n}(O_i-\overline{O})(S_i-\overline{S})}{\sqrt{\sum_{i=1}^{n}(O_i-\overline{O})^2}\sqrt{\sum_{i=1}^{n}(S_i-\overline{S})^2}}$
 
     **Range:** -1 ≤ R (Pearson) ≤ 1. 1 indicates perfect postive correlation, 0 indicates
     complete randomness, -1 indicate perfect negative correlation.
@@ -1630,9 +1670,11 @@ def spearman_r(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the spearman rank correlation coefficient.
+    r"""Compute the spearman rank correlation coefficient.
 
-    .. image:: /pictures/R_spearman.png
+    .. math::
+
+       $R_{Spearman}=\frac{\frac{1}{n}\sum_{i=1}^{n}(R(O_i)-\overline{R(O)})(R(S_i)-\overline{R(S)})}{\sqrt{\frac{1}{n}\sum_{i=1}^{n}(R(O_i)-\overline{R(O)})^2}\sqrt{\frac{1}{n}\sum_{i=1}^{n}(R(S_i)-\overline{R(S)})^2}}$
 
     **Range:** -1 ≤ R (Pearson) ≤ 1. 1 indicates perfect postive correlation, 0 indicates
     complete randomness, -1 indicate perfect negative correlation.
@@ -1720,9 +1762,11 @@ def r_squared(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the the Coefficient of Determination (r2).
+    r"""Compute the the Coefficient of Determination (r2).
 
-    .. image:: /pictures/r2.png
+    .. math::
+
+       $R^2=\frac{(\sum_{i=1}^{n}(O_i-\overline{O})(S_i-\overline{S}))^2}{\sum_{i=1}^{n}(O_i-\overline{O})^2\sum_{i=1}^{n}(S_i-\overline{S})^2}$
 
     **Range:** 0 ≤ r2 ≤ 1. 1 indicates perfect correlation, 0 indicates complete randomness.
 
@@ -1883,9 +1927,11 @@ def mape(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the the mean absolute percentage error (MAPE).
+    r"""Compute the the mean absolute percentage error (MAPE).
 
-    .. image:: /pictures/MAPE.png
+    .. math::
+
+       $MAPE=\frac{100\%}{n}\sum_{i=1}^{n}|\frac{S_i-O_i}{O_i}|$
 
     **Range:** 0% ≤ MAPE ≤ inf. 0% indicates perfect correlation, a larger error indicates a
     larger percent error in the data.
@@ -1958,9 +2004,11 @@ def mapd(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the the mean absolute percentage deviation (MAPD).
+    r"""Compute the the mean absolute percentage deviation (MAPD).
 
-    .. image:: /pictures/MAPD.png
+    .. math::
+
+       $MAPE=100\%\frac{\sum_{i=1}^{n}|S_i-O_i|}{\sum_{i=1}^{n}|O_i|}$
 
     **Range:**
 
@@ -2031,9 +2079,11 @@ def maape(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the the Mean Arctangent Absolute Percentage Error (MAAPE).
+    r"""Compute the the Mean Arctangent Absolute Percentage Error (MAAPE).
 
-    .. image:: /pictures/MAAPE.png
+    .. math::
+
+       $MAPE=\frac{1}{n}\sum_{i=1}^{n}arctan|\frac{S_i-O_i}{O_i}|$
 
     **Range:** 0 ≤ MAAPE < π/2, does not indicate bias, smaller is better.
 
@@ -2110,9 +2160,11 @@ def smape1(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the the Symmetric Mean Absolute Percentage Error (1) (SMAPE1).
+    r"""Compute the the Symmetric Mean Absolute Percentage Error (1) (SMAPE1).
 
-    .. image:: /pictures/SMAPE1.png
+    .. math::
+
+       $sMAPE1=\frac{100\%}{n}\sum_{i=1}^{n}\frac{|S_i-O_i|}{|S_i|+|O_i|}$
 
     **Range:** 0 ≤ SMAPE1 < 100%, smaller is better, symmetrical.
 
@@ -2195,9 +2247,11 @@ def smape2(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the the Symmetric Mean Absolute Percentage Error (2) (SMAPE2).
+    r"""Compute the the Symmetric Mean Absolute Percentage Error (2) (SMAPE2).
 
-    .. image:: /pictures/SMAPE2.png
+    .. math::
+
+       $sMAPE2=\frac{100\%}{n}\sum_{i=1}^{n}\left| \frac{S_i-O_i}{\frac{(S_i+O_i)}{2}} \right|$
 
     **Range:** 0 ≤ SMAPE1 < 200%, does not indicate bias, smaller is better, symmetrical.
 
@@ -2281,9 +2335,11 @@ def d(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the the index of agreement (d).
+    r"""Compute the the index of agreement (d).
 
-    .. image:: /pictures/d.png
+    .. math::
+
+       $d=1-\frac{\sum_{i=1}^{n}(S_i-O_i)^2}{\sum_{i=1}^{n}(|S_i-\overline{O}|+|O_i-\overline{O}|)^2}$
 
     **Range:** 0 ≤ d < 1, does not indicate bias, larger is better.
 
@@ -2362,9 +2418,11 @@ def d1(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the the index of agreement (d1).
+    r"""Compute the the index of agreement (d1).
 
-    .. image:: /pictures/d1.png
+    .. math::
+
+       $d_{1}=1-\frac{\sum_{i=1}^{n}|S_i-O_i|}{\sum_{i=1}^{n}(|S_i-\overline{O}|+|O_i-\overline{O}|)}$
 
     **Range:** 0 ≤ d < 1, does not indicate bias, larger is better.
 
@@ -2444,9 +2502,13 @@ def dr(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the the refined index of agreement (dr).
+    r"""Compute the the refined index of agreement (dr).
 
-    .. image:: /pictures/dr.png
+    .. math::
+
+       Note: \enspace $||S_i-O_i||=\sum_{i=1}^n|S_i-O_i|$
+       When \enspace $||S_i-O_i|| \leq 2||O_i-\overline{O}||, \enspace d_r=1-\frac{||S_i-O_i||}{2||O_i-\overline{O}||}$
+       When \enspace $||S_i-O_i|| > 2||O_i-\overline{O}||, \enspace d_r=\frac{2||O_i-\overline{O}||}{||S_i-O_i||}-1$
 
     **Range:** -1 ≤ dr < 1, does not indicate bias, larger is better.
 
@@ -2501,7 +2563,7 @@ def dr(
     - Willmott, C.J., Robeson, S.M., Matsuura, K., 2012. A refined index of model performance.
       International Journal of Climatology 32(13) 2088-2094.
 
-    """
+    """  # noqa: E501
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
@@ -2526,9 +2588,11 @@ def drel(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the the relative index of agreement (drel).
+    r"""Compute the the relative index of agreement (drel).
 
-    .. image:: /pictures/drel.png
+    .. math::
+
+       $d_{rel}=1-\frac{\sum_{i=1}^{n}(\frac{S_i-O_i}{O_i})^2}{\sum_{i=1}^{n}(\frac{|S_i-\overline{O}|+|O_i-\overline{O}|}{\overline{O}})^2}$
 
     **Range:** 0 ≤ drel < 1, does not indicate bias, larger is better.
 
@@ -2607,9 +2671,11 @@ def dmod(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the the modified index of agreement (dmod).
+    r"""Compute the the modified index of agreement (dmod).
 
-    .. image:: /pictures/dmod.png
+    .. math::
+
+       $d_{mod}=1-\frac{\sum_{i=1}^{n}|S_i-O_i|^j}{\sum_{i=1}^{n}(|S_i-\overline{O}|+|O_i-\overline{O}|)^j}$
 
     **Range:** 0 ≤ dmod < 1, does not indicate bias, larger is better.
 
@@ -2697,9 +2763,11 @@ def watt_m(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute Watterson's M (M).
+    r"""Compute Watterson's M (M).
 
-    .. image:: /pictures/M.png
+    .. math::
+
+       $M=\left(\frac{2}{\pi}\right)sin^{-1}\left(1-\frac{MSE}{\sigma^2_s+\sigma^2_o+(\overline{S}-\overline{O})^2}\right)$
 
     **Range:** -1 ≤ M < 1, does not indicate bias, larger is better.
 
@@ -2778,9 +2846,11 @@ def mb_r(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute Mielke-Berry R value (MB R).
+    r"""Compute Mielke-Berry R value (MB R).
 
-    .. image:: /pictures/MB_R.png
+    .. math::
+
+       $\Re=1-\frac{MAE}{n^{-2}\sum_{j=1}^{n}\sum_{i=1}^{n}|S_j-O_i|}$
 
     **Range:** 0 ≤ MB R < 1, does not indicate bias, larger is better.
 
@@ -2886,9 +2956,11 @@ def nse(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the Nash-Sutcliffe Efficiency.
+    r"""Compute the Nash-Sutcliffe Efficiency.
 
-    .. image:: /pictures/NSE.png
+    .. math::
+
+       $NSE=1-\frac{\sum_{i=1}^{n}(S_i-O_i)^2}{\sum_{i=1}^{n}(O_i-\overline{O})^2}$
 
     **Range:** -inf < NSE < 1, does not indicate bias, larger is better.
 
@@ -2974,9 +3046,11 @@ def nse_mod(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the modified Nash-Sutcliffe efficiency (NSE mod).
+    r"""Compute the modified Nash-Sutcliffe efficiency (NSE mod).
 
-    .. image:: /pictures/NSEmod.png
+    .. math::
+
+       $NSE_{mod}=1-\frac{\sum_{i=1}^{n}|S_i-O_i|^j}{\sum_{i=1}^{n}|O_i-\overline{O}|^j}$
 
     **Range:** -inf < NSE (mod) < 1, does not indicate bias, larger is better.
 
@@ -3057,9 +3131,11 @@ def nse_rel(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the relative Nash-Sutcliffe efficiency (NSE rel).
+    r"""Compute the relative Nash-Sutcliffe efficiency (NSE rel).
 
-    .. image:: /pictures/NSErel.png
+    .. math::
+
+       $NSE_{rel}=1-\frac{\sum_{i=1}^{n}\left|\frac{S_i-O_i}{O_i}\right|^2}{\sum_{i=1}^{n}\left|\frac{O_i-\overline{O}}{\overline{O}}\right|^2}$
 
     **Range:** -inf < NSE (rel) < 1, does not indicate bias, larger is better.
 
@@ -3140,9 +3216,27 @@ def kge_2009(
 ) -> (
     np.floating[Any] | tuple[np.floating[Any], np.floating[Any], np.floating[Any], np.floating[Any]]
 ):
-    """Compute the Kling-Gupta efficiency (2009).
+    r"""Compute the Kling-Gupta efficiency (2009).
 
-    .. image:: /pictures/KGE_2009.png
+    .. math::
+
+       KGE_{2009}=1-ED
+
+    .. math::
+
+       ED=\sqrt{(s[1]*(r-1))^2+(s[2]*(\alpha-1))^2+(s[3]*(\beta-1))^2}
+
+    .. math::
+
+       r = \text{Pearson Correlation Coefficient}
+
+    .. math::
+
+       \beta=\mu_s / \mu_o
+
+    .. math::
+
+       \alpha = \sigma_s / \sigma_o
 
     **Range:** -inf < KGE (2009) < 1, larger is better.
 
@@ -3279,9 +3373,15 @@ def kge_2012(
 ) -> (
     np.floating[Any] | tuple[np.floating[Any], np.floating[Any], np.floating[Any], np.floating[Any]]
 ):
-    """Compute the Kling-Gupta efficiency (2012).
+    r"""Compute the Kling-Gupta efficiency (2012).
 
-    .. image:: /pictures/KGE_2012.png
+    .. math::
+
+       $KGE_{2012}=1-ED$
+       $ED=\sqrt{(s[1]*(r-1))^2+(s[2]*(\gamma-1))^2+(s[3]*(\beta-1))^2}$
+       $r =$ Pearson Correlation Coefficient
+       $\beta=\mu_s / \mu_o$
+       $\gamma = \frac{CV_s}{CV_o} = \frac{\sigma_s/\mu_s}{\sigma_o/\mu_o}$
 
     **Range:** -inf < KGE (2012) < 1, does not indicate bias, larger is better.
 
@@ -3424,9 +3524,11 @@ def lm_index(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the Legate-McCabe Efficiency Index.
+    r"""Compute the Legate-McCabe Efficiency Index.
 
-    .. image:: /pictures/E1p.png
+    .. math::
+
+       $E_{1}^{'} = 1-\frac{\sum_{i=1}^{n}\left|S_i-O_i\right|}{\sum_{i=1}^{n} \left|O_i-\overline{O_i^{'}}\right|}$
 
     **Range:** 0 ≤ E1' < 1, does not indicate bias, larger is better.
 
@@ -3483,7 +3585,7 @@ def lm_index(
       hydrologic and hydroclimatic model validation. Water Resources Research 35(1) 233-241.
       Lehmann, E.L., Casella, G., 1998. Springer Texts in Statistics. Springer-Verlag, New York.
 
-    """
+    """  # noqa: E501
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
@@ -3513,9 +3615,11 @@ def d1_p(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the Legate-McCabe Index of Agreement.
+    r"""Compute the Legate-McCabe Index of Agreement.
 
-    .. image:: /pictures/D1p.png
+    .. math::
+
+       $d_{1}^{'} = 1-\frac{\sum_{i=1}^{n}\left|S_i-O_i\right|}{\sum_{i=1}^{n} \left| S_i - \overline{O_i^{'}} \right| + \left| O_i - \overline{O_i^{'}} \right| }$
 
     **Range:** 0 ≤ d1' < 1, does not indicate bias, larger is better.
 
@@ -3572,7 +3676,7 @@ def d1_p(
       hydrologic and hydroclimatic model validation. Water Resources Research 35(1) 233-241.
       Lehmann, E.L., Casella, G., 1998. Springer Texts in Statistics. Springer-Verlag, New York.
 
-    """
+    """  # noqa: E501
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
@@ -3600,9 +3704,11 @@ def ve(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the Volumetric Efficiency (VE).
+    r"""Compute the Volumetric Efficiency (VE).
 
-    .. image:: /pictures/VE.png
+    .. math::
+
+       $VE = 1-\frac{\sum_{i=1}^{n} |S_i - O_i|}{\sum_{i=1}^{n} O_i}$
 
     **Range:** 0 ≤ VE < 1 smaller is better, does not indicate bias.
 
@@ -3678,9 +3784,11 @@ def sa(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the Spectral Angle (SA).
+    r"""Compute the Spectral Angle (SA).
 
-    .. image:: /pictures/SA.png
+    .. math::
+
+       $SA = arccos\left( \frac{\langle S, O \rangle}{||S||^{}_2 ||O||^{}_2} \right)$
 
     **Range:** -π/2 ≤ SA < π/2, closer to 0 is better.
 
@@ -3758,9 +3866,11 @@ def sc(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the Spectral Correlation (SC).
+    r"""Compute the Spectral Correlation (SC).
 
-    .. image:: /pictures/SC.png
+    .. math::
+
+       $SC = arccos\left(\frac{\langle(S_i-\overline{S})(O_i-\overline{O})\rangle}{||S_i-\overline{S}||_2 ||O_i-\overline{O}||_2}\right)$
 
     **Range:** -π/2 ≤ SA < π/2, closer to 0 is better.
 
@@ -3815,7 +3925,7 @@ def sc(
       data, Signals, Circuits and Systems, 2005. ISSCS 2005. International Symposium on. IEEE,
       pp. 163-166.
 
-    """
+    """  # noqa: E501
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
@@ -3843,9 +3953,11 @@ def sid(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the Spectral Information Divergence (SID).
+    r"""Compute the Spectral Information Divergence (SID).
 
-    .. image:: /pictures/SID.png
+    .. math::
+
+       $\Biggl\langle \left( \frac{O_i}{\overline{O}} - \frac{S_i}{\overline{S}} \right), \left( log \left( \frac{O_i}{\overline{O}} \right) - log \left( \frac{S_i}{\overline{S}} \right) \right)  \Biggr\rangle$
 
     **Range:** -π/2 ≤ SID < π/2, closer to 0 is better.
 
@@ -3900,7 +4012,7 @@ def sid(
       data, Signals, Circuits and Systems, 2005. ISSCS 2005. International Symposium on. IEEE,
       pp. 163-166.
 
-    """
+    """  # noqa: E501
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
@@ -3926,9 +4038,14 @@ def sga(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the Spectral Gradient Angle (SGA).
+    r"""Compute the Spectral Gradient Angle (SGA).
 
-    .. image:: /pictures/SGA.png
+    .. math::
+
+       SG$_o = (O_2-O_1, O_3-O_2,...,O_n-O_{n-1})$
+       SG$_s = (S_2-S_1, S_3-S_2,...,S_n-S_{n-1})$
+       SGA $= SA(SG_o, SG_s)$
+       Note: SA=Spectral \enspace Angle \enspace Metric
 
     **Range:** -π/2 ≤ SID < π/2, closer to 0 is better.
 
@@ -4014,10 +4131,14 @@ def h1_mhe(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the H1 mean error.
+    r"""Compute the H1 mean error.
 
-    .. image:: /pictures/H1.png
-    .. image:: /pictures/MHE.png
+    .. math::
+
+       $H_1 = \frac {S_i-O_i}{O_i}$
+    .. math::
+
+       Mean H Error $=\frac {1}{n}\sum_{i=1}^{n} H$
 
     **Range:**
 
@@ -4092,10 +4213,14 @@ def h1_mahe(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the H1 absolute error.
+    r"""Compute the H1 absolute error.
 
-    .. image:: /pictures/H1.png
-    .. image:: /pictures/AHE.png
+    .. math::
+
+       $H_1 = \frac {S_i-O_i}{O_i}$
+    .. math::
+
+       Absolute H Error $=\frac {1}{n}\sum_{i=1}^{n} |H|$
 
     **Range:**
 
@@ -4170,10 +4295,14 @@ def h1_rmshe(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the H1 root mean square error.
+    r"""Compute the H1 root mean square error.
 
-    .. image:: /pictures/H1.png
-    .. image:: /pictures/RMSHE.png
+    .. math::
+
+       $H_1 = \frac {S_i-O_i}{O_i}$
+    .. math::
+
+       Root Mean Squared H Error $= \sqrt{\frac {1}{n}\sum_{i=1}^{n} H^2}$
 
     **Range:**
 
@@ -4248,10 +4377,14 @@ def h2_mhe(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the H2 mean error.
+    r"""Compute the H2 mean error.
 
-    .. image:: /pictures/H2.png
-    .. image:: /pictures/MHE.png
+    .. math::
+
+       $H_2 = \frac {S_i-O_i}{S_i}$
+    .. math::
+
+       Mean H Error $=\frac {1}{n}\sum_{i=1}^{n} H$
 
     **Range:**
 
@@ -4326,10 +4459,14 @@ def h2_mahe(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the H2 mean absolute error.
+    r"""Compute the H2 mean absolute error.
 
-    .. image:: /pictures/H2.png
-    .. image:: /pictures/AHE.png
+    .. math::
+
+       $H_2 = \frac {S_i-O_i}{S_i}$
+    .. math::
+
+       Absolute H Error $=\frac {1}{n}\sum_{i=1}^{n} |H|$
 
     **Range:**
 
@@ -4404,10 +4541,14 @@ def h2_rmshe(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the H2 root mean square error.
+    r"""Compute the H2 root mean square error.
 
-    .. image:: /pictures/H1.png
-    .. image:: /pictures/MHE.png
+    .. math::
+
+       $H_1 = \frac {S_i-O_i}{O_i}$
+    .. math::
+
+       Mean H Error $=\frac {1}{n}\sum_{i=1}^{n} H$
 
     **Range:**
 
@@ -4481,11 +4622,15 @@ def h3_mhe(
     replace_inf: float | None = None,
     remove_neg: bool = False,
     remove_zero: bool = False,
-) -> np.floating:
-    """Compute the H3 mean error.
+) -> np.floating[Any]:
+    r"""Compute the H3 mean error.
 
-    .. image:: /pictures/H3.png
-    .. image:: /pictures/MHE.png
+    .. math::
+
+       $H_3 = \frac {S_i-O_i}{\frac{1}{2}(S_i+O_i)}$
+    .. math::
+
+       Mean H Error $=\frac {1}{n}\sum_{i=1}^{n} H$
 
     **Range:**
 
@@ -4560,10 +4705,14 @@ def h3_mahe(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the H3 mean absolute error.
+    r"""Compute the H3 mean absolute error.
 
-    .. image:: /pictures/H3.png
-    .. image:: /pictures/AHE.png
+    .. math::
+
+       $H_3 = \frac {S_i-O_i}{\frac{1}{2}(S_i+O_i)}$
+    .. math::
+
+       Absolute H Error $=\frac {1}{n}\sum_{i=1}^{n} |H|$
 
     **Range:**
 
@@ -4638,10 +4787,14 @@ def h3_rmshe(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the H3 root mean square error.
+    r"""Compute the H3 root mean square error.
 
-    .. image:: /pictures/H3.png
-    .. image:: /pictures/RMSHE.png
+    .. math::
+
+       $H_3 = \frac {S_i-O_i}{\frac{1}{2}(S_i+O_i)}$
+    .. math::
+
+       Root Mean Squared H Error $= \sqrt{\frac {1}{n}\sum_{i=1}^{n} H^2}$
 
     **Range:**
 
@@ -4716,10 +4869,14 @@ def h4_mhe(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the H4 mean error.
+    r"""Compute the H4 mean error.
 
-    .. image:: /pictures/H4.png
-    .. image:: /pictures/MHE.png
+    .. math::
+
+       $H_4 = \frac {S_i-O_i}{\sqrt{S_iO_i}}$
+    .. math::
+
+       Mean H Error $=\frac {1}{n}\sum_{i=1}^{n} H$
 
     **Range:**
 
@@ -4794,10 +4951,14 @@ def h4_mahe(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the H4 mean absolute error.
+    r"""Compute the H4 mean absolute error.
 
-    .. image:: /pictures/H4.png
-    .. image:: /pictures/AHE.png
+    .. math::
+
+       $H_4 = \frac {S_i-O_i}{\sqrt{S_iO_i}}$
+    .. math::
+
+       Absolute H Error $=\frac {1}{n}\sum_{i=1}^{n} |H|$
 
     **Range:**
 
@@ -4872,10 +5033,14 @@ def h4_rmshe(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the H4 mean error.
+    r"""Compute the H4 mean error.
 
-    .. image:: /pictures/H4.png
-    .. image:: /pictures/RMSHE.png
+    .. math::
+
+       $H_4 = \frac {S_i-O_i}{\sqrt{S_iO_i}}$
+    .. math::
+
+       Root Mean Squared H Error $= \sqrt{\frac {1}{n}\sum_{i=1}^{n} H^2}$
 
     **Range:**
 
@@ -4950,10 +5115,14 @@ def h5_mhe(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the H5 mean error.
+    r"""Compute the H5 mean error.
 
-    .. image:: /pictures/H5.png
-    .. image:: /pictures/MHE.png
+    .. math::
+
+       $H_5 = \frac{S_i - O_i}{\left [ \frac {1}{2} \left ( O_i^{-1} + S_i^{-1} \right ) \right ]^{-1}}$
+    .. math::
+
+       Mean H Error $=\frac {1}{n}\sum_{i=1}^{n} H$
 
     **Range:**
 
@@ -5006,7 +5175,7 @@ def h5_mhe(
     - Tornquist, L., Vartia, P., Vartia, Y.O., 1985. How Should Relative Changes be Measured?
       The American Statistician 43-46.
 
-    """
+    """  # noqa: E501
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
@@ -5030,10 +5199,14 @@ def h5_mahe(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the H5 mean absolute error.
+    r"""Compute the H5 mean absolute error.
 
-    .. image:: /pictures/H5.png
-    .. image:: /pictures/AHE.png
+    .. math::
+
+       $H_5 = \frac{S_i - O_i}{\left [ \frac {1}{2} \left ( O_i^{-1} + S_i^{-1} \right ) \right ]^{-1}}$
+    .. math::
+
+       Absolute H Error $=\frac {1}{n}\sum_{i=1}^{n} |H|$
 
     **Range:**
 
@@ -5086,7 +5259,7 @@ def h5_mahe(
     - Tornquist, L., Vartia, P., Vartia, Y.O., 1985. How Should Relative Changes be Measured?
       The American Statistician 43-46.
 
-    """
+    """  # noqa: E501
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
@@ -5110,10 +5283,14 @@ def h5_rmshe(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the H5 root mean square error.
+    r"""Compute the H5 root mean square error.
 
-    .. image:: /pictures/H5.png
-    .. image:: /pictures/RMSHE.png
+    .. math::
+
+       $H_5 = \frac{S_i - O_i}{\left [ \frac {1}{2} \left ( O_i^{-1} + S_i^{-1} \right ) \right ]^{-1}}$
+    .. math::
+
+       Root Mean Squared H Error $= \sqrt{\frac {1}{n}\sum_{i=1}^{n} H^2}$
 
     **Range:**
 
@@ -5166,7 +5343,7 @@ def h5_rmshe(
     - Tornquist, L., Vartia, P., Vartia, Y.O., 1985. How Should Relative Changes be Measured?
       The American Statistician 43-46.
 
-    """
+    """  # noqa: E501
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
@@ -5191,10 +5368,14 @@ def h6_mhe(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the H6 mean error.
+    r"""Compute the H6 mean error.
 
-    .. image:: /pictures/H6.png
-    .. image:: /pictures/MHE.png
+    .. math::
+
+       $H_6 = \frac{S_i - O_i}{\left [ \frac {1}{2} \left ( O_i^{k} + S_i^{k} \right ) \right ]^{1/k}}$
+    .. math::
+
+       Mean H Error $=\frac {1}{n}\sum_{i=1}^{n} H$
 
     **Range:**
 
@@ -5250,7 +5431,7 @@ def h6_mhe(
     - Tornquist, L., Vartia, P., Vartia, Y.O., 1985. How Should Relative Changes be Measured?
       The American Statistician 43-46.
 
-    """
+    """  # noqa: E501
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
@@ -5275,10 +5456,14 @@ def h6_mahe(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the H6 mean absolute error.
+    r"""Compute the H6 mean absolute error.
 
-    .. image:: /pictures/H6.png
-    .. image:: /pictures/AHE.png
+    .. math::
+
+       $H_6 = \frac{S_i - O_i}{\left [ \frac {1}{2} \left ( O_i^{k} + S_i^{k} \right ) \right ]^{1/k}}$
+    .. math::
+
+       Absolute H Error $=\frac {1}{n}\sum_{i=1}^{n} |H|$
 
     **Range:**
 
@@ -5334,7 +5519,7 @@ def h6_mahe(
     - Tornquist, L., Vartia, P., Vartia, Y.O., 1985. How Should Relative Changes be Measured?
       The American Statistician 43-46.
 
-    """
+    """  # noqa: E501
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
@@ -5359,10 +5544,14 @@ def h6_rmshe(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the H6 root mean square error.
+    r"""Compute the H6 root mean square error.
 
-    .. image:: /pictures/H6.png
-    .. image:: /pictures/RMSHE.png
+    .. math::
+
+       $H_6 = \frac{S_i - O_i}{\left [ \frac {1}{2} \left ( O_i^{k} + S_i^{k} \right ) \right ]^{1/k}}$
+    .. math::
+
+       Root Mean Squared H Error $= \sqrt{\frac {1}{n}\sum_{i=1}^{n} H^2}$
 
     **Range:**
 
@@ -5418,7 +5607,7 @@ def h6_rmshe(
     - Tornquist, L., Vartia, P., Vartia, Y.O., 1985. How Should Relative Changes be Measured?
       The American Statistician 43-46.
 
-    """
+    """  # noqa: E501
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,
@@ -5442,10 +5631,14 @@ def h7_mhe(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the H7 mean error.
+    r"""Compute the H7 mean error.
 
-    .. image:: /pictures/H7.png
-    .. image:: /pictures/MHE.png
+    .. math::
+
+       $H_7 = \frac {S_i - O_i}{min(O_i,S_i)}$
+    .. math::
+
+       Mean H Error $=\frac {1}{n}\sum_{i=1}^{n} H$
 
     **Range:**
 
@@ -5520,10 +5713,14 @@ def h7_mahe(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the H7 mean absolute error.
+    r"""Compute the H7 mean absolute error.
 
-    .. image:: /pictures/H7.png
-    .. image:: /pictures/AHE.png
+    .. math::
+
+       $H_7 = \frac {S_i - O_i}{min(O_i,S_i)}$
+    .. math::
+
+       Absolute H Error $=\frac {1}{n}\sum_{i=1}^{n} |H|$
 
     **Range:**
 
@@ -5598,10 +5795,14 @@ def h7_rmshe(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the H7 root mean square error.
+    r"""Compute the H7 root mean square error.
 
-    .. image:: /pictures/H7.png
-    .. image:: /pictures/RMSHE.png
+    .. math::
+
+       $H_7 = \frac {S_i - O_i}{min(O_i,S_i)}$
+    .. math::
+
+       Root Mean Squared H Error $= \sqrt{\frac {1}{n}\sum_{i=1}^{n} H^2}$
 
     **Range:**
 
@@ -5676,10 +5877,14 @@ def h8_mhe(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the H8 mean error.
+    r"""Compute the H8 mean error.
 
-    .. image:: /pictures/H8.png
-    .. image:: /pictures/MHE.png
+    .. math::
+
+       $H_8 = \frac {S_i - O_i}{max(O_i,S_i)}$
+    .. math::
+
+       Mean H Error $=\frac {1}{n}\sum_{i=1}^{n} H$
 
     **Range:**
 
@@ -5754,10 +5959,14 @@ def h8_mahe(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the H8 mean absolute error.
+    r"""Compute the H8 mean absolute error.
 
-    .. image:: /pictures/H8.png
-    .. image:: /pictures/AHE.png
+    .. math::
+
+       $H_8 = \frac {S_i - O_i}{max(O_i,S_i)}$
+    .. math::
+
+       Absolute H Error $=\frac {1}{n}\sum_{i=1}^{n} |H|$
 
     **Range:**
 
@@ -5832,10 +6041,14 @@ def h8_rmshe(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the H8 root mean square error.
+    r"""Compute the H8 root mean square error.
 
-    .. image:: /pictures/H8.png
-    .. image:: /pictures/RMSHE.png
+    .. math::
+
+       $H_8 = \frac {S_i - O_i}{max(O_i,S_i)}$
+    .. math::
+
+       Root Mean Squared H Error $= \sqrt{\frac {1}{n}\sum_{i=1}^{n} H^2}$
 
     **Range:**
 
@@ -5910,10 +6123,14 @@ def h10_mhe(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the H10 mean error.
+    r"""Compute the H10 mean error.
 
-    .. image:: /pictures/H10.png
-    .. image:: /pictures/MHE.png
+    .. math::
+
+       $H_{10} = \ln{ \frac {S_i}{O_i}}$
+    .. math::
+
+       Mean H Error $=\frac {1}{n}\sum_{i=1}^{n} H$
 
     **Range:**
 
@@ -5988,10 +6205,14 @@ def h10_mahe(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the H10 mean absolute error.
+    r"""Compute the H10 mean absolute error.
 
-    .. image:: /pictures/H10.png
-    .. image:: /pictures/AHE.png
+    .. math::
+
+       $H_{10} = \ln{ \frac {S_i}{O_i}}$
+    .. math::
+
+       Absolute H Error $=\frac {1}{n}\sum_{i=1}^{n} |H|$
 
     **Range:**
 
@@ -6066,10 +6287,14 @@ def h10_rmshe(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the H10 root mean square error.
+    r"""Compute the H10 root mean square error.
 
-    .. image:: /pictures/H10.png
-    .. image:: /pictures/RMSHE.png
+    .. math::
+
+       $H_{10} = \ln{ \frac {S_i}{O_i}}$
+    .. math::
+
+       Root Mean Squared H Error $= \sqrt{\frac {1}{n}\sum_{i=1}^{n} H^2}$
 
     **Range:**
 
@@ -6149,9 +6374,13 @@ def g_mean_diff(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the geometric mean difference.
+    r"""Compute the geometric mean difference.
 
-    .. image:: /pictures/GMD.png
+    .. math::
+
+       GM$ = e^{(S' - O')}$
+       $S' = \left( \prod^n_{i=1} \ln{(S_i)} \right)^{\frac{1}{n}}$
+       $O' = \left( \prod^n_{i=1} \ln{(O_i)} \right)^{\frac{1}{n}}$
 
     **Range:**
 
@@ -6223,9 +6452,11 @@ def mean_var(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the mean variance.
+    r"""Compute the mean variance.
 
-    .. image:: /pictures/MV.png
+    .. math::
+
+       MV $=$ var$\left(\ln(O_1), \ln(O_2),..., \ln(O_n)\right) -$ var$\left(\ln(S_1),\ln(S_2),..., \ln(S_n)\right)$
 
     **Range:**
 
@@ -6273,7 +6504,7 @@ def mean_var(
     >>> np.round(he.mean_var(sim, obs), 6)
     0.010641
 
-    """
+    """  # noqa: E501
     simulated_array, observed_array = treat_values(
         simulated_array,
         observed_array,

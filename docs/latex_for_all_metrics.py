@@ -1,6 +1,6 @@
 """Script to generate latex images for all metrics."""
 
-import matplotlib.pyplot as plt
+from io import StringIO
 
 latex_symbols = {
     "ME": r"ME $= \frac{1}{n} \sum_{i=0}^{n} (S_i - O_i)$",
@@ -138,22 +138,28 @@ latex_symbols = {
     r"\ln(S_2),..., \ln(S_n)\right)$",
 }
 
-# Code to make latex images from the raw tex above. Note that latex must be installed with the
-# following commands:
-# - sudo apt-get install dvipng texlive-latex-extra texlive-fonts-recommended
-# - sudo apt-get install texlive-full
-plt.rc("text", usetex=True)
-plt.rc("font", family="serif")
 
-for metric, symbol in latex_symbols.items():
-    fig = plt.figure(figsize=(0.01, 0.01))
-    fig.text(0, 0, symbol, fontsize=12)
-    fig.savefig(
-        f"pictures/{metric}.png",
-        dpi=250,
-        transparent=True,
-        format="png",
-        bbox_inches="tight",
-        pad_inches=0.1,
-    )
-    plt.close(fig)
+if __name__ == "__main__":
+    from pathlib import Path
+
+    hydro_error_file = Path(__file__).parent.parent / "src" / "HydroErr" / "HydroErr.py"
+
+    # Read the hydro error file content using UTF-8 and replace undecodable bytes
+    content = hydro_error_file.read_text(encoding="utf-8")
+
+    # For each metric build the math block and replace the corresponding image directive
+    for metric, symbol in latex_symbols.items():
+        with StringIO() as buf:
+            print("    .. math::", file=buf)
+            print(file=buf)
+            for s in symbol.splitlines():
+                print(f"       {s}", file=buf)
+
+            new_block = buf.getvalue().rstrip()
+
+        # Replace exact image directive lines like:
+        #     .. image:: /pictures/r2.png
+        image_directive = f"    .. image:: /pictures/{metric}.png"
+        content = content.replace(image_directive, new_block)
+
+    hydro_error_file.write_text(content, encoding="utf-8")

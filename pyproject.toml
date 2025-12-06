@@ -39,6 +39,10 @@ dev = [
     "scipy-stubs>=1.15.3.0",
     "ty>=0.0.1a32",
 ]
+docs = [
+    "furo>=2025.9.25",
+    "sphinx-automodapi>=0.21.0",
+]
 
 [project.urls]
 repository = "https://github.com/BYU-Hydroinformatics/HydroErr"
