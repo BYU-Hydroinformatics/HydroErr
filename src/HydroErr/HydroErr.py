@@ -2,7 +2,7 @@
 
 import warnings
 from collections.abc import Sequence
-from typing import Any, Protocol
+from typing import Any
 
 import numpy as np
 from numpy.typing import NDArray
@@ -3139,8 +3139,7 @@ def kge_2009(
     remove_zero: bool = False,
     return_all: bool = False,
 ) -> (
-    np.floating[Any]
-    | tuple[np.floating[Any], np.floating[Any], np.floating[Any], np.floating[Any]]
+    np.floating[Any] | tuple[np.floating[Any], np.floating[Any], np.floating[Any], np.floating[Any]]
 ):
     """Compute the Kling-Gupta efficiency (2009).
 
@@ -3279,8 +3278,7 @@ def kge_2012(
     remove_zero: bool = False,
     return_all: bool = False,
 ) -> (
-    np.floating[Any]
-    | tuple[np.floating[Any], np.floating[Any], np.floating[Any], np.floating[Any]]
+    np.floating[Any] | tuple[np.floating[Any], np.floating[Any], np.floating[Any], np.floating[Any]]
 ):
     """Compute the Kling-Gupta efficiency (2012).
 
