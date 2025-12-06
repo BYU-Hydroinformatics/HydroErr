@@ -53,13 +53,15 @@ class TestHelperFunctions:
             "removed (Rows are zero indexed)." in str(w[3].message)
         )
 
-        check.is_none(
-            np.testing.assert_equal(sim_treated, a[8:, 0]),
+        np.testing.assert_equal(
+            sim_treated,
+            a[8:, 0],
             "Treat values function did not work properly when removing values from "
             "the simulated data.",
         )
-        check.is_none(
-            np.testing.assert_equal(obs_treated, a[8:, 1]),
+        np.testing.assert_equal(
+            obs_treated,
+            a[8:, 1],
             "Treat values function did not work properly when removing values from "
             "the observed data.",
         )
@@ -90,15 +92,17 @@ class TestHelperFunctions:
             )
 
             # Check if arrays match
-            check.is_none(
-                np.testing.assert_equal(sim_treated, sim_new),
+            np.testing.assert_equal(
+                sim_treated,
+                sim_new,
                 "Treat values function did not work properly when replacing values from "
                 "the simulated data.",
             )
-            check.is_none(
-                np.testing.assert_equal(obs_treated, obs_new),
-                "Treat values function did not work properly when replacing values from "
-                "the observed data.",
+            np.testing.assert_equal(
+                obs_treated,
+                obs_new,
+                "Treat values function did not work properly when replacing values from the"
+                " observed data.",
             )
 
     def test_treat_values_unequal_length(self) -> None:

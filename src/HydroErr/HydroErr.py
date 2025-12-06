@@ -1,15 +1,18 @@
 """HydroErr metrics and helpers."""
 
 import warnings
+from collections.abc import Sequence
+from typing import Any, Protocol
 
 import numpy as np
 from numpy.typing import NDArray
 from scipy.stats import gmean, rankdata
 
 # Typing aliases
-FloatArray = NDArray[np.floating]
+InputArray = NDArray[np.floating | np.integer] | Sequence[int | float]
+FloatArray = NDArray[np.floating | np.integer]
 
-__all__ = [
+__all__: list[str] = [
     "acc",
     "d",
     "d1",
@@ -94,13 +97,13 @@ __all__ = [
 
 
 def me(
-    simulated_array: FloatArray,
-    observed_array: FloatArray,
+    simulated_array: InputArray,
+    observed_array: InputArray,
     replace_nan: float | None = None,
     replace_inf: float | None = None,
     remove_neg: bool = False,
     remove_zero: bool = False,
-) -> float:
+) -> np.floating[Any]:
     """Compute the mean error of the simulated and observed data.
 
     .. image:: /pictures/ME.png
@@ -143,8 +146,7 @@ def me(
 
     Returns
     -------
-    float
-        The mean error value.
+    The mean error value.
 
     Examples
     --------
@@ -181,13 +183,13 @@ def me(
 
 
 def mae(
-    simulated_array: FloatArray,
-    observed_array: FloatArray,
+    simulated_array: InputArray,
+    observed_array: InputArray,
     replace_nan: float | None = None,
     replace_inf: float | None = None,
     remove_neg: bool = False,
     remove_zero: bool = False,
-) -> float:
+) -> np.floating[Any]:
     """Compute the mean absolute error of the simulated and observed data.
 
     .. image:: /pictures/MAE.png
@@ -228,8 +230,7 @@ def mae(
 
     Returns
     -------
-    float
-        The mean absolute error value.
+    The mean absolute error value.
 
     References
     ----------
@@ -264,13 +265,13 @@ def mae(
 
 
 def mse(
-    simulated_array: FloatArray,
-    observed_array: FloatArray,
+    simulated_array: InputArray,
+    observed_array: InputArray,
     replace_nan: float | None = None,
     replace_inf: float | None = None,
     remove_neg: bool = False,
     remove_zero: bool = False,
-) -> float:
+) -> np.floating[Any]:
     """Compute the mean squared error of the simulated and observed data.
 
     .. image:: /pictures/MSE.png
@@ -310,8 +311,7 @@ def mse(
 
     Returns
     -------
-    float
-        The mean squared error value.
+    The mean squared error value.
 
     Examples
     --------
@@ -342,13 +342,13 @@ def mse(
 
 
 def mle(
-    simulated_array: FloatArray,
-    observed_array: FloatArray,
+    simulated_array: InputArray,
+    observed_array: InputArray,
     replace_nan: float | None = None,
     replace_inf: float | None = None,
     remove_neg: bool = False,
     remove_zero: bool = False,
-) -> float:
+) -> np.floating[Any]:
     """Compute the mean log error of the simulated and observed data.
 
     .. image:: /pictures/MLE.png
@@ -388,8 +388,7 @@ def mle(
 
     Returns
     -------
-    float
-        The mean log error value.
+    The mean log error value.
 
     Examples
     --------
@@ -424,13 +423,13 @@ def mle(
 
 
 def male(
-    simulated_array: FloatArray,
-    observed_array: FloatArray,
+    simulated_array: InputArray,
+    observed_array: InputArray,
     replace_nan: float | None = None,
     replace_inf: float | None = None,
     remove_neg: bool = False,
     remove_zero: bool = False,
-) -> float:
+) -> np.floating[Any]:
     """Compute the mean absolute log error of the simulated and observed data.
 
     .. image:: /pictures/MALE.png
@@ -470,8 +469,7 @@ def male(
 
     Returns
     -------
-    float
-        The mean absolute log error value.
+    The mean absolute log error value.
 
     Examples
     --------
@@ -506,13 +504,13 @@ def male(
 
 
 def msle(
-    simulated_array: FloatArray,
-    observed_array: FloatArray,
+    simulated_array: InputArray,
+    observed_array: InputArray,
     replace_nan: float | None = None,
     replace_inf: float | None = None,
     remove_neg: bool = False,
     remove_zero: bool = False,
-) -> float:
+) -> np.floating[Any]:
     """Compute the mean squared log error of the simulated and observed data.
 
     .. image:: /pictures/MSLE.png
@@ -552,8 +550,7 @@ def msle(
 
     Returns
     -------
-    float
-        The mean squared log error value.
+    The mean squared log error value.
 
     Examples
     --------
@@ -588,13 +585,13 @@ def msle(
 
 
 def mde(
-    simulated_array: FloatArray,
-    observed_array: FloatArray,
+    simulated_array: InputArray,
+    observed_array: InputArray,
     replace_nan: float | None = None,
     replace_inf: float | None = None,
     remove_neg: bool = False,
     remove_zero: bool = False,
-) -> float:
+) -> np.floating[Any]:
     """Compute the median error (MdE) between the simulated and observed data.
 
     .. image:: /pictures/MdE.png
@@ -646,8 +643,7 @@ def mde(
 
     Returns
     -------
-    float
-        The median error value.
+    The median error value.
 
     """
     simulated_array, observed_array = treat_values(
@@ -663,13 +659,13 @@ def mde(
 
 
 def mdae(
-    simulated_array: FloatArray,
-    observed_array: FloatArray,
+    simulated_array: InputArray,
+    observed_array: InputArray,
     replace_nan: float | None = None,
     replace_inf: float | None = None,
     remove_neg: bool = False,
     remove_zero: bool = False,
-) -> float:
+) -> np.floating[Any]:
     """Compute the median absolute error (MdAE) between the simulated and observed data.
 
     .. image:: /pictures/MdAE.png
@@ -721,8 +717,7 @@ def mdae(
 
     Returns
     -------
-    float
-        The median absolute error value.
+    The median absolute error value.
 
     """
     simulated_array, observed_array = treat_values(
@@ -738,13 +733,13 @@ def mdae(
 
 
 def mdse(
-    simulated_array: FloatArray,
-    observed_array: FloatArray,
+    simulated_array: InputArray,
+    observed_array: InputArray,
     replace_nan: float | None = None,
     replace_inf: float | None = None,
     remove_neg: bool = False,
     remove_zero: bool = False,
-) -> float:
+) -> np.floating[Any]:
     """Compute the median squared error (MdSE) between the simulated and observed data.
 
     .. image:: /pictures/MdSE.png
@@ -796,8 +791,7 @@ def mdse(
 
     Returns
     -------
-    float
-        The median squared error value.
+    The median squared error value.
 
     """
     simulated_array, observed_array = treat_values(
@@ -813,13 +807,13 @@ def mdse(
 
 
 def ed(
-    simulated_array: FloatArray,
-    observed_array: FloatArray,
+    simulated_array: InputArray,
+    observed_array: InputArray,
     replace_nan: float | None = None,
     replace_inf: float | None = None,
     remove_neg: bool = False,
     remove_zero: bool = False,
-) -> float:
+) -> np.floating[Any]:
     """Compute the Euclidean distance between predicted and observed values in vector space.
 
     .. image:: /pictures/ED.png
@@ -867,8 +861,7 @@ def ed(
 
     Returns
     -------
-    float
-        The euclidean distance error value.
+    The euclidean distance error value.
 
     References
     ----------
@@ -890,13 +883,13 @@ def ed(
 
 
 def ned(
-    simulated_array: FloatArray,
-    observed_array: FloatArray,
+    simulated_array: InputArray,
+    observed_array: InputArray,
     replace_nan: float | None = None,
     replace_inf: float | None = None,
     remove_neg: bool = False,
     remove_zero: bool = False,
-) -> float:
+) -> np.floating[Any]:
     """Compute the normalized Euclidian distance between the simulated and observed data in vector space.
 
     .. image:: /pictures/NED.png
@@ -935,8 +928,7 @@ def ned(
 
     Returns
     -------
-    float
-        The normalized euclidean distance value.
+    The normalized euclidean distance value.
 
     Examples
     --------
@@ -970,13 +962,13 @@ def ned(
 
 
 def rmse(
-    simulated_array: FloatArray,
-    observed_array: FloatArray,
+    simulated_array: InputArray,
+    observed_array: InputArray,
     replace_nan: float | None = None,
     replace_inf: float | None = None,
     remove_neg: bool = False,
     remove_zero: bool = False,
-) -> float:
+) -> np.floating[Any]:
     """Compute the root mean square error between the simulated and observed data.
 
     .. image:: /pictures/RMSE.png
@@ -1017,8 +1009,7 @@ def rmse(
 
     Returns
     -------
-    float
-        The root mean square error value.
+    The root mean square error value.
 
     Examples
     --------
@@ -1052,13 +1043,13 @@ def rmse(
 
 
 def rmsle(
-    simulated_array: FloatArray,
-    observed_array: FloatArray,
+    simulated_array: InputArray,
+    observed_array: InputArray,
     replace_nan: float | None = None,
     replace_inf: float | None = None,
     remove_neg: bool = False,
     remove_zero: bool = False,
-) -> float:
+) -> np.floating[Any]:
     """Compute the root mean square log error between the simulated and observed data.
 
     .. image:: /pictures/RMSLE.png
@@ -1100,8 +1091,7 @@ def rmsle(
 
     Returns
     -------
-    float
-        The root mean square log error value.
+    The root mean square log error value.
 
     Examples
     --------
@@ -1136,13 +1126,13 @@ def rmsle(
 
 
 def nrmse_range(
-    simulated_array: FloatArray,
-    observed_array: FloatArray,
+    simulated_array: InputArray,
+    observed_array: InputArray,
     replace_nan: float | None = None,
     replace_inf: float | None = None,
     remove_neg: bool = False,
     remove_zero: bool = False,
-) -> float:
+) -> np.floating[Any]:
     """Compute the range normalized root mean square error between the simulated and observed data.
 
     .. image:: /pictures/NRMSE_Range.png
@@ -1183,8 +1173,7 @@ def nrmse_range(
 
     Returns
     -------
-    float
-        The range normalized root mean square error value.
+    The range normalized root mean square error value.
 
     Examples
     --------
@@ -1219,13 +1208,13 @@ def nrmse_range(
 
 
 def nrmse_mean(
-    simulated_array: FloatArray,
-    observed_array: FloatArray,
+    simulated_array: InputArray,
+    observed_array: InputArray,
     replace_nan: float | None = None,
     replace_inf: float | None = None,
     remove_neg: bool = False,
     remove_zero: bool = False,
-) -> float:
+) -> np.floating[Any]:
     """Compute the mean normalized root mean square error between the simulated and observed data.
 
     .. image:: /pictures/NRMSE_Mean.png
@@ -1265,8 +1254,7 @@ def nrmse_mean(
 
     Returns
     -------
-    float
-        The mean normalized root mean square error.
+    The mean normalized root mean square error.
 
     Examples
     --------
@@ -1300,13 +1288,13 @@ def nrmse_mean(
 
 
 def nrmse_iqr(
-    simulated_array: FloatArray,
-    observed_array: FloatArray,
+    simulated_array: InputArray,
+    observed_array: InputArray,
     replace_nan: float | None = None,
     replace_inf: float | None = None,
     remove_neg: bool = False,
     remove_zero: bool = False,
-) -> float:
+) -> np.floating[Any]:
     """Compute the IQR normalized root mean square error between the simulated and observed data.
 
     .. image:: /pictures/NRMSE_IQR.png
@@ -1347,8 +1335,7 @@ def nrmse_iqr(
 
     Returns
     -------
-    float
-        The IQR normalized root mean square error.
+    The IQR normalized root mean square error.
 
     Examples
     --------
@@ -1384,13 +1371,13 @@ def nrmse_iqr(
 
 
 def irmse(
-    simulated_array: FloatArray,
-    observed_array: FloatArray,
+    simulated_array: InputArray,
+    observed_array: InputArray,
     replace_nan: float | None = None,
     replace_inf: float | None = None,
     remove_neg: bool = False,
     remove_zero: bool = False,
-) -> float:
+) -> np.floating[Any]:
     """Compute the inertial root mean square error (IRMSE) between the simulated and observed data.
 
     .. image:: /pictures/IRMSE.png
@@ -1431,8 +1418,7 @@ def irmse(
 
     Returns
     -------
-    float
-        The inertial root mean square error.
+    The inertial root mean square error.
 
     Examples
     --------
@@ -1472,14 +1458,14 @@ def irmse(
 
 
 def mase(
-    simulated_array: FloatArray,
-    observed_array: FloatArray,
+    simulated_array: InputArray,
+    observed_array: InputArray,
     m: int = 1,
     replace_nan: float | None = None,
     replace_inf: float | None = None,
     remove_neg: bool = False,
     remove_zero: bool = False,
-) -> float:
+) -> np.floating[Any]:
     """Compute the mean absolute scaled error between the simulated and observed data.
 
     .. image:: /pictures/MASE.png
@@ -1496,7 +1482,7 @@ def mase(
     observed_array:
         An array of observed data from the time series.
 
-    m: int
+    m:
         If given, indicates the seasonal period m. If not given, the default is 1.
 
     replace_nan:
@@ -1521,8 +1507,7 @@ def mase(
 
     Returns
     -------
-    float
-        The mean absolute scaled error.
+    The mean absolute scaled error.
 
     Examples
     --------
@@ -1557,13 +1542,13 @@ def mase(
 
 
 def pearson_r(
-    simulated_array: FloatArray,
-    observed_array: FloatArray,
+    simulated_array: InputArray,
+    observed_array: InputArray,
     replace_nan: float | None = None,
     replace_inf: float | None = None,
     remove_neg: bool = False,
     remove_zero: bool = False,
-) -> float:
+) -> np.floating[Any]:
     """Compute the pearson correlation coefficient.
 
     .. image:: /pictures/R_pearson.png
@@ -1603,8 +1588,7 @@ def pearson_r(
 
     Returns
     -------
-    float
-        The Pearson correlation coefficient.
+    The Pearson correlation coefficient.
 
     Examples
     --------
@@ -1642,13 +1626,13 @@ def pearson_r(
 
 
 def spearman_r(
-    simulated_array: FloatArray,
-    observed_array: FloatArray,
+    simulated_array: InputArray,
+    observed_array: InputArray,
     replace_nan: float | None = None,
     replace_inf: float | None = None,
     remove_neg: bool = False,
     remove_zero: bool = False,
-) -> float:
+) -> np.floating[Any]:
     """Compute the spearman rank correlation coefficient.
 
     .. image:: /pictures/R_spearman.png
@@ -1690,8 +1674,7 @@ def spearman_r(
 
     Returns
     -------
-    float
-        The Spearman rank correlation coefficient.
+    The Spearman rank correlation coefficient.
 
     Examples
     --------
@@ -1733,13 +1716,13 @@ def spearman_r(
 
 
 def r_squared(
-    simulated_array: FloatArray,
-    observed_array: FloatArray,
+    simulated_array: InputArray,
+    observed_array: InputArray,
     replace_nan: float | None = None,
     replace_inf: float | None = None,
     remove_neg: bool = False,
     remove_zero: bool = False,
-) -> float:
+) -> np.floating[Any]:
     """Compute the the Coefficient of Determination (r2).
 
     .. image:: /pictures/r2.png
@@ -1780,8 +1763,7 @@ def r_squared(
 
     Returns
     -------
-    float
-        The coefficient of determination (R^2).
+    The coefficient of determination (R^2).
 
     >>> import HydroErr as he
     >>> import numpy as np
@@ -1807,13 +1789,13 @@ def r_squared(
 
 
 def acc(
-    simulated_array: FloatArray,
-    observed_array: FloatArray,
+    simulated_array: InputArray,
+    observed_array: InputArray,
     replace_nan: float | None = None,
     replace_inf: float | None = None,
     remove_neg: bool = False,
     remove_zero: bool = False,
-) -> float:
+) -> np.floating[Any]:
     """Compute the the anomaly correlation coefficient (ACC).
 
     .. image:: /pictures/ACC.png
@@ -1855,8 +1837,7 @@ def acc(
 
     Returns
     -------
-    float
-        The anomaly correlation coefficient.
+    The anomaly correlation coefficient.
 
     Examples
     --------
@@ -1896,13 +1877,13 @@ def acc(
 
 
 def mape(
-    simulated_array: FloatArray,
-    observed_array: FloatArray,
+    simulated_array: InputArray,
+    observed_array: InputArray,
     replace_nan: float | None = None,
     replace_inf: float | None = None,
     remove_neg: bool = False,
     remove_zero: bool = False,
-) -> float:
+) -> np.floating[Any]:
     """Compute the the mean absolute percentage error (MAPE).
 
     .. image:: /pictures/MAPE.png
@@ -1942,8 +1923,7 @@ def mape(
 
     Returns
     -------
-    float
-        The mean absolute percentage error.
+    The mean absolute percentage error.
 
     Examples
     --------
@@ -1972,13 +1952,13 @@ def mape(
 
 
 def mapd(
-    simulated_array: FloatArray,
-    observed_array: FloatArray,
+    simulated_array: InputArray,
+    observed_array: InputArray,
     replace_nan: float | None = None,
     replace_inf: float | None = None,
     remove_neg: bool = False,
     remove_zero: bool = False,
-) -> float:
+) -> np.floating[Any]:
     """Compute the the mean absolute percentage deviation (MAPD).
 
     .. image:: /pictures/MAPD.png
@@ -2017,8 +1997,7 @@ def mapd(
 
     Returns
     -------
-    float
-        The mean absolute percentage deviation.
+    The mean absolute percentage deviation.
 
     Examples
     --------
@@ -2046,13 +2025,13 @@ def mapd(
 
 
 def maape(
-    simulated_array: FloatArray,
-    observed_array: FloatArray,
+    simulated_array: InputArray,
+    observed_array: InputArray,
     replace_nan: float | None = None,
     replace_inf: float | None = None,
     remove_neg: bool = False,
     remove_zero: bool = False,
-) -> float:
+) -> np.floating[Any]:
     """Compute the the Mean Arctangent Absolute Percentage Error (MAAPE).
 
     .. image:: /pictures/MAAPE.png
@@ -2092,8 +2071,7 @@ def maape(
 
     Returns
     -------
-    float
-        The mean arctangent absolute percentage error.
+    The mean arctangent absolute percentage error.
 
     Examples
     --------
@@ -2126,13 +2104,13 @@ def maape(
 
 
 def smape1(
-    simulated_array: FloatArray,
-    observed_array: FloatArray,
+    simulated_array: InputArray,
+    observed_array: InputArray,
     replace_nan: float | None = None,
     replace_inf: float | None = None,
     remove_neg: bool = False,
     remove_zero: bool = False,
-) -> float:
+) -> np.floating[Any]:
     """Compute the the Symmetric Mean Absolute Percentage Error (1) (SMAPE1).
 
     .. image:: /pictures/SMAPE1.png
@@ -2171,8 +2149,7 @@ def smape1(
 
     Returns
     -------
-    float
-        The symmetric mean absolute percentage error (1).
+    The symmetric mean absolute percentage error (1).
 
     Examples
     --------
@@ -2212,13 +2189,13 @@ def smape1(
 
 
 def smape2(
-    simulated_array: FloatArray,
-    observed_array: FloatArray,
+    simulated_array: InputArray,
+    observed_array: InputArray,
     replace_nan: float | None = None,
     replace_inf: float | None = None,
     remove_neg: bool = False,
     remove_zero: bool = False,
-) -> float:
+) -> np.floating[Any]:
     """Compute the the Symmetric Mean Absolute Percentage Error (2) (SMAPE2).
 
     .. image:: /pictures/SMAPE2.png
@@ -2257,8 +2234,7 @@ def smape2(
 
     Returns
     -------
-    float
-        The symmetric mean absolute percentage error (2).
+    The symmetric mean absolute percentage error (2).
 
     Examples
     --------
@@ -2299,13 +2275,13 @@ def smape2(
 
 
 def d(
-    simulated_array: FloatArray,
-    observed_array: FloatArray,
+    simulated_array: InputArray,
+    observed_array: InputArray,
     replace_nan: float | None = None,
     replace_inf: float | None = None,
     remove_neg: bool = False,
     remove_zero: bool = False,
-) -> float:
+) -> np.floating[Any]:
     """Compute the the index of agreement (d).
 
     .. image:: /pictures/d.png
@@ -2344,8 +2320,7 @@ def d(
 
     Returns
     -------
-    float
-        The index of agreement (1).
+    The index of agreement (1).
 
     Examples
     --------
@@ -2381,13 +2356,13 @@ def d(
 
 
 def d1(
-    simulated_array: FloatArray,
-    observed_array: FloatArray,
+    simulated_array: InputArray,
+    observed_array: InputArray,
     replace_nan: float | None = None,
     replace_inf: float | None = None,
     remove_neg: bool = False,
     remove_zero: bool = False,
-) -> float:
+) -> np.floating[Any]:
     """Compute the the index of agreement (d1).
 
     .. image:: /pictures/d1.png
@@ -2427,8 +2402,7 @@ def d1(
 
     Returns
     -------
-    float
-        The index of agreement (d1).
+    The index of agreement (d1).
 
     Examples
     --------
@@ -2464,13 +2438,13 @@ def d1(
 
 
 def dr(
-    simulated_array: FloatArray,
-    observed_array: FloatArray,
+    simulated_array: InputArray,
+    observed_array: InputArray,
     replace_nan: float | None = None,
     replace_inf: float | None = None,
     remove_neg: bool = False,
     remove_zero: bool = False,
-) -> float:
+) -> np.floating[Any]:
     """Compute the the refined index of agreement (dr).
 
     .. image:: /pictures/dr.png
@@ -2511,8 +2485,7 @@ def dr(
 
     Returns
     -------
-    float
-        The refined index of agreement.
+    The refined index of agreement.
 
     Examples
     --------
@@ -2547,13 +2520,13 @@ def dr(
 
 
 def drel(
-    simulated_array: FloatArray,
-    observed_array: FloatArray,
+    simulated_array: InputArray,
+    observed_array: InputArray,
     replace_nan: float | None = None,
     replace_inf: float | None = None,
     remove_neg: bool = False,
     remove_zero: bool = False,
-) -> float:
+) -> np.floating[Any]:
     """Compute the the relative index of agreement (drel).
 
     .. image:: /pictures/drel.png
@@ -2592,8 +2565,7 @@ def drel(
 
     Returns
     -------
-    float
-        The relative index of agreement.
+    The relative index of agreement.
 
     Examples
     --------
@@ -2628,14 +2600,14 @@ def drel(
 
 
 def dmod(
-    simulated_array: FloatArray,
-    observed_array: FloatArray,
-    j: int = 1,
+    simulated_array: InputArray,
+    observed_array: InputArray,
+    j: float = 1,
     replace_nan: float | None = None,
     replace_inf: float | None = None,
     remove_neg: bool = False,
     remove_zero: bool = False,
-) -> float:
+) -> np.floating[Any]:
     """Compute the the modified index of agreement (dmod).
 
     .. image:: /pictures/dmod.png
@@ -2653,7 +2625,7 @@ def dmod(
     observed_array:
         An array of observed data from the time series.
 
-    j: int or float
+    j:
         Optional input indicating the j values desired. A higher j places more emphasis on
         outliers. j is 1 by default.
 
@@ -2679,8 +2651,7 @@ def dmod(
 
     Returns
     -------
-    float
-        The modified index of agreement.
+    The modified index of agreement.
 
     Examples
     --------
@@ -2720,13 +2691,13 @@ def dmod(
 
 
 def watt_m(
-    simulated_array: FloatArray,
-    observed_array: FloatArray,
+    simulated_array: InputArray,
+    observed_array: InputArray,
     replace_nan: float | None = None,
     replace_inf: float | None = None,
     remove_neg: bool = False,
     remove_zero: bool = False,
-) -> float:
+) -> np.floating[Any]:
     """Compute Watterson's M (M).
 
     .. image:: /pictures/M.png
@@ -2765,8 +2736,7 @@ def watt_m(
 
     Returns
     -------
-    float
-        Watterson's M value.
+    Watterson's M value.
 
     Examples
     --------
@@ -2802,13 +2772,13 @@ def watt_m(
 
 
 def mb_r(
-    simulated_array: FloatArray,
-    observed_array: FloatArray,
+    simulated_array: InputArray,
+    observed_array: InputArray,
     replace_nan: float | None = None,
     replace_inf: float | None = None,
     remove_neg: bool = False,
     remove_zero: bool = False,
-) -> float:
+) -> np.floating[Any]:
     """Compute Mielke-Berry R value (MB R).
 
     .. image:: /pictures/MB_R.png
@@ -2847,8 +2817,7 @@ def mb_r(
 
     Returns
     -------
-    float
-        The Mielke-Berry R value.
+    The Mielke-Berry R value.
 
     Notes
     -----
@@ -2911,13 +2880,13 @@ def mb_r(
 
 
 def nse(
-    simulated_array: FloatArray,
-    observed_array: FloatArray,
+    simulated_array: InputArray,
+    observed_array: InputArray,
     replace_nan: float | None = None,
     replace_inf: float | None = None,
     remove_neg: bool = False,
     remove_zero: bool = False,
-) -> float:
+) -> np.floating[Any]:
     """Compute the Nash-Sutcliffe Efficiency.
 
     .. image:: /pictures/NSE.png
@@ -2959,8 +2928,7 @@ def nse(
 
     Returns
     -------
-    float
-        The Nash-Sutcliffe Efficiency value.
+    The Nash-Sutcliffe Efficiency value.
 
     Examples
     --------
@@ -2999,14 +2967,14 @@ def nse(
 
 
 def nse_mod(
-    simulated_array: FloatArray,
-    observed_array: FloatArray,
-    j: int = 1,
+    simulated_array: InputArray,
+    observed_array: InputArray,
+    j: float = 1,
     replace_nan: float | None = None,
     replace_inf: float | None = None,
     remove_neg: bool = False,
     remove_zero: bool = False,
-) -> float:
+) -> np.floating[Any]:
     """Compute the modified Nash-Sutcliffe efficiency (NSE mod).
 
     .. image:: /pictures/NSEmod.png
@@ -3024,7 +2992,7 @@ def nse_mod(
     observed_array:
         An array of observed data from the time series.
 
-    j: int or float
+    j:
         If given, sets the value of j to the input. j is 1 by default. A higher j gives more
         emphasis to outliers
 
@@ -3050,8 +3018,7 @@ def nse_mod(
 
     Returns
     -------
-    float
-        The modified Nash-Sutcliffe efficiency value.
+    The modified Nash-Sutcliffe efficiency value.
 
     Examples
     --------
@@ -3084,13 +3051,13 @@ def nse_mod(
 
 
 def nse_rel(
-    simulated_array: FloatArray,
-    observed_array: FloatArray,
+    simulated_array: InputArray,
+    observed_array: InputArray,
     replace_nan: float | None = None,
     replace_inf: float | None = None,
     remove_neg: bool = False,
     remove_zero: bool = False,
-) -> float:
+) -> np.floating[Any]:
     """Compute the relative Nash-Sutcliffe efficiency (NSE rel).
 
     .. image:: /pictures/NSErel.png
@@ -3130,8 +3097,7 @@ def nse_rel(
 
     Returns
     -------
-    float
-        The relative Nash-Sutcliffe efficiency value.
+    The relative Nash-Sutcliffe efficiency value.
 
     Examples
     --------
@@ -3164,15 +3130,18 @@ def nse_rel(
 
 
 def kge_2009(
-    simulated_array: FloatArray,
-    observed_array: FloatArray,
+    simulated_array: InputArray,
+    observed_array: InputArray,
     s: tuple[float, float, float] = (1, 1, 1),
     replace_nan: float | None = None,
     replace_inf: float | None = None,
     remove_neg: bool = False,
     remove_zero: bool = False,
     return_all: bool = False,
-) -> float | tuple[float, float, float, float]:
+) -> (
+    np.floating[Any]
+    | tuple[np.floating[Any], np.floating[Any], np.floating[Any], np.floating[Any]]
+):
     """Compute the Kling-Gupta efficiency (2009).
 
     .. image:: /pictures/KGE_2009.png
@@ -3221,7 +3190,8 @@ def kge_2009(
 
     Returns
     -------
-    The Kling-Gupta (2009) efficiency value, unless the return_all parameter is True.
+    The Kling-Gupta (2009) efficiency value, unless the return_all parameter is True. Returns np.nan
+    if the observed mean or standard deviation is zero.
 
     Examples
     --------
@@ -3267,10 +3237,10 @@ def kge_2009(
     pr = top_pr / (bot1_pr * bot2_pr)
 
     # Ratio between mean of simulated and observed data
-    beta = sim_mean / obs_mean if obs_mean != 0 else np.nan
+    beta = sim_mean / obs_mean if obs_mean != 0 else np.float64(np.nan)
 
     # Relative variability between simulated and observed values
-    alpha = sim_sigma / obs_sigma if obs_sigma != 0 else np.nan
+    alpha = sim_sigma / obs_sigma if obs_sigma != 0 else np.float64(np.nan)
 
     if not np.isnan(beta) and not np.isnan(alpha):
         kge = 1 - np.sqrt(
@@ -3289,7 +3259,7 @@ def kge_2009(
                 "and the KGE value cannot be computed.",
                 stacklevel=2,
             )
-        kge = np.nan
+        kge = np.float64(np.nan)
 
     if not isinstance(return_all, bool):
         raise TypeError(f"expected <type 'bool'> for parameter return_all, got {type(return_all)}")
@@ -3300,15 +3270,18 @@ def kge_2009(
 
 
 def kge_2012(
-    simulated_array: FloatArray,
-    observed_array: FloatArray,
+    simulated_array: InputArray,
+    observed_array: InputArray,
     s: tuple[float, float, float] = (1, 1, 1),
     replace_nan: float | None = None,
     replace_inf: float | None = None,
     remove_neg: bool = False,
     remove_zero: bool = False,
     return_all: bool = False,
-) -> float | tuple[float, float, float, float]:
+) -> (
+    np.floating[Any]
+    | tuple[np.floating[Any], np.floating[Any], np.floating[Any], np.floating[Any]]
+):
     """Compute the Kling-Gupta efficiency (2012).
 
     .. image:: /pictures/KGE_2012.png
@@ -3356,8 +3329,8 @@ def kge_2012(
 
     Returns
     -------
-    float (tuple of float)
-        The Kling-Gupta (2012) efficiency value, unless the return_all parameter is True.
+    The Kling-Gupta (2012) efficiency value, unless the return_all parameter is True. Returns np.nan
+    if the observed mean or standard deviation is zero.
 
     Examples
     --------
@@ -3435,7 +3408,7 @@ def kge_2012(
                 "and the KGE value cannot be computed.",
                 stacklevel=2,
             )
-        kge = np.nan
+        kge = np.float64(np.nan)
 
     if not isinstance(return_all, bool):
         raise TypeError(f"expected <type 'bool'> for parameter return_all, got {type(return_all)}")
@@ -3446,14 +3419,14 @@ def kge_2012(
 
 
 def lm_index(
-    simulated_array: FloatArray,
-    observed_array: FloatArray,
+    simulated_array: InputArray,
+    observed_array: InputArray,
     obs_bar_p: float | None = None,
     replace_nan: float | None = None,
     replace_inf: float | None = None,
     remove_neg: bool = False,
     remove_zero: bool = False,
-) -> float:
+) -> np.floating[Any]:
     """Compute the Legate-McCabe Efficiency Index.
 
     .. image:: /pictures/E1p.png
@@ -3495,8 +3468,7 @@ def lm_index(
 
     Returns
     -------
-    float
-        The Legate-McCabe Efficiency index value.
+    The Legate-McCabe Efficiency index value.
 
     Examples
     --------
@@ -3536,14 +3508,14 @@ def lm_index(
 
 
 def d1_p(
-    simulated_array: FloatArray,
-    observed_array: FloatArray,
+    simulated_array: InputArray,
+    observed_array: InputArray,
     obs_bar_p: float | None = None,
     replace_nan: float | None = None,
     replace_inf: float | None = None,
     remove_neg: bool = False,
     remove_zero: bool = False,
-) -> float:
+) -> np.floating[Any]:
     """Compute the Legate-McCabe Index of Agreement.
 
     .. image:: /pictures/D1p.png
@@ -3585,8 +3557,7 @@ def d1_p(
 
     Returns
     -------
-    float
-        The Legate-McCabe Efficiency index of agreement.
+    The Legate-McCabe Efficiency index of agreement.
 
     Examples
     --------
@@ -3625,13 +3596,13 @@ def d1_p(
 
 
 def ve(
-    simulated_array: FloatArray,
-    observed_array: FloatArray,
+    simulated_array: InputArray,
+    observed_array: InputArray,
     replace_nan: float | None = None,
     replace_inf: float | None = None,
     remove_neg: bool = False,
     remove_zero: bool = False,
-) -> float:
+) -> np.floating[Any]:
     """Compute the Volumetric Efficiency (VE).
 
     .. image:: /pictures/VE.png
@@ -3670,8 +3641,7 @@ def ve(
 
     Returns
     -------
-    float
-        The Volumetric Efficiency value.
+    The Volumetric Efficiency value.
 
     Examples
     --------
@@ -3704,13 +3674,13 @@ def ve(
 
 
 def sa(
-    simulated_array: FloatArray,
-    observed_array: FloatArray,
+    simulated_array: InputArray,
+    observed_array: InputArray,
     replace_nan: float | None = None,
     replace_inf: float | None = None,
     remove_neg: bool = False,
     remove_zero: bool = False,
-) -> float:
+) -> np.floating[Any]:
     """Compute the Spectral Angle (SA).
 
     .. image:: /pictures/SA.png
@@ -3750,8 +3720,7 @@ def sa(
 
     Returns
     -------
-    float
-        The Spectral Angle value.
+    The Spectral Angle value.
 
     Examples
     --------
@@ -3785,13 +3754,13 @@ def sa(
 
 
 def sc(
-    simulated_array: FloatArray,
-    observed_array: FloatArray,
+    simulated_array: InputArray,
+    observed_array: InputArray,
     replace_nan: float | None = None,
     replace_inf: float | None = None,
     remove_neg: bool = False,
     remove_zero: bool = False,
-) -> float:
+) -> np.floating[Any]:
     """Compute the Spectral Correlation (SC).
 
     .. image:: /pictures/SC.png
@@ -3831,8 +3800,7 @@ def sc(
 
     Returns
     -------
-    float
-        The Spectral Correlation value.
+    The Spectral Correlation value.
 
     Examples
     --------
@@ -3871,13 +3839,13 @@ def sc(
 
 
 def sid(
-    simulated_array: FloatArray,
-    observed_array: FloatArray,
+    simulated_array: InputArray,
+    observed_array: InputArray,
     replace_nan: float | None = None,
     replace_inf: float | None = None,
     remove_neg: bool = False,
     remove_zero: bool = False,
-) -> float:
+) -> np.floating[Any]:
     """Compute the Spectral Information Divergence (SID).
 
     .. image:: /pictures/SID.png
@@ -3917,8 +3885,7 @@ def sid(
 
     Returns
     -------
-    float
-        The Spectral information divergence value.
+    The Spectral information divergence value.
 
     Examples
     --------
@@ -3955,13 +3922,13 @@ def sid(
 
 
 def sga(
-    simulated_array: FloatArray,
-    observed_array: FloatArray,
+    simulated_array: InputArray,
+    observed_array: InputArray,
     replace_nan: float | None = None,
     replace_inf: float | None = None,
     remove_neg: bool = False,
     remove_zero: bool = False,
-) -> float:
+) -> np.floating[Any]:
     """Compute the Spectral Gradient Angle (SGA).
 
     .. image:: /pictures/SGA.png
@@ -4002,8 +3969,7 @@ def sga(
 
     Returns
     -------
-    float
-        The Spectral Gradient Angle.
+    The Spectral Gradient Angle.
 
     Examples
     --------
@@ -4044,13 +4010,13 @@ def sga(
 
 
 def h1_mhe(
-    simulated_array: FloatArray,
-    observed_array: FloatArray,
+    simulated_array: InputArray,
+    observed_array: InputArray,
     replace_nan: float | None = None,
     replace_inf: float | None = None,
     remove_neg: bool = False,
     remove_zero: bool = False,
-) -> float:
+) -> np.floating[Any]:
     """Compute the H1 mean error.
 
     .. image:: /pictures/H1.png
@@ -4090,8 +4056,7 @@ def h1_mhe(
 
     Returns
     -------
-    float
-        The mean H1 error.
+    The mean H1 error.
 
     Examples
     --------
@@ -4123,13 +4088,13 @@ def h1_mhe(
 
 
 def h1_mahe(
-    simulated_array: FloatArray,
-    observed_array: FloatArray,
+    simulated_array: InputArray,
+    observed_array: InputArray,
     replace_nan: float | None = None,
     replace_inf: float | None = None,
     remove_neg: bool = False,
     remove_zero: bool = False,
-) -> float:
+) -> np.floating[Any]:
     """Compute the H1 absolute error.
 
     .. image:: /pictures/H1.png
@@ -4169,8 +4134,7 @@ def h1_mahe(
 
     Returns
     -------
-    float
-        The H1 absolute error.
+    The H1 absolute error.
 
     Examples
     --------
@@ -4202,13 +4166,13 @@ def h1_mahe(
 
 
 def h1_rmshe(
-    simulated_array: FloatArray,
-    observed_array: FloatArray,
+    simulated_array: InputArray,
+    observed_array: InputArray,
     replace_nan: float | None = None,
     replace_inf: float | None = None,
     remove_neg: bool = False,
     remove_zero: bool = False,
-) -> float:
+) -> np.floating[Any]:
     """Compute the H1 root mean square error.
 
     .. image:: /pictures/H1.png
@@ -4248,8 +4212,7 @@ def h1_rmshe(
 
     Returns
     -------
-    float
-        The root mean squared H1 error.
+    The root mean squared H1 error.
 
     Examples
     --------
@@ -4281,13 +4244,13 @@ def h1_rmshe(
 
 
 def h2_mhe(
-    simulated_array: FloatArray,
-    observed_array: FloatArray,
+    simulated_array: InputArray,
+    observed_array: InputArray,
     replace_nan: float | None = None,
     replace_inf: float | None = None,
     remove_neg: bool = False,
     remove_zero: bool = False,
-) -> float:
+) -> np.floating[Any]:
     """Compute the H2 mean error.
 
     .. image:: /pictures/H2.png
@@ -4327,8 +4290,7 @@ def h2_mhe(
 
     Returns
     -------
-    float
-        The mean H2 error.
+    The mean H2 error.
 
     Examples
     --------
@@ -4360,13 +4322,13 @@ def h2_mhe(
 
 
 def h2_mahe(
-    simulated_array: FloatArray,
-    observed_array: FloatArray,
+    simulated_array: InputArray,
+    observed_array: InputArray,
     replace_nan: float | None = None,
     replace_inf: float | None = None,
     remove_neg: bool = False,
     remove_zero: bool = False,
-) -> float:
+) -> np.floating[Any]:
     """Compute the H2 mean absolute error.
 
     .. image:: /pictures/H2.png
@@ -4406,8 +4368,7 @@ def h2_mahe(
 
     Returns
     -------
-    float
-        The mean absolute H2 error.
+    The mean absolute H2 error.
 
     Examples
     --------
@@ -4439,13 +4400,13 @@ def h2_mahe(
 
 
 def h2_rmshe(
-    simulated_array: FloatArray,
-    observed_array: FloatArray,
+    simulated_array: InputArray,
+    observed_array: InputArray,
     replace_nan: float | None = None,
     replace_inf: float | None = None,
     remove_neg: bool = False,
     remove_zero: bool = False,
-) -> float:
+) -> np.floating[Any]:
     """Compute the H2 root mean square error.
 
     .. image:: /pictures/H1.png
@@ -4485,8 +4446,7 @@ def h2_rmshe(
 
     Returns
     -------
-    float
-        The root mean square H2 error.
+    The root mean square H2 error.
 
     Examples
     --------
@@ -4518,13 +4478,13 @@ def h2_rmshe(
 
 
 def h3_mhe(
-    simulated_array: FloatArray,
-    observed_array: FloatArray,
+    simulated_array: InputArray,
+    observed_array: InputArray,
     replace_nan: float | None = None,
     replace_inf: float | None = None,
     remove_neg: bool = False,
     remove_zero: bool = False,
-) -> float:
+) -> np.floating:
     """Compute the H3 mean error.
 
     .. image:: /pictures/H3.png
@@ -4564,8 +4524,7 @@ def h3_mhe(
 
     Returns
     -------
-    float
-        The mean H3 error.
+    The mean H3 error.
 
     Examples
     --------
@@ -4597,13 +4556,13 @@ def h3_mhe(
 
 
 def h3_mahe(
-    simulated_array: FloatArray,
-    observed_array: FloatArray,
+    simulated_array: InputArray,
+    observed_array: InputArray,
     replace_nan: float | None = None,
     replace_inf: float | None = None,
     remove_neg: bool = False,
     remove_zero: bool = False,
-) -> float:
+) -> np.floating[Any]:
     """Compute the H3 mean absolute error.
 
     .. image:: /pictures/H3.png
@@ -4643,8 +4602,7 @@ def h3_mahe(
 
     Returns
     -------
-    float
-        The mean absolute H3 error.
+    The mean absolute H3 error.
 
     Examples
     --------
@@ -4676,13 +4634,13 @@ def h3_mahe(
 
 
 def h3_rmshe(
-    simulated_array: FloatArray,
-    observed_array: FloatArray,
+    simulated_array: InputArray,
+    observed_array: InputArray,
     replace_nan: float | None = None,
     replace_inf: float | None = None,
     remove_neg: bool = False,
     remove_zero: bool = False,
-) -> float:
+) -> np.floating[Any]:
     """Compute the H3 root mean square error.
 
     .. image:: /pictures/H3.png
@@ -4722,8 +4680,7 @@ def h3_rmshe(
 
     Returns
     -------
-    float
-        The root mean square H3 error.
+    The root mean square H3 error.
 
     Examples
     --------
@@ -4755,13 +4712,13 @@ def h3_rmshe(
 
 
 def h4_mhe(
-    simulated_array: FloatArray,
-    observed_array: FloatArray,
+    simulated_array: InputArray,
+    observed_array: InputArray,
     replace_nan: float | None = None,
     replace_inf: float | None = None,
     remove_neg: bool = False,
     remove_zero: bool = False,
-) -> float:
+) -> np.floating[Any]:
     """Compute the H4 mean error.
 
     .. image:: /pictures/H4.png
@@ -4801,8 +4758,7 @@ def h4_mhe(
 
     Returns
     -------
-    float
-        The mean H4 error.
+    The mean H4 error.
 
     Examples
     --------
@@ -4834,13 +4790,13 @@ def h4_mhe(
 
 
 def h4_mahe(
-    simulated_array: FloatArray,
-    observed_array: FloatArray,
+    simulated_array: InputArray,
+    observed_array: InputArray,
     replace_nan: float | None = None,
     replace_inf: float | None = None,
     remove_neg: bool = False,
     remove_zero: bool = False,
-) -> float:
+) -> np.floating[Any]:
     """Compute the H4 mean absolute error.
 
     .. image:: /pictures/H4.png
@@ -4880,8 +4836,7 @@ def h4_mahe(
 
     Returns
     -------
-    float
-        The mean absolute H4 error.
+    The mean absolute H4 error.
 
     Examples
     --------
@@ -4913,13 +4868,13 @@ def h4_mahe(
 
 
 def h4_rmshe(
-    simulated_array: FloatArray,
-    observed_array: FloatArray,
+    simulated_array: InputArray,
+    observed_array: InputArray,
     replace_nan: float | None = None,
     replace_inf: float | None = None,
     remove_neg: bool = False,
     remove_zero: bool = False,
-) -> float:
+) -> np.floating[Any]:
     """Compute the H4 mean error.
 
     .. image:: /pictures/H4.png
@@ -4959,8 +4914,7 @@ def h4_rmshe(
 
     Returns
     -------
-    float
-        The root mean square H4 error.
+    The root mean square H4 error.
 
     Examples
     --------
@@ -4992,13 +4946,13 @@ def h4_rmshe(
 
 
 def h5_mhe(
-    simulated_array: FloatArray,
-    observed_array: FloatArray,
+    simulated_array: InputArray,
+    observed_array: InputArray,
     replace_nan: float | None = None,
     replace_inf: float | None = None,
     remove_neg: bool = False,
     remove_zero: bool = False,
-) -> float:
+) -> np.floating[Any]:
     """Compute the H5 mean error.
 
     .. image:: /pictures/H5.png
@@ -5038,8 +4992,7 @@ def h5_mhe(
 
     Returns
     -------
-    float
-        The mean H5 error.
+    The mean H5 error.
 
     Examples
     --------
@@ -5073,13 +5026,13 @@ def h5_mhe(
 
 
 def h5_mahe(
-    simulated_array: FloatArray,
-    observed_array: FloatArray,
+    simulated_array: InputArray,
+    observed_array: InputArray,
     replace_nan: float | None = None,
     replace_inf: float | None = None,
     remove_neg: bool = False,
     remove_zero: bool = False,
-) -> float:
+) -> np.floating[Any]:
     """Compute the H5 mean absolute error.
 
     .. image:: /pictures/H5.png
@@ -5119,8 +5072,7 @@ def h5_mahe(
 
     Returns
     -------
-    float
-        The mean absolute H5 error.
+    The mean absolute H5 error.
 
     Examples
     --------
@@ -5154,13 +5106,13 @@ def h5_mahe(
 
 
 def h5_rmshe(
-    simulated_array: FloatArray,
-    observed_array: FloatArray,
+    simulated_array: InputArray,
+    observed_array: InputArray,
     replace_nan: float | None = None,
     replace_inf: float | None = None,
     remove_neg: bool = False,
     remove_zero: bool = False,
-) -> float:
+) -> np.floating[Any]:
     """Compute the H5 root mean square error.
 
     .. image:: /pictures/H5.png
@@ -5200,8 +5152,7 @@ def h5_rmshe(
 
     Returns
     -------
-    float
-        The root mean square H5 error.
+    The root mean square H5 error.
 
     Examples
     --------
@@ -5235,14 +5186,14 @@ def h5_rmshe(
 
 
 def h6_mhe(
-    simulated_array: FloatArray,
-    observed_array: FloatArray,
-    k: int = 1,
+    simulated_array: InputArray,
+    observed_array: InputArray,
+    k: float = 1,
     replace_nan: float | None = None,
     replace_inf: float | None = None,
     remove_neg: bool = False,
     remove_zero: bool = False,
-) -> float:
+) -> np.floating[Any]:
     """Compute the H6 mean error.
 
     .. image:: /pictures/H6.png
@@ -5260,7 +5211,7 @@ def h6_mhe(
     observed_array:
         An array of observed data from the time series.
 
-    k: int or float
+    k:
         If given, sets the value of k. If None, k=1.
 
     replace_nan:
@@ -5285,8 +5236,7 @@ def h6_mhe(
 
     Returns
     -------
-    float
-        The mean H6 error.
+    The mean H6 error.
 
     Examples
     --------
@@ -5320,14 +5270,14 @@ def h6_mhe(
 
 
 def h6_mahe(
-    simulated_array: FloatArray,
-    observed_array: FloatArray,
-    k: int = 1,
+    simulated_array: InputArray,
+    observed_array: InputArray,
+    k: float = 1,
     replace_nan: float | None = None,
     replace_inf: float | None = None,
     remove_neg: bool = False,
     remove_zero: bool = False,
-) -> float:
+) -> np.floating[Any]:
     """Compute the H6 mean absolute error.
 
     .. image:: /pictures/H6.png
@@ -5345,7 +5295,7 @@ def h6_mahe(
     observed_array:
         An array of observed data from the time series.
 
-    k: int or float
+    k:
         If given, sets the value of k. If None, k=1.
 
     replace_nan:
@@ -5370,8 +5320,7 @@ def h6_mahe(
 
     Returns
     -------
-    float
-        The mean absolute H6 error.
+    The mean absolute H6 error.
 
     Examples
     --------
@@ -5405,14 +5354,14 @@ def h6_mahe(
 
 
 def h6_rmshe(
-    simulated_array: FloatArray,
-    observed_array: FloatArray,
-    k: int = 1,
+    simulated_array: InputArray,
+    observed_array: InputArray,
+    k: float = 1,
     replace_nan: float | None = None,
     replace_inf: float | None = None,
     remove_neg: bool = False,
     remove_zero: bool = False,
-) -> float:
+) -> np.floating[Any]:
     """Compute the H6 root mean square error.
 
     .. image:: /pictures/H6.png
@@ -5430,7 +5379,7 @@ def h6_rmshe(
     observed_array:
         An array of observed data from the time series.
 
-    k: int or float
+    k:
         If given, sets the value of k. If None, k=1.
 
     replace_nan:
@@ -5455,8 +5404,7 @@ def h6_rmshe(
 
     Returns
     -------
-    float
-        The root mean square H6 error.
+    The root mean square H6 error.
 
     Examples
     --------
@@ -5490,13 +5438,13 @@ def h6_rmshe(
 
 
 def h7_mhe(
-    simulated_array: FloatArray,
-    observed_array: FloatArray,
+    simulated_array: InputArray,
+    observed_array: InputArray,
     replace_nan: float | None = None,
     replace_inf: float | None = None,
     remove_neg: bool = False,
     remove_zero: bool = False,
-) -> float:
+) -> np.floating[Any]:
     """Compute the H7 mean error.
 
     .. image:: /pictures/H7.png
@@ -5536,8 +5484,7 @@ def h7_mhe(
 
     Returns
     -------
-    float
-        The mean H7 error.
+    The mean H7 error.
 
     Examples
     --------
@@ -5569,13 +5516,13 @@ def h7_mhe(
 
 
 def h7_mahe(
-    simulated_array: FloatArray,
-    observed_array: FloatArray,
+    simulated_array: InputArray,
+    observed_array: InputArray,
     replace_nan: float | None = None,
     replace_inf: float | None = None,
     remove_neg: bool = False,
     remove_zero: bool = False,
-) -> float:
+) -> np.floating[Any]:
     """Compute the H7 mean absolute error.
 
     .. image:: /pictures/H7.png
@@ -5615,8 +5562,7 @@ def h7_mahe(
 
     Returns
     -------
-    float
-        The mean absolute H7 error.
+    The mean absolute H7 error.
 
     Examples
     --------
@@ -5648,13 +5594,13 @@ def h7_mahe(
 
 
 def h7_rmshe(
-    simulated_array: FloatArray,
-    observed_array: FloatArray,
+    simulated_array: InputArray,
+    observed_array: InputArray,
     replace_nan: float | None = None,
     replace_inf: float | None = None,
     remove_neg: bool = False,
     remove_zero: bool = False,
-) -> float:
+) -> np.floating[Any]:
     """Compute the H7 root mean square error.
 
     .. image:: /pictures/H7.png
@@ -5694,8 +5640,7 @@ def h7_rmshe(
 
     Returns
     -------
-    float
-        The root mean square H7 error.
+    The root mean square H7 error.
 
     Examples
     --------
@@ -5727,13 +5672,13 @@ def h7_rmshe(
 
 
 def h8_mhe(
-    simulated_array: FloatArray,
-    observed_array: FloatArray,
+    simulated_array: InputArray,
+    observed_array: InputArray,
     replace_nan: float | None = None,
     replace_inf: float | None = None,
     remove_neg: bool = False,
     remove_zero: bool = False,
-) -> float:
+) -> np.floating[Any]:
     """Compute the H8 mean error.
 
     .. image:: /pictures/H8.png
@@ -5773,8 +5718,7 @@ def h8_mhe(
 
     Returns
     -------
-    float
-        The mean H8 error.
+    The mean H8 error.
 
     Examples
     --------
@@ -5806,13 +5750,13 @@ def h8_mhe(
 
 
 def h8_mahe(
-    simulated_array: FloatArray,
-    observed_array: FloatArray,
+    simulated_array: InputArray,
+    observed_array: InputArray,
     replace_nan: float | None = None,
     replace_inf: float | None = None,
     remove_neg: bool = False,
     remove_zero: bool = False,
-) -> float:
+) -> np.floating[Any]:
     """Compute the H8 mean absolute error.
 
     .. image:: /pictures/H8.png
@@ -5852,8 +5796,7 @@ def h8_mahe(
 
     Returns
     -------
-    float
-        The mean absolute H8 error.
+    The mean absolute H8 error.
 
     Examples
     --------
@@ -5885,13 +5828,13 @@ def h8_mahe(
 
 
 def h8_rmshe(
-    simulated_array: FloatArray,
-    observed_array: FloatArray,
+    simulated_array: InputArray,
+    observed_array: InputArray,
     replace_nan: float | None = None,
     replace_inf: float | None = None,
     remove_neg: bool = False,
     remove_zero: bool = False,
-) -> float:
+) -> np.floating[Any]:
     """Compute the H8 root mean square error.
 
     .. image:: /pictures/H8.png
@@ -5931,8 +5874,7 @@ def h8_rmshe(
 
     Returns
     -------
-    float
-        The root mean square H8 error.
+    The root mean square H8 error.
 
     Examples
     --------
@@ -5964,13 +5906,13 @@ def h8_rmshe(
 
 
 def h10_mhe(
-    simulated_array: FloatArray,
-    observed_array: FloatArray,
+    simulated_array: InputArray,
+    observed_array: InputArray,
     replace_nan: float | None = None,
     replace_inf: float | None = None,
     remove_neg: bool = False,
     remove_zero: bool = False,
-) -> float:
+) -> np.floating[Any]:
     """Compute the H10 mean error.
 
     .. image:: /pictures/H10.png
@@ -6010,8 +5952,7 @@ def h10_mhe(
 
     Returns
     -------
-    float
-        The mean H10 error.
+    The mean H10 error.
 
     Examples
     --------
@@ -6043,13 +5984,13 @@ def h10_mhe(
 
 
 def h10_mahe(
-    simulated_array: FloatArray,
-    observed_array: FloatArray,
+    simulated_array: InputArray,
+    observed_array: InputArray,
     replace_nan: float | None = None,
     replace_inf: float | None = None,
     remove_neg: bool = False,
     remove_zero: bool = False,
-) -> float:
+) -> np.floating[Any]:
     """Compute the H10 mean absolute error.
 
     .. image:: /pictures/H10.png
@@ -6089,8 +6030,7 @@ def h10_mahe(
 
     Returns
     -------
-    float
-        The mean absolute H10 error.
+    The mean absolute H10 error.
 
     Examples
     --------
@@ -6122,13 +6062,13 @@ def h10_mahe(
 
 
 def h10_rmshe(
-    simulated_array: FloatArray,
-    observed_array: FloatArray,
+    simulated_array: InputArray,
+    observed_array: InputArray,
     replace_nan: float | None = None,
     replace_inf: float | None = None,
     remove_neg: bool = False,
     remove_zero: bool = False,
-) -> float:
+) -> np.floating[Any]:
     """Compute the H10 root mean square error.
 
     .. image:: /pictures/H10.png
@@ -6168,8 +6108,7 @@ def h10_rmshe(
 
     Returns
     -------
-    float
-        The root mean square H10 error.
+    The root mean square H10 error.
 
     Examples
     --------
@@ -6206,13 +6145,13 @@ def h10_rmshe(
 
 
 def g_mean_diff(
-    simulated_array: FloatArray,
-    observed_array: FloatArray,
+    simulated_array: InputArray,
+    observed_array: InputArray,
     replace_nan: float | None = None,
     replace_inf: float | None = None,
     remove_neg: bool = False,
     remove_zero: bool = False,
-) -> float:
+) -> np.floating[Any]:
     """Compute the geometric mean difference.
 
     .. image:: /pictures/GMD.png
@@ -6252,8 +6191,7 @@ def g_mean_diff(
 
     Returns
     -------
-    float
-        The geometric mean difference value.
+    The geometric mean difference value.
 
     Examples
     --------
@@ -6281,13 +6219,13 @@ def g_mean_diff(
 
 
 def mean_var(
-    simulated_array: FloatArray,
-    observed_array: FloatArray,
+    simulated_array: InputArray,
+    observed_array: InputArray,
     replace_nan: float | None = None,
     replace_inf: float | None = None,
     remove_neg: bool = False,
     remove_zero: bool = False,
-) -> float:
+) -> np.floating[Any]:
     """Compute the mean variance.
 
     .. image:: /pictures/MV.png
@@ -6326,8 +6264,7 @@ def mean_var(
 
     Returns
     -------
-    float
-        The mean variance.
+    The mean variance.
 
     Examples
     --------
@@ -6594,21 +6531,21 @@ function_list = [
 
 # Assign some properties to each function for ease of use for users
 for i in range(len(function_list)):
-    function_list[i].name = metric_names[i]
-    function_list[i].abbr = metric_abbr[i]
+    function_list[i].name = metric_names[i]  # type: ignore[invalid-assignment]
+    function_list[i].abbr = metric_abbr[i]  # type: ignore[invalid-assignment]
 
 
 def treat_values(  # noqa: C901
-    simulated_array: FloatArray,
-    observed_array: FloatArray,
+    simulated_array: InputArray,
+    observed_array: InputArray,
     replace_nan: float | None = None,
     replace_inf: float | None = None,
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> tuple[FloatArray, FloatArray]:
     """Remove the nan, negative, and inf values in two numpy arrays."""
-    sim_copy = np.copy(simulated_array)
-    obs_copy = np.copy(observed_array)
+    sim_copy: FloatArray = np.copy(simulated_array)
+    obs_copy: FloatArray = np.copy(observed_array)
 
     # Checking to see if the vectors are the same length
     if not sim_copy.ndim == 1:
