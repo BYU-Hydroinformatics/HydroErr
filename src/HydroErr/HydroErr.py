@@ -1,4 +1,4 @@
-"""HydroErr metrics and helpers."""
+"""HydroErr metrics."""
 
 import warnings
 from typing import Any
