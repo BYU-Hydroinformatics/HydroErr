@@ -101,7 +101,7 @@ def me(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the mean error of the simulated and observed data.
+    r"""Compute the mean error of the simulated and observed data.
 
     .. image:: /pictures/ME.png
 
@@ -187,7 +187,7 @@ def mae(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the mean absolute error of the simulated and observed data.
+    r"""Compute the mean absolute error of the simulated and observed data.
 
     .. image:: /pictures/MAE.png
 
@@ -269,7 +269,7 @@ def mse(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the mean squared error of the simulated and observed data.
+    r"""Compute the mean squared error of the simulated and observed data.
 
     .. image:: /pictures/MSE.png
 
@@ -346,7 +346,7 @@ def mle(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the mean log error of the simulated and observed data.
+    r"""Compute the mean log error of the simulated and observed data.
 
     .. image:: /pictures/MLE.png
 
@@ -427,7 +427,7 @@ def male(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the mean absolute log error of the simulated and observed data.
+    r"""Compute the mean absolute log error of the simulated and observed data.
 
     .. image:: /pictures/MALE.png
 
@@ -508,7 +508,7 @@ def msle(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the mean squared log error of the simulated and observed data.
+    r"""Compute the mean squared log error of the simulated and observed data.
 
     .. image:: /pictures/MSLE.png
 
@@ -589,7 +589,7 @@ def mde(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the median error (MdE) between the simulated and observed data.
+    r"""Compute the median error (MdE) between the simulated and observed data.
 
     .. image:: /pictures/MdE.png
 
@@ -663,7 +663,7 @@ def mdae(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the median absolute error (MdAE) between the simulated and observed data.
+    r"""Compute the median absolute error (MdAE) between the simulated and observed data.
 
     .. image:: /pictures/MdAE.png
 
@@ -737,7 +737,7 @@ def mdse(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the median squared error (MdSE) between the simulated and observed data.
+    r"""Compute the median squared error (MdSE) between the simulated and observed data.
 
     .. image:: /pictures/MdSE.png
 
@@ -811,7 +811,7 @@ def ed(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the Euclidean distance between predicted and observed values in vector space.
+    r"""Compute the Euclidean distance between predicted and observed values in vector space.
 
     .. image:: /pictures/ED.png
 
@@ -887,7 +887,7 @@ def ned(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the normalized Euclidian distance between the simulated and observed data in vector space.
+    r"""Compute the normalized Euclidian distance between the simulated and observed data in vector space.
 
     .. image:: /pictures/NED.png
 
@@ -966,7 +966,7 @@ def rmse(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the root mean square error between the simulated and observed data.
+    r"""Compute the root mean square error between the simulated and observed data.
 
     .. image:: /pictures/RMSE.png
 
@@ -1047,7 +1047,7 @@ def rmsle(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the root mean square log error between the simulated and observed data.
+    r"""Compute the root mean square log error between the simulated and observed data.
 
     .. image:: /pictures/RMSLE.png
 
@@ -1130,7 +1130,7 @@ def nrmse_range(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the range normalized root mean square error between the simulated and observed data.
+    r"""Compute the range normalized root mean square error between the simulated and observed data.
 
     .. image:: /pictures/NRMSE_Range.png
 
@@ -1212,7 +1212,7 @@ def nrmse_mean(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the mean normalized root mean square error between the simulated and observed data.
+    r"""Compute the mean normalized root mean square error between the simulated and observed data.
 
     .. image:: /pictures/NRMSE_Mean.png
 
@@ -1292,7 +1292,7 @@ def nrmse_iqr(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the IQR normalized root mean square error between the simulated and observed data.
+    r"""Compute the IQR normalized root mean square error between the simulated and observed data.
 
     .. image:: /pictures/NRMSE_IQR.png
 
@@ -1375,7 +1375,7 @@ def irmse(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the inertial root mean square error (IRMSE) between the simulated and observed data.
+    r"""Compute the inertial root mean square error (IRMSE) between the simulated and observed data.
 
     .. image:: /pictures/IRMSE.png
 
@@ -1463,7 +1463,7 @@ def mase(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the mean absolute scaled error between the simulated and observed data.
+    r"""Compute the mean absolute scaled error between the simulated and observed data.
 
     .. image:: /pictures/MASE.png
 
@@ -1546,7 +1546,7 @@ def pearson_r(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the pearson correlation coefficient.
+    r"""Compute the pearson correlation coefficient.
 
     .. image:: /pictures/R_pearson.png
 
@@ -1630,7 +1630,7 @@ def spearman_r(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the spearman rank correlation coefficient.
+    r"""Compute the spearman rank correlation coefficient.
 
     .. image:: /pictures/R_spearman.png
 
@@ -1720,7 +1720,7 @@ def r_squared(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the the Coefficient of Determination (r2).
+    r"""Compute the the Coefficient of Determination (r2).
 
     .. image:: /pictures/r2.png
 
@@ -1883,7 +1883,7 @@ def mape(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the the mean absolute percentage error (MAPE).
+    r"""Compute the the mean absolute percentage error (MAPE).
 
     .. image:: /pictures/MAPE.png
 
@@ -1958,7 +1958,7 @@ def mapd(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the the mean absolute percentage deviation (MAPD).
+    r"""Compute the the mean absolute percentage deviation (MAPD).
 
     .. image:: /pictures/MAPD.png
 
@@ -2031,7 +2031,7 @@ def maape(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the the Mean Arctangent Absolute Percentage Error (MAAPE).
+    r"""Compute the the Mean Arctangent Absolute Percentage Error (MAAPE).
 
     .. image:: /pictures/MAAPE.png
 
@@ -2110,7 +2110,7 @@ def smape1(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the the Symmetric Mean Absolute Percentage Error (1) (SMAPE1).
+    r"""Compute the the Symmetric Mean Absolute Percentage Error (1) (SMAPE1).
 
     .. image:: /pictures/SMAPE1.png
 
@@ -2195,7 +2195,7 @@ def smape2(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the the Symmetric Mean Absolute Percentage Error (2) (SMAPE2).
+    r"""Compute the the Symmetric Mean Absolute Percentage Error (2) (SMAPE2).
 
     .. image:: /pictures/SMAPE2.png
 
@@ -2281,7 +2281,7 @@ def d(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the the index of agreement (d).
+    r"""Compute the the index of agreement (d).
 
     .. image:: /pictures/d.png
 
@@ -2362,7 +2362,7 @@ def d1(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the the index of agreement (d1).
+    r"""Compute the the index of agreement (d1).
 
     .. image:: /pictures/d1.png
 
@@ -2444,7 +2444,7 @@ def dr(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the the refined index of agreement (dr).
+    r"""Compute the the refined index of agreement (dr).
 
     .. image:: /pictures/dr.png
 
@@ -2526,7 +2526,7 @@ def drel(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the the relative index of agreement (drel).
+    r"""Compute the the relative index of agreement (drel).
 
     .. image:: /pictures/drel.png
 
@@ -2607,7 +2607,7 @@ def dmod(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the the modified index of agreement (dmod).
+    r"""Compute the the modified index of agreement (dmod).
 
     .. image:: /pictures/dmod.png
 
@@ -2697,7 +2697,7 @@ def watt_m(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute Watterson's M (M).
+    r"""Compute Watterson's M (M).
 
     .. image:: /pictures/M.png
 
@@ -2778,7 +2778,7 @@ def mb_r(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute Mielke-Berry R value (MB R).
+    r"""Compute Mielke-Berry R value (MB R).
 
     .. image:: /pictures/MB_R.png
 
@@ -2886,7 +2886,7 @@ def nse(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the Nash-Sutcliffe Efficiency.
+    r"""Compute the Nash-Sutcliffe Efficiency.
 
     .. image:: /pictures/NSE.png
 
@@ -2974,7 +2974,7 @@ def nse_mod(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the modified Nash-Sutcliffe efficiency (NSE mod).
+    r"""Compute the modified Nash-Sutcliffe efficiency (NSE mod).
 
     .. image:: /pictures/NSEmod.png
 
@@ -3057,7 +3057,7 @@ def nse_rel(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the relative Nash-Sutcliffe efficiency (NSE rel).
+    r"""Compute the relative Nash-Sutcliffe efficiency (NSE rel).
 
     .. image:: /pictures/NSErel.png
 
@@ -3140,7 +3140,7 @@ def kge_2009(
 ) -> (
     np.floating[Any] | tuple[np.floating[Any], np.floating[Any], np.floating[Any], np.floating[Any]]
 ):
-    """Compute the Kling-Gupta efficiency (2009).
+    r"""Compute the Kling-Gupta efficiency (2009).
 
     .. image:: /pictures/KGE_2009.png
 
@@ -3279,7 +3279,7 @@ def kge_2012(
 ) -> (
     np.floating[Any] | tuple[np.floating[Any], np.floating[Any], np.floating[Any], np.floating[Any]]
 ):
-    """Compute the Kling-Gupta efficiency (2012).
+    r"""Compute the Kling-Gupta efficiency (2012).
 
     .. image:: /pictures/KGE_2012.png
 
@@ -3424,7 +3424,7 @@ def lm_index(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the Legate-McCabe Efficiency Index.
+    r"""Compute the Legate-McCabe Efficiency Index.
 
     .. image:: /pictures/E1p.png
 
@@ -3513,7 +3513,7 @@ def d1_p(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the Legate-McCabe Index of Agreement.
+    r"""Compute the Legate-McCabe Index of Agreement.
 
     .. image:: /pictures/D1p.png
 
@@ -3600,7 +3600,7 @@ def ve(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the Volumetric Efficiency (VE).
+    r"""Compute the Volumetric Efficiency (VE).
 
     .. image:: /pictures/VE.png
 
@@ -3678,7 +3678,7 @@ def sa(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the Spectral Angle (SA).
+    r"""Compute the Spectral Angle (SA).
 
     .. image:: /pictures/SA.png
 
@@ -3758,7 +3758,7 @@ def sc(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the Spectral Correlation (SC).
+    r"""Compute the Spectral Correlation (SC).
 
     .. image:: /pictures/SC.png
 
@@ -3843,7 +3843,7 @@ def sid(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the Spectral Information Divergence (SID).
+    r"""Compute the Spectral Information Divergence (SID).
 
     .. image:: /pictures/SID.png
 
@@ -3926,7 +3926,7 @@ def sga(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the Spectral Gradient Angle (SGA).
+    r"""Compute the Spectral Gradient Angle (SGA).
 
     .. image:: /pictures/SGA.png
 
@@ -4014,7 +4014,7 @@ def h1_mhe(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the H1 mean error.
+    r"""Compute the H1 mean error.
 
     .. image:: /pictures/H1.png
     .. image:: /pictures/MHE.png
@@ -4092,7 +4092,7 @@ def h1_mahe(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the H1 absolute error.
+    r"""Compute the H1 absolute error.
 
     .. image:: /pictures/H1.png
     .. image:: /pictures/AHE.png
@@ -4170,7 +4170,7 @@ def h1_rmshe(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the H1 root mean square error.
+    r"""Compute the H1 root mean square error.
 
     .. image:: /pictures/H1.png
     .. image:: /pictures/RMSHE.png
@@ -4248,7 +4248,7 @@ def h2_mhe(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the H2 mean error.
+    r"""Compute the H2 mean error.
 
     .. image:: /pictures/H2.png
     .. image:: /pictures/MHE.png
@@ -4326,7 +4326,7 @@ def h2_mahe(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the H2 mean absolute error.
+    r"""Compute the H2 mean absolute error.
 
     .. image:: /pictures/H2.png
     .. image:: /pictures/AHE.png
@@ -4404,7 +4404,7 @@ def h2_rmshe(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the H2 root mean square error.
+    r"""Compute the H2 root mean square error.
 
     .. image:: /pictures/H1.png
     .. image:: /pictures/MHE.png
@@ -4560,7 +4560,7 @@ def h3_mahe(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the H3 mean absolute error.
+    r"""Compute the H3 mean absolute error.
 
     .. image:: /pictures/H3.png
     .. image:: /pictures/AHE.png
@@ -4638,7 +4638,7 @@ def h3_rmshe(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the H3 root mean square error.
+    r"""Compute the H3 root mean square error.
 
     .. image:: /pictures/H3.png
     .. image:: /pictures/RMSHE.png
@@ -4716,7 +4716,7 @@ def h4_mhe(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the H4 mean error.
+    r"""Compute the H4 mean error.
 
     .. image:: /pictures/H4.png
     .. image:: /pictures/MHE.png
@@ -4794,7 +4794,7 @@ def h4_mahe(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the H4 mean absolute error.
+    r"""Compute the H4 mean absolute error.
 
     .. image:: /pictures/H4.png
     .. image:: /pictures/AHE.png
@@ -4872,7 +4872,7 @@ def h4_rmshe(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the H4 mean error.
+    r"""Compute the H4 mean error.
 
     .. image:: /pictures/H4.png
     .. image:: /pictures/RMSHE.png
@@ -4950,7 +4950,7 @@ def h5_mhe(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the H5 mean error.
+    r"""Compute the H5 mean error.
 
     .. image:: /pictures/H5.png
     .. image:: /pictures/MHE.png
@@ -5030,7 +5030,7 @@ def h5_mahe(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the H5 mean absolute error.
+    r"""Compute the H5 mean absolute error.
 
     .. image:: /pictures/H5.png
     .. image:: /pictures/AHE.png
@@ -5110,7 +5110,7 @@ def h5_rmshe(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the H5 root mean square error.
+    r"""Compute the H5 root mean square error.
 
     .. image:: /pictures/H5.png
     .. image:: /pictures/RMSHE.png
@@ -5191,7 +5191,7 @@ def h6_mhe(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the H6 mean error.
+    r"""Compute the H6 mean error.
 
     .. image:: /pictures/H6.png
     .. image:: /pictures/MHE.png
@@ -5275,7 +5275,7 @@ def h6_mahe(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the H6 mean absolute error.
+    r"""Compute the H6 mean absolute error.
 
     .. image:: /pictures/H6.png
     .. image:: /pictures/AHE.png
@@ -5359,7 +5359,7 @@ def h6_rmshe(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the H6 root mean square error.
+    r"""Compute the H6 root mean square error.
 
     .. image:: /pictures/H6.png
     .. image:: /pictures/RMSHE.png
@@ -5442,7 +5442,7 @@ def h7_mhe(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the H7 mean error.
+    r"""Compute the H7 mean error.
 
     .. image:: /pictures/H7.png
     .. image:: /pictures/MHE.png
@@ -5520,7 +5520,7 @@ def h7_mahe(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the H7 mean absolute error.
+    r"""Compute the H7 mean absolute error.
 
     .. image:: /pictures/H7.png
     .. image:: /pictures/AHE.png
@@ -5598,7 +5598,7 @@ def h7_rmshe(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the H7 root mean square error.
+    r"""Compute the H7 root mean square error.
 
     .. image:: /pictures/H7.png
     .. image:: /pictures/RMSHE.png
@@ -5676,7 +5676,7 @@ def h8_mhe(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the H8 mean error.
+    r"""Compute the H8 mean error.
 
     .. image:: /pictures/H8.png
     .. image:: /pictures/MHE.png
@@ -5754,7 +5754,7 @@ def h8_mahe(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the H8 mean absolute error.
+    r"""Compute the H8 mean absolute error.
 
     .. image:: /pictures/H8.png
     .. image:: /pictures/AHE.png
@@ -5832,7 +5832,7 @@ def h8_rmshe(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the H8 root mean square error.
+    r"""Compute the H8 root mean square error.
 
     .. image:: /pictures/H8.png
     .. image:: /pictures/RMSHE.png
@@ -5910,7 +5910,7 @@ def h10_mhe(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the H10 mean error.
+    r"""Compute the H10 mean error.
 
     .. image:: /pictures/H10.png
     .. image:: /pictures/MHE.png
@@ -5988,7 +5988,7 @@ def h10_mahe(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the H10 mean absolute error.
+    r"""Compute the H10 mean absolute error.
 
     .. image:: /pictures/H10.png
     .. image:: /pictures/AHE.png
@@ -6066,7 +6066,7 @@ def h10_rmshe(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the H10 root mean square error.
+    r"""Compute the H10 root mean square error.
 
     .. image:: /pictures/H10.png
     .. image:: /pictures/RMSHE.png
@@ -6149,7 +6149,7 @@ def g_mean_diff(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the geometric mean difference.
+    r"""Compute the geometric mean difference.
 
     .. image:: /pictures/GMD.png
 
@@ -6223,7 +6223,7 @@ def mean_var(
     remove_neg: bool = False,
     remove_zero: bool = False,
 ) -> np.floating[Any]:
-    """Compute the mean variance.
+    r"""Compute the mean variance.
 
     .. image:: /pictures/MV.png
 
