@@ -14,6 +14,8 @@ Breaking Changes:
   "return_all" parameter.
 - When the kge_2009 or kge_2012 metrics are not able to be computed, return np.float64(np.nan)
   values instead of just np.nan.
+- Raise a ValueError instead of a RuntimeError when the input arrays have different lengths.
+- Raise a ValueError instead of a RuntimeError when the arrays provided are not one-dimensional.
 
 Other Changes:
 
