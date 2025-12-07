@@ -32,9 +32,9 @@ dependencies = [
 
 [dependency-groups]
 dev = [
-    "matplotlib>=3.10.7",
     "pytest>=9.0.1",
     "pytest-check>=2.6.2",
+    "pytest-cov>=7.0.0",
     "ruff>=0.14.8",
     "scipy-stubs>=1.15.3.0",
     "ty>=0.0.1a32",
