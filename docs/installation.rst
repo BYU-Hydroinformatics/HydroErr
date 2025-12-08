@@ -1,11 +1,17 @@
 Installation
 ============
 
-HydroErr is freely available on the Python Package index repository (PyPI). It can be installed
-with the following command using either virtualenv or Anaconda::
+HydroErr is available on `PyPI <https://pypi.org/project/HydroErr/>`_ and can be installed using any
+of the following package managers:
+
+**pip**::
 
    pip install HydroErr
 
-The extension is also available through conda package management system. It can be installed with::
+**uv**::
 
-    conda install -c conda-forge hydroerr
+   uv add HydroErr
+
+**conda**::
+
+   conda install -c conda-forge hydroerr
