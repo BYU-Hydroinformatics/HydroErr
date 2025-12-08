@@ -10,7 +10,18 @@
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 
-import HydroErr
+import sys
+from pathlib import Path
+
+# Ensure the project's src-based package layout is discoverable when building docs
+_DOCS_DIR = Path(__file__).resolve().parent
+_PROJECT_ROOT = _DOCS_DIR.parent
+_SRC_DIR = _PROJECT_ROOT / "src"
+
+# Insert the src directory so imports (e.g., `import HydroErr`) resolve correctly
+sys.path.insert(0, str(_SRC_DIR))
+
+import HydroErr  # noqa: E402
 
 # -- Project information -----------------------------------------------------
 
