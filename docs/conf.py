@@ -21,7 +21,7 @@ import HydroErr
 # -- Project information -----------------------------------------------------
 
 project = "HydroErr"
-copyright = "2019, Wade Roberts, Gustavious Williams"
+copyright = "2019-%Y, Wade Roberts, Gustavious Williams"
 author = "Wade Roberts, Gustavious Williams"
 
 # The short X.Y version
