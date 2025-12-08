@@ -94,6 +94,18 @@ When adding new error metrics:
 - Test with various hydrologic datasets
 - Document the metric's advantages and limitations
 
+Contributing to the Documentation
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The documentation can be built locally with this command:
+
+   .. code-block:: bash
+
+       uv run --only-group docs sphinx-build docs/ docs/_build
+
+It will generate the documentation files in the docs/_build directory. You can open that directory
+and open the index.html file to locally view the docs.
+
 Important Guidelines
 ^^^^^^^^^^^^^^^^^^^^
 
