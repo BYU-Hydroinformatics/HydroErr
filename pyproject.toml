@@ -1,6 +1,6 @@
 [project]
 name = "HydroErr"
-version = "2.0.0rc1"
+version = "2.0.0"
 description = "Goodness of fit metrics for use in comparison studies, specifically for use in the field of hydrology"
 readme = "README.md"
 authors = [

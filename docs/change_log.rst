@@ -4,6 +4,12 @@ Release Notes
 This is the list of changes to HydroErr between each release. For full details, see the commit logs at
 https://github.com/BYU-Hydroinformatics/HydroErr.
 
+Version 2.0.0
+^^^^^^^^^^^^^^
+
+- Add a section to the documentation about how to build the docs locally.
+- See the 2.0.0rc1 section for breaking changes and other changes made in preparation for the 2.0.0 release.
+
 Version 2.0.0rc1
 ^^^^^^^^^^^^^^^^
 

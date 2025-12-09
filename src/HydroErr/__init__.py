@@ -18,4 +18,4 @@ An example of this functionality is shown below.
 
 from .HydroErr import *  # noqa: F403
 
-__version__ = "2.0.0rc1"
+__version__ = "2.0.0"
